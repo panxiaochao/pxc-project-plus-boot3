@@ -123,7 +123,7 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @return ${entity}BO 实体
      */
     @Override
-    public ${entity}BO getById(String id) {
+    public ${entity}BO getById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         ${entity}PO ${entity?uncap_first}PO = ${entity?uncap_first}Mapper.selectById(id);
         return I${entity}POConvert.INSTANCE.toEntityBO(${entity?uncap_first}PO);
     }
@@ -176,7 +176,7 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @param id 主键
      */
     @Override
-    public void deleteById(String id) {
+    public void deleteById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         ${entity?uncap_first}Mapper.deleteById(id);
     }
 
@@ -185,7 +185,7 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @param idList 主键数组
      */
     @Override
-    public void deleteByIds(List<String> idList) {
+    public void deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
         ${entity?uncap_first}Mapper.deleteByIds(idList);
     }
 

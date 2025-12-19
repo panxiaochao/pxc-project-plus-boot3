@@ -53,7 +53,7 @@ public class ${entity}AppService {
      * @param id 主键
      * @return 响应对象
      */
-    public R<${entity}VO> getById(String id) {
+    public R<${entity}VO> getById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         ${entity}BO ${entity?uncap_first} = ${entity?uncap_first}DomainService.getById(id);
         ${entity}VO ${entity?uncap_first}VO = I${entity}DTOConvert.INSTANCE.toVO(${entity?uncap_first});
         return R.ok(${entity?uncap_first}VO);
@@ -87,7 +87,7 @@ public class ${entity}AppService {
      * @param id 主键
      * @return 空返回
      */
-    public R<Void> deleteById(String id) {
+    public R<Void> deleteById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         ${entity?uncap_first}DomainService.deleteById(id);
         return R.ok();
     }
@@ -97,7 +97,7 @@ public class ${entity}AppService {
      * @param idList 主键数组
      * @return 空返回
      */
-    public R<Void> deleteByIds(List<String> idList) {
+    public R<Void> deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
         ${entity?uncap_first}DomainService.deleteByIds(idList);
         return R.ok();
     }

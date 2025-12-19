@@ -27,7 +27,7 @@ public class ${entity}VO {
     <#else>
 
     @Schema(description = "${field.comment}")
-    private <#if field.propertyType="Long">String<#elseif field.propertyType="Integer">String<#else>${field.propertyType}</#if> ${field.propertyName};
+    private ${field.propertyType} ${field.propertyName};
     </#if>
 </#list>
 

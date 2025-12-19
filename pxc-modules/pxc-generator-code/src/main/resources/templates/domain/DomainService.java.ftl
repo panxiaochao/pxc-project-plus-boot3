@@ -18,11 +18,11 @@ import java.util.List;
 public class ${entity}DomainService {
 
     /**
-     * ${entity}BO Domain接口服务类
+     * ${entity} Domain接口服务类
      */
     private final I${entity}Service ${entity?uncap_first}Service;
 
-    public ${entity}BO getById(String id) {
+    public ${entity}BO getById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         return ${entity?uncap_first}Service.getById(id);
     }
 
@@ -42,11 +42,11 @@ public class ${entity}DomainService {
         ${entity?uncap_first}Service.updateBatch(${entity?uncap_first}List);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         ${entity?uncap_first}Service.deleteById(id);
     }
 
-    public void deleteByIds(List<String> idList) {
+    public void deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
         ${entity?uncap_first}Service.deleteByIds(idList);
     }
 

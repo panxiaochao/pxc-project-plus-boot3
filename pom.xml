@@ -31,7 +31,7 @@
         <pxc-framework-boot3.version>3.0.1-SNAPSHOT</pxc-framework-boot3.version>
 
         <!-- 插件版本管理 -->
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencyManagement>

@@ -21,7 +21,7 @@ public class PxcMybatisPlusGeneratorTest {
 			.password("123456")
 			.dbType(GenerateDbType.MYSQL)
 			// .outputDir("E:/work_2023/test")
-			.outputDir("/Users/lypxc/Documents/project_my/pxc-project-boot3/pxc-modules/pxc-code")
+			.outputDir("/Users/lypxc/Documents/project_my/pxc-project-plus-boot3/pxc-modules/pxc-code")
 			.parent("io.github.panxiaochao.system")
 			.moduleName("development")
 			.entityName("po")

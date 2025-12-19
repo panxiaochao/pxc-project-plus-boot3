@@ -80,7 +80,7 @@ public class EnhanceFreemarkerTemplateEngine extends FreemarkerTemplateEngine {
 				else {
 					objectMap.put("idType", "ASSIGN_ID");
 				}
-				objectMap.put("idPropertyType", field.getPropertyType());
+				objectMap.put("keyPropertyType", field.getPropertyType());
 			}
 		}
 		return objectMap;

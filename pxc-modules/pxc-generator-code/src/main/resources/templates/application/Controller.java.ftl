@@ -48,7 +48,7 @@ public class ${table.controllerName} {
     @Operation(summary = "获取详情", description = "获取详情")
     @Parameter(name = "id", description = "${table.comment!} ID")
     @GetMapping(value = "/get")
-    public R<${entity}VO> getById(@RequestParam String id) {
+    public R<${entity}VO> getById(@RequestParam <#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         return ${entity?uncap_first}AppService.getById(id);
     }
 
@@ -67,14 +67,14 @@ public class ${table.controllerName} {
     @Operation(summary = "删除", description = "根据主键删除")
     @Parameter(name = "id", description = "${table.comment!} ID")
     @PostMapping(value = "/delete")
-    public R<Void> deleteById(String id) {
+    public R<Void> deleteById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
         return ${entity?uncap_first}AppService.deleteById(id);
     }
 
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "${table.comment!} ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<String> idList) {
+    public R<Void> deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
         return ${entity?uncap_first}AppService.deleteByIds(idList);
     }
 

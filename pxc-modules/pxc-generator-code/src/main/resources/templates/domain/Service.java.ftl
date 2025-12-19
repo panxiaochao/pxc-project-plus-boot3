@@ -17,7 +17,7 @@ public interface I${entity}Service {
      * @param id 主键
      * @return ${table.comment!} 实体
      */
-    ${entity}BO getById(String id);
+    ${entity}BO getById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id);
     
     /**
      * 保存
@@ -48,11 +48,11 @@ public interface I${entity}Service {
      * 根据主键删除
      * @param id 主键
      */
-    void deleteById(String id);
+    void deleteById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id);
 
     /**
      * 根据主键批量删除
      * @param idList 主键数组
      */
-    void deleteByIds(List<String> idList);
+    void deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList);
 }
