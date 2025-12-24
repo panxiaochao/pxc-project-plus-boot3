@@ -31,7 +31,7 @@ import java.util.List;
 public class ${table.serviceImplName} implements I${entity}Service, I${entity}ReadModelService {
 
     /**
-     * 角色表 持久化接口
+     * ${table.comment!} 持久化接口
      */
     private final ${table.mapperName} ${table.mapperName?uncap_first};
 

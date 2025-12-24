@@ -11,7 +11,7 @@ import ${application}.api.vo.${entity?lower_case}.${entity}VO;
 import ${application}.convert.I${entity}DTOConvert;
 import ${application}.repository.I${entity}ReadModelService;
 import ${domain}.entity.${entity?lower_case}.${entity}BO;
-import ${domain}.service.${entity}DomainService;
+import ${domain}.repository.I${entity}Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +28,12 @@ import java.util.List;
 public class ${entity}AppService {
 
     /**
-     * ${table.comment!} Domain服务类
+     * ${table.comment!} Domain接口服务类
      */
-    private final ${entity}DomainService ${entity?uncap_first}DomainService;
+    private final I${entity}Service ${entity?uncap_first}Service;
 
     /**
-     * ${table.comment!} 读模型服务
+     * ${table.comment!} 读模型服务类
      */
     private final I${entity}ReadModelService ${entity?uncap_first}ReadModelService;
 
@@ -54,7 +54,7 @@ public class ${entity}AppService {
      * @return 响应对象
      */
     public R<${entity}VO> getById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
-        ${entity}BO ${entity?uncap_first} = ${entity?uncap_first}DomainService.getById(id);
+        ${entity}BO ${entity?uncap_first} = ${entity?uncap_first}Service.getById(id);
         ${entity}VO ${entity?uncap_first}VO = I${entity}DTOConvert.INSTANCE.toVO(${entity?uncap_first});
         return R.ok(${entity?uncap_first}VO);
     }
@@ -66,7 +66,7 @@ public class ${entity}AppService {
      */
     public R<${entity}VO> save(${entity}CreateDTO ${entity?uncap_first}CreateDTO) {
         ${entity}BO ${entity?uncap_first} = I${entity}DTOConvert.INSTANCE.fromCreateDTO(${entity?uncap_first}CreateDTO);
-        ${entity?uncap_first} = ${entity?uncap_first}DomainService.save(${entity?uncap_first});
+        ${entity?uncap_first} = ${entity?uncap_first}Service.save(${entity?uncap_first});
         ${entity}VO ${entity?uncap_first}VO = I${entity}DTOConvert.INSTANCE.toVO(${entity?uncap_first});
         return R.ok(${entity?uncap_first}VO);
     }
@@ -78,7 +78,7 @@ public class ${entity}AppService {
      */
     public R<Void> update(${entity}UpdateDTO ${entity?uncap_first}UpdateDTO) {
         ${entity}BO ${entity?uncap_first} = I${entity}DTOConvert.INSTANCE.fromUpdateDTO(${entity?uncap_first}UpdateDTO);
-        ${entity?uncap_first}DomainService.update(${entity?uncap_first});
+        ${entity?uncap_first}Service.update(${entity?uncap_first});
         return R.ok();
     }
     
@@ -88,7 +88,7 @@ public class ${entity}AppService {
      * @return 空返回
      */
     public R<Void> deleteById(<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if> id) {
-        ${entity?uncap_first}DomainService.deleteById(id);
+        ${entity?uncap_first}Service.deleteById(id);
         return R.ok();
     }
 
@@ -98,7 +98,7 @@ public class ${entity}AppService {
      * @return 空返回
      */
     public R<Void> deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
-        ${entity?uncap_first}DomainService.deleteByIds(idList);
+        ${entity?uncap_first}Service.deleteByIds(idList);
         return R.ok();
     }
 

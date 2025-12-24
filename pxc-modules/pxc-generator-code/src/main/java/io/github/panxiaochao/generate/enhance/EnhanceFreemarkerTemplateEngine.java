@@ -235,15 +235,15 @@ public class EnhanceFreemarkerTemplateEngine extends FreemarkerTemplateEngine {
 		}
 
 		// DomainService
-		filePath = parentPath + "/domain/service/" + objectMap.get("entity") + "DomainService.java";
-		templatePath = "/templates/domain/DomainService.java.ftl";
-		try {
-			super.outputFile(new File(filePath), objectMap, templatePath,
-					config.getStrategyConfig().entity().isFileOverride());
-		}
-		catch (Exception exception) {
-			throw new RuntimeException("创建" + filePath + "文件失败！", exception);
-		}
+		// filePath = parentPath + "/domain/service/" + objectMap.get("entity") + "DomainService.java";
+		// templatePath = "/templates/domain/DomainService.java.ftl";
+		// try {
+		// 	super.outputFile(new File(filePath), objectMap, templatePath,
+		// 			config.getStrategyConfig().entity().isFileOverride());
+		// }
+		// catch (Exception exception) {
+		// 	throw new RuntimeException("创建" + filePath + "文件失败！", exception);
+		// }
 
 		// IService
 		filePath = parentPath + "/domain/repository/I" + objectMap.get("entity") + "Service.java";

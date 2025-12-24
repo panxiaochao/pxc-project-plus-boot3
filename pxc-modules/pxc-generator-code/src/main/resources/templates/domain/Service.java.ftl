@@ -21,7 +21,7 @@ public interface I${entity}Service {
     
     /**
      * 保存
-     * @param ${entity?uncap_first} 角色表 实体
+     * @param ${entity?uncap_first} ${table.comment!} 实体
      * @return ${table.comment!} 实体
      */
     ${entity}BO save(${entity}BO ${entity?uncap_first});

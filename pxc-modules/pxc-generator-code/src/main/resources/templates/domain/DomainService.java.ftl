@@ -18,7 +18,7 @@ import java.util.List;
 public class ${entity}DomainService {
 
     /**
-     * ${entity} Domain接口服务类
+     * ${table.comment!} Domain接口服务类
      */
     private final I${entity}Service ${entity?uncap_first}Service;
 
