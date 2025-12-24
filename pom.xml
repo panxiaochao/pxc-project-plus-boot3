@@ -31,6 +31,12 @@
         <mybatis-plus-boot3.version>3.5.15</mybatis-plus-boot3.version>
         <mysql-connector-j.version>9.5.0</mysql-connector-j.version>
         <pxc-framework-boot3.version>3.0.1-SNAPSHOT</pxc-framework-boot3.version>
+        <springdoc-openapi.version>3.0.0</springdoc-openapi.version>
+        <knife4j-openapi3-spring-boot-starter.version>4.6.0</knife4j-openapi3-spring-boot-starter.version>
+        <sa-token.version>1.44.0</sa-token.version>
+        <hutool.version>5.8.42</hutool.version>
+        <caffeine.version>3.2.3</caffeine.version>
+        <commons-pool2.version>2.12.0</commons-pool2.version>
 
         <!-- 插件版本管理 -->
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
@@ -62,11 +68,76 @@
                 <version>${mapstruct.version}</version>
             </dependency>
 
+            <!-- SpringDoc 依赖管理 -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi</artifactId>
+                <version>${springdoc-openapi.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- knife4j Doc 文档 -->
+            <dependency>
+                <groupId>com.github.xingfudeshi</groupId>
+                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+                <version>${knife4j-openapi3-spring-boot-starter.version}</version>
+            </dependency>
+
+            <!-- hutool 工具类 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+
+            <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+
+            <!-- Sa-Token 整合 jwt -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-jwt</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+
             <!-- freemarker -->
             <dependency>
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- pxc-biz-system 系统管理模块 -->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-biz-system</artifactId>
+                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

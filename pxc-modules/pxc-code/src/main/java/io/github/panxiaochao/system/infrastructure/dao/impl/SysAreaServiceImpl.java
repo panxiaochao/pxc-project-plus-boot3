@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-全国5级行政区划 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-全国5级行政区划 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -212,7 +214,7 @@ public class SysAreaServiceImpl implements ISysAreaService, ISysAreaReadModelSer
      */
     @Override
     public void updateBatch(List<SysAreaBO> sysAreaList) {
-    List<SysAreaPO> sysAreaPOList = ISysAreaPOConvert.INSTANCE.fromEntity(sysAreaList);
+        List<SysAreaPO> sysAreaPOList = ISysAreaPOConvert.INSTANCE.fromEntity(sysAreaList);
         Db.updateBatchById(sysAreaPOList);
     }
 

@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-用户表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-用户表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -240,7 +242,7 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      */
     @Override
     public void updateBatch(List<SysUserBO> sysUserList) {
-    List<SysUserPO> sysUserPOList = ISysUserPOConvert.INSTANCE.fromEntity(sysUserList);
+        List<SysUserPO> sysUserPOList = ISysUserPOConvert.INSTANCE.fromEntity(sysUserList);
         Db.updateBatchById(sysUserPOList);
     }
 

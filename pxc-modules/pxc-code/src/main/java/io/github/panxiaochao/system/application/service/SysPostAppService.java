@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-岗位表 App服务类.</p>
+ * <p>
+ * 系统管理-岗位表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysPostAppService {
         List<SysPostQueryVO> list = sysPostReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -58,7 +60,7 @@ public class SysPostAppService {
         SysPostVO sysPostVO = ISysPostDTOConvert.INSTANCE.toVO(sysPost);
         return R.ok(sysPostVO);
     }
-    
+
     /**
      * 保存
      * @param sysPostCreateDTO 创建请求对象
@@ -70,7 +72,7 @@ public class SysPostAppService {
         SysPostVO sysPostVO = ISysPostDTOConvert.INSTANCE.toVO(sysPost);
         return R.ok(sysPostVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysPostUpdateDTO 更新请求对象
@@ -81,7 +83,7 @@ public class SysPostAppService {
         sysPostService.update(sysPost);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

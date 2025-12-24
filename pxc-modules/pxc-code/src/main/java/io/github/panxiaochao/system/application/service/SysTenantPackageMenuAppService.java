@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-租户套餐菜单表 App服务类.</p>
+ * <p>
+ * 系统管理-租户套餐菜单表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysTenantPackageMenuAppService {
         List<SysTenantPackageMenuQueryVO> list = sysTenantPackageMenuReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -55,33 +57,37 @@ public class SysTenantPackageMenuAppService {
      */
     public R<SysTenantPackageMenuVO> getById(Integer id) {
         SysTenantPackageMenuBO sysTenantPackageMenu = sysTenantPackageMenuService.getById(id);
-        SysTenantPackageMenuVO sysTenantPackageMenuVO = ISysTenantPackageMenuDTOConvert.INSTANCE.toVO(sysTenantPackageMenu);
+        SysTenantPackageMenuVO sysTenantPackageMenuVO = ISysTenantPackageMenuDTOConvert.INSTANCE
+            .toVO(sysTenantPackageMenu);
         return R.ok(sysTenantPackageMenuVO);
     }
-    
+
     /**
      * 保存
      * @param sysTenantPackageMenuCreateDTO 创建请求对象
      * @return 返回保存对象
      */
     public R<SysTenantPackageMenuVO> save(SysTenantPackageMenuCreateDTO sysTenantPackageMenuCreateDTO) {
-        SysTenantPackageMenuBO sysTenantPackageMenu = ISysTenantPackageMenuDTOConvert.INSTANCE.fromCreateDTO(sysTenantPackageMenuCreateDTO);
+        SysTenantPackageMenuBO sysTenantPackageMenu = ISysTenantPackageMenuDTOConvert.INSTANCE
+            .fromCreateDTO(sysTenantPackageMenuCreateDTO);
         sysTenantPackageMenu = sysTenantPackageMenuService.save(sysTenantPackageMenu);
-        SysTenantPackageMenuVO sysTenantPackageMenuVO = ISysTenantPackageMenuDTOConvert.INSTANCE.toVO(sysTenantPackageMenu);
+        SysTenantPackageMenuVO sysTenantPackageMenuVO = ISysTenantPackageMenuDTOConvert.INSTANCE
+            .toVO(sysTenantPackageMenu);
         return R.ok(sysTenantPackageMenuVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysTenantPackageMenuUpdateDTO 更新请求对象
      * @return 空返回
      */
     public R<Void> update(SysTenantPackageMenuUpdateDTO sysTenantPackageMenuUpdateDTO) {
-        SysTenantPackageMenuBO sysTenantPackageMenu = ISysTenantPackageMenuDTOConvert.INSTANCE.fromUpdateDTO(sysTenantPackageMenuUpdateDTO);
+        SysTenantPackageMenuBO sysTenantPackageMenu = ISysTenantPackageMenuDTOConvert.INSTANCE
+            .fromUpdateDTO(sysTenantPackageMenuUpdateDTO);
         sysTenantPackageMenuService.update(sysTenantPackageMenu);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

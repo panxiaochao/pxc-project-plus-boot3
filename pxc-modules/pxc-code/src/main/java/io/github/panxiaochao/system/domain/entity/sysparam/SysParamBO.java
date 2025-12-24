@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-系统参数 BO实体类.</p>
+ * <p>
+ * 系统管理-系统参数 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysParamBO {
 
     /**
-    * ID
-    */
+     * ID
+     */
     private Integer id;
 
     /**
@@ -66,4 +68,5 @@ public class SysParamBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

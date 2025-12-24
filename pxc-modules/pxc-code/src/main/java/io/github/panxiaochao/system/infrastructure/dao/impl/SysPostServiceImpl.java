@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-岗位表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-岗位表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -184,7 +186,7 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
      */
     @Override
     public void updateBatch(List<SysPostBO> sysPostList) {
-    List<SysPostPO> sysPostPOList = ISysPostPOConvert.INSTANCE.fromEntity(sysPostList);
+        List<SysPostPO> sysPostPOList = ISysPostPOConvert.INSTANCE.fromEntity(sysPostList);
         Db.updateBatchById(sysPostPOList);
     }
 

@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-数据字典表 App服务类.</p>
+ * <p>
+ * 系统管理-数据字典表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysDictAppService {
         List<SysDictQueryVO> list = sysDictReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -58,7 +60,7 @@ public class SysDictAppService {
         SysDictVO sysDictVO = ISysDictDTOConvert.INSTANCE.toVO(sysDict);
         return R.ok(sysDictVO);
     }
-    
+
     /**
      * 保存
      * @param sysDictCreateDTO 创建请求对象
@@ -70,7 +72,7 @@ public class SysDictAppService {
         SysDictVO sysDictVO = ISysDictDTOConvert.INSTANCE.toVO(sysDict);
         return R.ok(sysDictVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysDictUpdateDTO 更新请求对象
@@ -81,7 +83,7 @@ public class SysDictAppService {
         sysDictService.update(sysDict);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.infrastructure.dao.po.SysUserAuthsPO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * <p>系统管理-用户授权信息表 持久化接口.</p>
+ * <p>
+ * 系统管理-用户授权信息表 持久化接口.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24

@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysuserpost.SysUserPostBO;
 import java.util.List;
 
 /**
- * <p>系统管理-用户岗位关联表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-用户岗位关联表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysUserPostService {
      * @return 系统管理-用户岗位关联表 实体
      */
     SysUserPostBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysUserPost 系统管理-用户岗位关联表 实体
@@ -31,7 +33,7 @@ public interface ISysUserPostService {
      * @param sysUserPostList 批量数据
      */
     List<SysUserPostBO> saveBatch(List<SysUserPostBO> sysUserPostList);
-    
+
     /**
      * 根据主键更新
      * @param sysUserPost 系统管理-用户岗位关联表 实体
@@ -55,4 +57,5 @@ public interface ISysUserPostService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysuserauths.SysUserAuthsBO;
 import java.util.List;
 
 /**
- * <p>系统管理-用户授权信息表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-用户授权信息表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysUserAuthsService {
      * @return 系统管理-用户授权信息表 实体
      */
     SysUserAuthsBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysUserAuths 系统管理-用户授权信息表 实体
@@ -31,7 +33,7 @@ public interface ISysUserAuthsService {
      * @param sysUserAuthsList 批量数据
      */
     List<SysUserAuthsBO> saveBatch(List<SysUserAuthsBO> sysUserAuthsList);
-    
+
     /**
      * 根据主键更新
      * @param sysUserAuths 系统管理-用户授权信息表 实体
@@ -55,4 +57,5 @@ public interface ISysUserAuthsService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

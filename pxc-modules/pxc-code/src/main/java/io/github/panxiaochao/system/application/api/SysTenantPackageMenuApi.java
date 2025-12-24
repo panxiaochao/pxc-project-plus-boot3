@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * <p>系统管理-租户套餐菜单表 接口.</p>
+ * <p>
+ * 系统管理-租户套餐菜单表 接口.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -41,7 +43,8 @@ public class SysTenantPackageMenuApi {
 
     @Operation(summary = "查询分页", description = "查询分页")
     @PostMapping(value = "/page")
-    public R<PageResponse<SysTenantPackageMenuQueryVO>> page(@RequestBody SysTenantPackageMenuPageQueryDTO pageQueryDTO) {
+    public R<PageResponse<SysTenantPackageMenuQueryVO>> page(
+            @RequestBody SysTenantPackageMenuPageQueryDTO pageQueryDTO) {
         return R.ok(sysTenantPackageMenuAppService.page(pageQueryDTO));
     }
 

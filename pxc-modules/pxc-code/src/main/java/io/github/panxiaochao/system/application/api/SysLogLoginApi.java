@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * <p>系统管理-系统日志登录/登出表 接口.</p>
+ * <p>
+ * 系统管理-系统日志登录/登出表 接口.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24

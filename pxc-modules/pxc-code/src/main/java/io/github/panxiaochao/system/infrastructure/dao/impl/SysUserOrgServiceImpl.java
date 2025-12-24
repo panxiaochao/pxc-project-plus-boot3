@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-用户机构/部门表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-用户机构/部门表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
         // 构造查询条件
         LambdaQueryWrapper<SysUserOrgPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysUserOrgPO> page = sysUserOrgMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysUserOrgPO> page = sysUserOrgMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()),
+                lqw);
         pagination.setTotal(page.getTotal());
         return ISysUserOrgPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -150,7 +153,7 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
      */
     @Override
     public void updateBatch(List<SysUserOrgBO> sysUserOrgList) {
-    List<SysUserOrgPO> sysUserOrgPOList = ISysUserOrgPOConvert.INSTANCE.fromEntity(sysUserOrgList);
+        List<SysUserOrgPO> sysUserOrgPOList = ISysUserOrgPOConvert.INSTANCE.fromEntity(sysUserOrgList);
         Db.updateBatchById(sysUserOrgPOList);
     }
 

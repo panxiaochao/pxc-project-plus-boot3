@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-系统日志登录/登出表 BO实体类.</p>
+ * <p>
+ * 系统管理-系统日志登录/登出表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysLogLoginBO {
 
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Integer id;
 
     /**
@@ -66,4 +68,5 @@ public class SysLogLoginBO {
      * 创建时间
      */
     private LocalDateTime createAt;
+
 }

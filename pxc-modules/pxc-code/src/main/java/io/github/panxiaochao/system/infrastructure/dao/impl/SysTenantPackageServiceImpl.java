@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-租户套餐表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-租户套餐表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
         // 构造查询条件
         LambdaQueryWrapper<SysTenantPackagePO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysTenantPackagePO> page = sysTenantPackageMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysTenantPackagePO> page = sysTenantPackageMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysTenantPackagePOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -159,7 +162,8 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
      */
     @Override
     public List<SysTenantPackageBO> saveBatch(List<SysTenantPackageBO> sysTenantPackageList) {
-        List<SysTenantPackagePO> sysTenantPackagePOList = ISysTenantPackagePOConvert.INSTANCE.fromEntity(sysTenantPackageList);
+        List<SysTenantPackagePO> sysTenantPackagePOList = ISysTenantPackagePOConvert.INSTANCE
+            .fromEntity(sysTenantPackageList);
         Db.saveBatch(sysTenantPackagePOList);
         return ISysTenantPackagePOConvert.INSTANCE.toEntityBO(sysTenantPackagePOList);
     }
@@ -180,7 +184,8 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
      */
     @Override
     public void updateBatch(List<SysTenantPackageBO> sysTenantPackageList) {
-    List<SysTenantPackagePO> sysTenantPackagePOList = ISysTenantPackagePOConvert.INSTANCE.fromEntity(sysTenantPackageList);
+        List<SysTenantPackagePO> sysTenantPackagePOList = ISysTenantPackagePOConvert.INSTANCE
+            .fromEntity(sysTenantPackageList);
         Db.updateBatchById(sysTenantPackagePOList);
     }
 

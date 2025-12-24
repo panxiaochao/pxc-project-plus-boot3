@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-定时任务调度表 BO实体类.</p>
+ * <p>
+ * 系统管理-定时任务调度表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysJobBO {
 
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Integer id;
 
     /**
@@ -78,7 +80,7 @@ public class SysJobBO {
     private Integer createBy;
 
     /**
-     * 
+     *
      */
     private LocalDateTime updateBy;
 
@@ -91,4 +93,5 @@ public class SysJobBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

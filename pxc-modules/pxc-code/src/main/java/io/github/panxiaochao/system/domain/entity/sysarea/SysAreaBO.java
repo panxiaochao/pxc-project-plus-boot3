@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-全国5级行政区划 BO实体类.</p>
+ * <p>
+ * 系统管理-全国5级行政区划 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysAreaBO {
 
     /**
-    * ID
-    */
+     * ID
+     */
     private String id;
 
     /**
@@ -101,4 +103,5 @@ public class SysAreaBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

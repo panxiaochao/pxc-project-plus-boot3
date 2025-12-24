@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-机构部门表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-机构部门表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -224,7 +226,7 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
      */
     @Override
     public void updateBatch(List<SysOrgBO> sysOrgList) {
-    List<SysOrgPO> sysOrgPOList = ISysOrgPOConvert.INSTANCE.fromEntity(sysOrgList);
+        List<SysOrgPO> sysOrgPOList = ISysOrgPOConvert.INSTANCE.fromEntity(sysOrgList);
         Db.updateBatchById(sysOrgPOList);
     }
 

@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysdictitem.SysDictItemBO;
 import java.util.List;
 
 /**
- * <p>系统管理-数据字典配置表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-数据字典配置表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysDictItemService {
      * @return 系统管理-数据字典配置表 实体
      */
     SysDictItemBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysDictItem 系统管理-数据字典配置表 实体
@@ -31,7 +33,7 @@ public interface ISysDictItemService {
      * @param sysDictItemList 批量数据
      */
     List<SysDictItemBO> saveBatch(List<SysDictItemBO> sysDictItemList);
-    
+
     /**
      * 根据主键更新
      * @param sysDictItem 系统管理-数据字典配置表 实体
@@ -55,4 +57,5 @@ public interface ISysDictItemService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

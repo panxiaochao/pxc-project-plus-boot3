@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-菜单配置 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-菜单配置 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -158,7 +160,7 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
             if (pageQueryDto.getCreateBy() != null) {
                 lqw.eq(SysMenuPO::getCreateBy, pageQueryDto.getCreateBy());
             }
-            // 如果  不为空
+            // 如果 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getUpdateBy())) {
                 lqw.eq(SysMenuPO::getUpdateBy, pageQueryDto.getUpdateBy());
             }
@@ -224,7 +226,7 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
      */
     @Override
     public void updateBatch(List<SysMenuBO> sysMenuList) {
-    List<SysMenuPO> sysMenuPOList = ISysMenuPOConvert.INSTANCE.fromEntity(sysMenuList);
+        List<SysMenuPO> sysMenuPOList = ISysMenuPOConvert.INSTANCE.fromEntity(sysMenuList);
         Db.updateBatchById(sysMenuPOList);
     }
 

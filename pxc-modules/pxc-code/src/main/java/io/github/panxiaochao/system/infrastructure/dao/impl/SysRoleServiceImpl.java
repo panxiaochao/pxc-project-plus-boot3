@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-角色表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-角色表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -188,7 +190,7 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
      */
     @Override
     public void updateBatch(List<SysRoleBO> sysRoleList) {
-    List<SysRolePO> sysRolePOList = ISysRolePOConvert.INSTANCE.fromEntity(sysRoleList);
+        List<SysRolePO> sysRolePOList = ISysRolePOConvert.INSTANCE.fromEntity(sysRoleList);
         Db.updateBatchById(sysRolePOList);
     }
 

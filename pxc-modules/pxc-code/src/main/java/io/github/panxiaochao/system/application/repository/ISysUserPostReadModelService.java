@@ -8,7 +8,9 @@ import io.github.panxiaochao.system.application.api.vo.sysuserpost.SysUserPostQu
 import java.util.List;
 
 /**
- * <p>系统管理-用户岗位关联表 读模型服务.</p>
+ * <p>
+ * 系统管理-用户岗位关联表 读模型服务.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -17,7 +19,7 @@ public interface ISysUserPostReadModelService {
 
     /**
      * 查询分页
-     * @param pagination  分页属性对象
+     * @param pagination 分页属性对象
      * @param pageQueryDTO 系统管理-用户岗位关联表 分页查询请求对象
      * @return 分页结果数组
      */

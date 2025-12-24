@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-用户授权信息表 BO实体类.</p>
+ * <p>
+ * 系统管理-用户授权信息表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysUserAuthsBO {
 
     /**
-    * 唯一标识
-    */
+     * 唯一标识
+     */
     private Integer id;
 
     /**
@@ -71,4 +73,5 @@ public class SysUserAuthsBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

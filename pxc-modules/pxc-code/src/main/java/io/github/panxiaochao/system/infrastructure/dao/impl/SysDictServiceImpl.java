@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-数据字典表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-数据字典表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -184,7 +186,7 @@ public class SysDictServiceImpl implements ISysDictService, ISysDictReadModelSer
      */
     @Override
     public void updateBatch(List<SysDictBO> sysDictList) {
-    List<SysDictPO> sysDictPOList = ISysDictPOConvert.INSTANCE.fromEntity(sysDictList);
+        List<SysDictPO> sysDictPOList = ISysDictPOConvert.INSTANCE.fromEntity(sysDictList);
         Db.updateBatchById(sysDictPOList);
     }
 

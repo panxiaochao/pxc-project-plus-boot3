@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-用户岗位关联表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-用户岗位关联表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
         // 构造查询条件
         LambdaQueryWrapper<SysUserPostPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysUserPostPO> page = sysUserPostMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysUserPostPO> page = sysUserPostMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysUserPostPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -150,7 +153,7 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
      */
     @Override
     public void updateBatch(List<SysUserPostBO> sysUserPostList) {
-    List<SysUserPostPO> sysUserPostPOList = ISysUserPostPOConvert.INSTANCE.fromEntity(sysUserPostList);
+        List<SysUserPostPO> sysUserPostPOList = ISysUserPostPOConvert.INSTANCE.fromEntity(sysUserPostList);
         Db.updateBatchById(sysUserPostPOList);
     }
 

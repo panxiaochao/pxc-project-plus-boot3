@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.syslogoperate.SysLogOperateBO;
 import java.util.List;
 
 /**
- * <p>系统管理-系统日志操作表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-系统日志操作表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysLogOperateService {
      * @return 系统管理-系统日志操作表 实体
      */
     SysLogOperateBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysLogOperate 系统管理-系统日志操作表 实体
@@ -31,7 +33,7 @@ public interface ISysLogOperateService {
      * @param sysLogOperateList 批量数据
      */
     List<SysLogOperateBO> saveBatch(List<SysLogOperateBO> sysLogOperateList);
-    
+
     /**
      * 根据主键更新
      * @param sysLogOperate 系统管理-系统日志操作表 实体
@@ -55,4 +57,5 @@ public interface ISysLogOperateService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

@@ -8,7 +8,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-岗位表 更新请求对象.</p>
+ * <p>
+ * 系统管理-岗位表 更新请求对象.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24

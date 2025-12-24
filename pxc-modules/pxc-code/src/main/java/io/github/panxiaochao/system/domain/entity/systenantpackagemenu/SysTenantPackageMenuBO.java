@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-租户套餐菜单表 BO实体类.</p>
+ * <p>
+ * 系统管理-租户套餐菜单表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,12 +20,13 @@ import java.time.LocalDateTime;
 public class SysTenantPackageMenuBO {
 
     /**
-    * 租户套餐id
-    */
+     * 租户套餐id
+     */
     private Integer packageId;
 
     /**
-    * 菜单ID
-    */
+     * 菜单ID
+     */
     private Integer menuId;
+
 }

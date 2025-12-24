@@ -9,7 +9,9 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
- * <p>系统管理-菜单配置 持久化对象结构映射.</p>
+ * <p>
+ * 系统管理-菜单配置 持久化对象结构映射.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -63,4 +65,5 @@ public interface ISysMenuPOConvert {
      * @return 系统管理-菜单配置 查询响应数据传输对象列表
      */
     List<SysMenuQueryVO> toQueryVO(List<SysMenuPO> sysMenuPOList);
+
 }

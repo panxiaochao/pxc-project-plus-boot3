@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysrolemenu.SysRoleMenuBO;
 import java.util.List;
 
 /**
- * <p>系统管理-角色菜单表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-角色菜单表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysRoleMenuService {
      * @return 系统管理-角色菜单表 实体
      */
     SysRoleMenuBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysRoleMenu 系统管理-角色菜单表 实体
@@ -31,7 +33,7 @@ public interface ISysRoleMenuService {
      * @param sysRoleMenuList 批量数据
      */
     List<SysRoleMenuBO> saveBatch(List<SysRoleMenuBO> sysRoleMenuList);
-    
+
     /**
      * 根据主键更新
      * @param sysRoleMenu 系统管理-角色菜单表 实体
@@ -55,4 +57,5 @@ public interface ISysRoleMenuService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

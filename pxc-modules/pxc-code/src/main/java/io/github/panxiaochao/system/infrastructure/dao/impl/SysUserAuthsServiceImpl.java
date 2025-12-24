@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-用户授权信息表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-用户授权信息表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
         // 构造查询条件
         LambdaQueryWrapper<SysUserAuthsPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysUserAuthsPO> page = sysUserAuthsMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysUserAuthsPO> page = sysUserAuthsMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysUserAuthsPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -188,7 +191,7 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
      */
     @Override
     public void updateBatch(List<SysUserAuthsBO> sysUserAuthsList) {
-    List<SysUserAuthsPO> sysUserAuthsPOList = ISysUserAuthsPOConvert.INSTANCE.fromEntity(sysUserAuthsList);
+        List<SysUserAuthsPO> sysUserAuthsPOList = ISysUserAuthsPOConvert.INSTANCE.fromEntity(sysUserAuthsList);
         Db.updateBatchById(sysUserAuthsPOList);
     }
 

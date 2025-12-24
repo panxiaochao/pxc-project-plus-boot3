@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.systenant.SysTenantBO;
 import java.util.List;
 
 /**
- * <p>系统管理-租户表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-租户表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysTenantService {
      * @return 系统管理-租户表 实体
      */
     SysTenantBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysTenant 系统管理-租户表 实体
@@ -31,7 +33,7 @@ public interface ISysTenantService {
      * @param sysTenantList 批量数据
      */
     List<SysTenantBO> saveBatch(List<SysTenantBO> sysTenantList);
-    
+
     /**
      * 根据主键更新
      * @param sysTenant 系统管理-租户表 实体
@@ -55,4 +57,5 @@ public interface ISysTenantService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

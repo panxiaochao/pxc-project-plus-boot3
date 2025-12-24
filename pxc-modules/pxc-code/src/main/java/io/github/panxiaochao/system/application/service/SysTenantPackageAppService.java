@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-租户套餐表 App服务类.</p>
+ * <p>
+ * 系统管理-租户套餐表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysTenantPackageAppService {
         List<SysTenantPackageQueryVO> list = sysTenantPackageReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -58,30 +60,32 @@ public class SysTenantPackageAppService {
         SysTenantPackageVO sysTenantPackageVO = ISysTenantPackageDTOConvert.INSTANCE.toVO(sysTenantPackage);
         return R.ok(sysTenantPackageVO);
     }
-    
+
     /**
      * 保存
      * @param sysTenantPackageCreateDTO 创建请求对象
      * @return 返回保存对象
      */
     public R<SysTenantPackageVO> save(SysTenantPackageCreateDTO sysTenantPackageCreateDTO) {
-        SysTenantPackageBO sysTenantPackage = ISysTenantPackageDTOConvert.INSTANCE.fromCreateDTO(sysTenantPackageCreateDTO);
+        SysTenantPackageBO sysTenantPackage = ISysTenantPackageDTOConvert.INSTANCE
+            .fromCreateDTO(sysTenantPackageCreateDTO);
         sysTenantPackage = sysTenantPackageService.save(sysTenantPackage);
         SysTenantPackageVO sysTenantPackageVO = ISysTenantPackageDTOConvert.INSTANCE.toVO(sysTenantPackage);
         return R.ok(sysTenantPackageVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysTenantPackageUpdateDTO 更新请求对象
      * @return 空返回
      */
     public R<Void> update(SysTenantPackageUpdateDTO sysTenantPackageUpdateDTO) {
-        SysTenantPackageBO sysTenantPackage = ISysTenantPackageDTOConvert.INSTANCE.fromUpdateDTO(sysTenantPackageUpdateDTO);
+        SysTenantPackageBO sysTenantPackage = ISysTenantPackageDTOConvert.INSTANCE
+            .fromUpdateDTO(sysTenantPackageUpdateDTO);
         sysTenantPackageService.update(sysTenantPackage);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

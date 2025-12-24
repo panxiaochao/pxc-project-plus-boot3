@@ -8,7 +8,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-系统日志登录/登出表 查询响应对象.</p>
+ * <p>
+ * 系统管理-系统日志登录/登出表 查询响应对象.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24

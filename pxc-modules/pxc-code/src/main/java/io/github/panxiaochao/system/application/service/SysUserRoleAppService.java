@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-用户角色表 App服务类.</p>
+ * <p>
+ * 系统管理-用户角色表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysUserRoleAppService {
         List<SysUserRoleQueryVO> list = sysUserRoleReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -58,7 +60,7 @@ public class SysUserRoleAppService {
         SysUserRoleVO sysUserRoleVO = ISysUserRoleDTOConvert.INSTANCE.toVO(sysUserRole);
         return R.ok(sysUserRoleVO);
     }
-    
+
     /**
      * 保存
      * @param sysUserRoleCreateDTO 创建请求对象
@@ -70,7 +72,7 @@ public class SysUserRoleAppService {
         SysUserRoleVO sysUserRoleVO = ISysUserRoleDTOConvert.INSTANCE.toVO(sysUserRole);
         return R.ok(sysUserRoleVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysUserRoleUpdateDTO 更新请求对象
@@ -81,7 +83,7 @@ public class SysUserRoleAppService {
         sysUserRoleService.update(sysUserRole);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

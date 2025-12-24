@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysjob.SysJobBO;
 import java.util.List;
 
 /**
- * <p>系统管理-定时任务调度表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-定时任务调度表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysJobService {
      * @return 系统管理-定时任务调度表 实体
      */
     SysJobBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysJob 系统管理-定时任务调度表 实体
@@ -31,7 +33,7 @@ public interface ISysJobService {
      * @param sysJobList 批量数据
      */
     List<SysJobBO> saveBatch(List<SysJobBO> sysJobList);
-    
+
     /**
      * 根据主键更新
      * @param sysJob 系统管理-定时任务调度表 实体
@@ -55,4 +57,5 @@ public interface ISysJobService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

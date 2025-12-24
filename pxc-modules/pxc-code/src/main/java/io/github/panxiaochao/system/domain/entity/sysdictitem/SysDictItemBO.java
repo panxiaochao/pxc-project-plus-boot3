@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-数据字典配置表 BO实体类.</p>
+ * <p>
+ * 系统管理-数据字典配置表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysDictItemBO {
 
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Integer id;
 
     /**
@@ -76,4 +78,5 @@ public class SysDictItemBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

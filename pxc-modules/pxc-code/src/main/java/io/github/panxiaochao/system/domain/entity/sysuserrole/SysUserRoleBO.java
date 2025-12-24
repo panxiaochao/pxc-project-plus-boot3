@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-用户角色表 BO实体类.</p>
+ * <p>
+ * 系统管理-用户角色表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,12 +20,13 @@ import java.time.LocalDateTime;
 public class SysUserRoleBO {
 
     /**
-    * 用户ID
-    */
+     * 用户ID
+     */
     private Integer userId;
 
     /**
-    * 角色ID
-    */
+     * 角色ID
+     */
     private Integer roleId;
+
 }

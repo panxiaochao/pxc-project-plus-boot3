@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-系统日志操作表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-系统日志操作表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
         // 构造查询条件
         LambdaQueryWrapper<SysLogOperatePO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysLogOperatePO> page = sysLogOperateMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysLogOperatePO> page = sysLogOperateMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysLogOperatePOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -208,7 +211,7 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
      */
     @Override
     public void updateBatch(List<SysLogOperateBO> sysLogOperateList) {
-    List<SysLogOperatePO> sysLogOperatePOList = ISysLogOperatePOConvert.INSTANCE.fromEntity(sysLogOperateList);
+        List<SysLogOperatePO> sysLogOperatePOList = ISysLogOperatePOConvert.INSTANCE.fromEntity(sysLogOperateList);
         Db.updateBatchById(sysLogOperatePOList);
     }
 

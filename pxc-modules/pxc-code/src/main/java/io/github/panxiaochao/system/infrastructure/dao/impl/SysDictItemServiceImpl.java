@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-数据字典配置表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-数据字典配置表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
         // 构造查询条件
         LambdaQueryWrapper<SysDictItemPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysDictItemPO> page = sysDictItemMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysDictItemPO> page = sysDictItemMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysDictItemPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -192,7 +195,7 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
      */
     @Override
     public void updateBatch(List<SysDictItemBO> sysDictItemList) {
-    List<SysDictItemPO> sysDictItemPOList = ISysDictItemPOConvert.INSTANCE.fromEntity(sysDictItemList);
+        List<SysDictItemPO> sysDictItemPOList = ISysDictItemPOConvert.INSTANCE.fromEntity(sysDictItemList);
         Db.updateBatchById(sysDictItemPOList);
     }
 

@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-租户表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-租户表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
         // 构造查询条件
         LambdaQueryWrapper<SysTenantPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysTenantPO> page = sysTenantMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysTenantPO> page = sysTenantMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()),
+                lqw);
         pagination.setTotal(page.getTotal());
         return ISysTenantPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -220,7 +223,7 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
      */
     @Override
     public void updateBatch(List<SysTenantBO> sysTenantList) {
-    List<SysTenantPO> sysTenantPOList = ISysTenantPOConvert.INSTANCE.fromEntity(sysTenantList);
+        List<SysTenantPO> sysTenantPOList = ISysTenantPOConvert.INSTANCE.fromEntity(sysTenantList);
         Db.updateBatchById(sysTenantPOList);
     }
 

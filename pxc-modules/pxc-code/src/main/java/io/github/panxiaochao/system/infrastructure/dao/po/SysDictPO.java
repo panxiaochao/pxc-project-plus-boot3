@@ -12,7 +12,9 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-数据字典表 持久化对象.</p>
+ * <p>
+ * 系统管理-数据字典表 持久化对象.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -76,4 +78,5 @@ public class SysDictPO {
      */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime updateAt;
+
 }

@@ -22,14 +22,17 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-租户套餐菜单表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-租户套餐菜单表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
  */
 @Service
 @RequiredArgsConstructor
-public class SysTenantPackageMenuServiceImpl implements ISysTenantPackageMenuService, ISysTenantPackageMenuReadModelService {
+public class SysTenantPackageMenuServiceImpl
+        implements ISysTenantPackageMenuService, ISysTenantPackageMenuReadModelService {
 
     /**
      * 系统管理-租户套餐菜单表 持久化接口
@@ -43,11 +46,13 @@ public class SysTenantPackageMenuServiceImpl implements ISysTenantPackageMenuSer
      * @return 分页结果数组
      */
     @Override
-    public List<SysTenantPackageMenuQueryVO> page(Pagination pagination, SysTenantPackageMenuPageQueryDTO pageQueryDTO) {
+    public List<SysTenantPackageMenuQueryVO> page(Pagination pagination,
+            SysTenantPackageMenuPageQueryDTO pageQueryDTO) {
         // 构造查询条件
         LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysTenantPackageMenuPO> page = sysTenantPackageMenuMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysTenantPackageMenuPO> page = sysTenantPackageMenuMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysTenantPackageMenuPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -118,7 +123,8 @@ public class SysTenantPackageMenuServiceImpl implements ISysTenantPackageMenuSer
      */
     @Override
     public SysTenantPackageMenuBO save(SysTenantPackageMenuBO sysTenantPackageMenu) {
-        SysTenantPackageMenuPO sysTenantPackageMenuPO = ISysTenantPackageMenuPOConvert.INSTANCE.fromEntity(sysTenantPackageMenu);
+        SysTenantPackageMenuPO sysTenantPackageMenuPO = ISysTenantPackageMenuPOConvert.INSTANCE
+            .fromEntity(sysTenantPackageMenu);
         sysTenantPackageMenuMapper.insert(sysTenantPackageMenuPO);
         return ISysTenantPackageMenuPOConvert.INSTANCE.toEntityBO(sysTenantPackageMenuPO);
     }
@@ -129,7 +135,8 @@ public class SysTenantPackageMenuServiceImpl implements ISysTenantPackageMenuSer
      */
     @Override
     public List<SysTenantPackageMenuBO> saveBatch(List<SysTenantPackageMenuBO> sysTenantPackageMenuList) {
-        List<SysTenantPackageMenuPO> sysTenantPackageMenuPOList = ISysTenantPackageMenuPOConvert.INSTANCE.fromEntity(sysTenantPackageMenuList);
+        List<SysTenantPackageMenuPO> sysTenantPackageMenuPOList = ISysTenantPackageMenuPOConvert.INSTANCE
+            .fromEntity(sysTenantPackageMenuList);
         Db.saveBatch(sysTenantPackageMenuPOList);
         return ISysTenantPackageMenuPOConvert.INSTANCE.toEntityBO(sysTenantPackageMenuPOList);
     }
@@ -140,7 +147,8 @@ public class SysTenantPackageMenuServiceImpl implements ISysTenantPackageMenuSer
      */
     @Override
     public void update(SysTenantPackageMenuBO sysTenantPackageMenu) {
-        SysTenantPackageMenuPO sysTenantPackageMenuPO = ISysTenantPackageMenuPOConvert.INSTANCE.fromEntity(sysTenantPackageMenu);
+        SysTenantPackageMenuPO sysTenantPackageMenuPO = ISysTenantPackageMenuPOConvert.INSTANCE
+            .fromEntity(sysTenantPackageMenu);
         sysTenantPackageMenuMapper.updateById(sysTenantPackageMenuPO);
     }
 
@@ -150,7 +158,8 @@ public class SysTenantPackageMenuServiceImpl implements ISysTenantPackageMenuSer
      */
     @Override
     public void updateBatch(List<SysTenantPackageMenuBO> sysTenantPackageMenuList) {
-    List<SysTenantPackageMenuPO> sysTenantPackageMenuPOList = ISysTenantPackageMenuPOConvert.INSTANCE.fromEntity(sysTenantPackageMenuList);
+        List<SysTenantPackageMenuPO> sysTenantPackageMenuPOList = ISysTenantPackageMenuPOConvert.INSTANCE
+            .fromEntity(sysTenantPackageMenuList);
         Db.updateBatchById(sysTenantPackageMenuPOList);
     }
 

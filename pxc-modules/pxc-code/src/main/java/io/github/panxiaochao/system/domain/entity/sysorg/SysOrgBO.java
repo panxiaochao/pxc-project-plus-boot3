@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-机构部门表 BO实体类.</p>
+ * <p>
+ * 系统管理-机构部门表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysOrgBO {
 
     /**
-    * ID
-    */
+     * ID
+     */
     private Integer id;
 
     /**
@@ -116,4 +118,5 @@ public class SysOrgBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

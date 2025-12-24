@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysloglogin.SysLogLoginBO;
 import java.util.List;
 
 /**
- * <p>系统管理-系统日志登录/登出表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-系统日志登录/登出表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysLogLoginService {
      * @return 系统管理-系统日志登录/登出表 实体
      */
     SysLogLoginBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysLogLogin 系统管理-系统日志登录/登出表 实体
@@ -31,7 +33,7 @@ public interface ISysLogLoginService {
      * @param sysLogLoginList 批量数据
      */
     List<SysLogLoginBO> saveBatch(List<SysLogLoginBO> sysLogLoginList);
-    
+
     /**
      * 根据主键更新
      * @param sysLogLogin 系统管理-系统日志登录/登出表 实体
@@ -55,4 +57,5 @@ public interface ISysLogLoginService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

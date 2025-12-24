@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysarea.SysAreaBO;
 import java.util.List;
 
 /**
- * <p>系统管理-全国5级行政区划 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-全国5级行政区划 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysAreaService {
      * @return 系统管理-全国5级行政区划 实体
      */
     SysAreaBO getById(String id);
-    
+
     /**
      * 保存
      * @param sysArea 系统管理-全国5级行政区划 实体
@@ -31,7 +33,7 @@ public interface ISysAreaService {
      * @param sysAreaList 批量数据
      */
     List<SysAreaBO> saveBatch(List<SysAreaBO> sysAreaList);
-    
+
     /**
      * 根据主键更新
      * @param sysArea 系统管理-全国5级行政区划 实体
@@ -55,4 +57,5 @@ public interface ISysAreaService {
      * @param idList 主键数组
      */
     void deleteByIds(List<String> idList);
+
 }

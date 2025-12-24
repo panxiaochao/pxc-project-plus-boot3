@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-租户表 App服务类.</p>
+ * <p>
+ * 系统管理-租户表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysTenantAppService {
         List<SysTenantQueryVO> list = sysTenantReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -58,7 +60,7 @@ public class SysTenantAppService {
         SysTenantVO sysTenantVO = ISysTenantDTOConvert.INSTANCE.toVO(sysTenant);
         return R.ok(sysTenantVO);
     }
-    
+
     /**
      * 保存
      * @param sysTenantCreateDTO 创建请求对象
@@ -70,7 +72,7 @@ public class SysTenantAppService {
         SysTenantVO sysTenantVO = ISysTenantDTOConvert.INSTANCE.toVO(sysTenant);
         return R.ok(sysTenantVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysTenantUpdateDTO 更新请求对象
@@ -81,7 +83,7 @@ public class SysTenantAppService {
         sysTenantService.update(sysTenant);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

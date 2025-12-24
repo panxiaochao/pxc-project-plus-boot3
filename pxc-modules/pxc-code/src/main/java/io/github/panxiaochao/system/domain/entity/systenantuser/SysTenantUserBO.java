@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-租户用户表 BO实体类.</p>
+ * <p>
+ * 系统管理-租户用户表 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,12 +20,13 @@ import java.time.LocalDateTime;
 public class SysTenantUserBO {
 
     /**
-    * 租户ID
-    */
+     * 租户ID
+     */
     private Integer tenantId;
 
     /**
-    * 用户ID
-    */
+     * 用户ID
+     */
     private Integer userId;
+
 }

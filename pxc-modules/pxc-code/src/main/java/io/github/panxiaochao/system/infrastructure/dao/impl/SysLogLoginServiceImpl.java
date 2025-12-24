@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-系统日志登录/登出表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-系统日志登录/登出表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
         // 构造查询条件
         LambdaQueryWrapper<SysLogLoginPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysLogLoginPO> page = sysLogLoginMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysLogLoginPO> page = sysLogLoginMapper
+            .selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
         pagination.setTotal(page.getTotal());
         return ISysLogLoginPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -184,7 +187,7 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
      */
     @Override
     public void updateBatch(List<SysLogLoginBO> sysLogLoginList) {
-    List<SysLogLoginPO> sysLogLoginPOList = ISysLogLoginPOConvert.INSTANCE.fromEntity(sysLogLoginList);
+        List<SysLogLoginPO> sysLogLoginPOList = ISysLogLoginPOConvert.INSTANCE.fromEntity(sysLogLoginList);
         Db.updateBatchById(sysLogLoginPOList);
     }
 

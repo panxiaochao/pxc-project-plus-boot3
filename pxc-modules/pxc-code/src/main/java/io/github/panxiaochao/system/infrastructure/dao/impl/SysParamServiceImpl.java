@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-系统参数 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-系统参数 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,8 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
         // 构造查询条件
         LambdaQueryWrapper<SysParamPO> lqw = lambdaQuery(pageQueryDTO);
         // 分页查询
-        Page<SysParamPO> page = sysParamMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        Page<SysParamPO> page = sysParamMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()),
+                lqw);
         pagination.setTotal(page.getTotal());
         return ISysParamPOConvert.INSTANCE.toQueryVO(page.getRecords());
     }
@@ -184,7 +187,7 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
      */
     @Override
     public void updateBatch(List<SysParamBO> sysParamList) {
-    List<SysParamPO> sysParamPOList = ISysParamPOConvert.INSTANCE.fromEntity(sysParamList);
+        List<SysParamPO> sysParamPOList = ISysParamPOConvert.INSTANCE.fromEntity(sysParamList);
         Db.updateBatchById(sysParamPOList);
     }
 

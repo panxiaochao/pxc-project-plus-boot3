@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>系统管理-用户授权信息表 App服务类.</p>
+ * <p>
+ * 系统管理-用户授权信息表 App服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -47,7 +49,7 @@ public class SysUserAuthsAppService {
         List<SysUserAuthsQueryVO> list = sysUserAuthsReadModelService.page(pagination, pageQueryDTO);
         return new PageResponse<>(pagination, list);
     }
-    
+
     /**
      * 详情
      * @param id 主键
@@ -58,7 +60,7 @@ public class SysUserAuthsAppService {
         SysUserAuthsVO sysUserAuthsVO = ISysUserAuthsDTOConvert.INSTANCE.toVO(sysUserAuths);
         return R.ok(sysUserAuthsVO);
     }
-    
+
     /**
      * 保存
      * @param sysUserAuthsCreateDTO 创建请求对象
@@ -70,7 +72,7 @@ public class SysUserAuthsAppService {
         SysUserAuthsVO sysUserAuthsVO = ISysUserAuthsDTOConvert.INSTANCE.toVO(sysUserAuths);
         return R.ok(sysUserAuthsVO);
     }
-    
+
     /**
      * 根据主键更新
      * @param sysUserAuthsUpdateDTO 更新请求对象
@@ -81,7 +83,7 @@ public class SysUserAuthsAppService {
         sysUserAuthsService.update(sysUserAuths);
         return R.ok();
     }
-    
+
     /**
      * 根据主键删除
      * @param id 主键

@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysrole.SysRoleBO;
 import java.util.List;
 
 /**
- * <p>系统管理-角色表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-角色表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysRoleService {
      * @return 系统管理-角色表 实体
      */
     SysRoleBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysRole 系统管理-角色表 实体
@@ -31,7 +33,7 @@ public interface ISysRoleService {
      * @param sysRoleList 批量数据
      */
     List<SysRoleBO> saveBatch(List<SysRoleBO> sysRoleList);
-    
+
     /**
      * 根据主键更新
      * @param sysRole 系统管理-角色表 实体
@@ -55,4 +57,5 @@ public interface ISysRoleService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

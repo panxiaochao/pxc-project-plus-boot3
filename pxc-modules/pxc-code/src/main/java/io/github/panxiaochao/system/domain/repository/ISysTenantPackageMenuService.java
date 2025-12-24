@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.systenantpackagemenu.SysTenant
 import java.util.List;
 
 /**
- * <p>系统管理-租户套餐菜单表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-租户套餐菜单表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysTenantPackageMenuService {
      * @return 系统管理-租户套餐菜单表 实体
      */
     SysTenantPackageMenuBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysTenantPackageMenu 系统管理-租户套餐菜单表 实体
@@ -31,7 +33,7 @@ public interface ISysTenantPackageMenuService {
      * @param sysTenantPackageMenuList 批量数据
      */
     List<SysTenantPackageMenuBO> saveBatch(List<SysTenantPackageMenuBO> sysTenantPackageMenuList);
-    
+
     /**
      * 根据主键更新
      * @param sysTenantPackageMenu 系统管理-租户套餐菜单表 实体
@@ -55,4 +57,5 @@ public interface ISysTenantPackageMenuService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

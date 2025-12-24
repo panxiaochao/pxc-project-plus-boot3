@@ -7,7 +7,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>系统管理-菜单配置 BO实体类.</p>
+ * <p>
+ * 系统管理-菜单配置 BO实体类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,8 +20,8 @@ import java.time.LocalDateTime;
 public class SysMenuBO {
 
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Integer id;
 
     /**
@@ -103,7 +105,7 @@ public class SysMenuBO {
     private Integer createBy;
 
     /**
-     * 
+     *
      */
     private String updateBy;
 
@@ -116,4 +118,5 @@ public class SysMenuBO {
      * 更新时间
      */
     private LocalDateTime updateAt;
+
 }

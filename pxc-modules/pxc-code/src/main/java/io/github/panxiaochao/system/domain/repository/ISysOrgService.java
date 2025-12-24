@@ -5,7 +5,9 @@ import io.github.panxiaochao.system.domain.entity.sysorg.SysOrgBO;
 import java.util.List;
 
 /**
- * <p>系统管理-机构部门表 Domain接口服务类.</p>
+ * <p>
+ * 系统管理-机构部门表 Domain接口服务类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -18,7 +20,7 @@ public interface ISysOrgService {
      * @return 系统管理-机构部门表 实体
      */
     SysOrgBO getById(Integer id);
-    
+
     /**
      * 保存
      * @param sysOrg 系统管理-机构部门表 实体
@@ -31,7 +33,7 @@ public interface ISysOrgService {
      * @param sysOrgList 批量数据
      */
     List<SysOrgBO> saveBatch(List<SysOrgBO> sysOrgList);
-    
+
     /**
      * 根据主键更新
      * @param sysOrg 系统管理-机构部门表 实体
@@ -55,4 +57,5 @@ public interface ISysOrgService {
      * @param idList 主键数组
      */
     void deleteByIds(List<Integer> idList);
+
 }

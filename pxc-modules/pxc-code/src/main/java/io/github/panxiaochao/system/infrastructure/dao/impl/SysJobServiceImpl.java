@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * <p>系统管理-定时任务调度表 Dao服务实现类.</p>
+ * <p>
+ * 系统管理-定时任务调度表 Dao服务实现类.
+ * </p>
  *
  * @author Lypxc
  * @since 2025-12-24
@@ -138,7 +140,7 @@ public class SysJobServiceImpl implements ISysJobService, ISysJobReadModelServic
             if (pageQueryDto.getCreateBy() != null) {
                 lqw.eq(SysJobPO::getCreateBy, pageQueryDto.getCreateBy());
             }
-            // 如果  不为空
+            // 如果 不为空
             if (pageQueryDto.getUpdateBy() != null) {
                 lqw.eq(SysJobPO::getUpdateBy, pageQueryDto.getUpdateBy());
             }
@@ -204,7 +206,7 @@ public class SysJobServiceImpl implements ISysJobService, ISysJobReadModelServic
      */
     @Override
     public void updateBatch(List<SysJobBO> sysJobList) {
-    List<SysJobPO> sysJobPOList = ISysJobPOConvert.INSTANCE.fromEntity(sysJobList);
+        List<SysJobPO> sysJobPOList = ISysJobPOConvert.INSTANCE.fromEntity(sysJobList);
         Db.updateBatchById(sysJobPOList);
     }
 
