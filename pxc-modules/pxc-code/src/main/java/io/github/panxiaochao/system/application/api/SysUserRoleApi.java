@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-用户角色表 接口", description = "系统管理-用户角色表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysuserrole")
+@RequestMapping("/v1/sys-user-role")
 public class SysUserRoleApi {
 
     /**

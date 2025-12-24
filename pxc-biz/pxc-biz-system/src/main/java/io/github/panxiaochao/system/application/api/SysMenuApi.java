@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-菜单配置 接口", description = "系统管理-菜单配置 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysmenu")
+@RequestMapping("/v1/sys-menu")
 public class SysMenuApi {
 
     /**

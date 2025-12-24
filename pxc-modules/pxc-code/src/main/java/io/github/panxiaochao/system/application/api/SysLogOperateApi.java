@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-系统日志操作表 接口", description = "系统管理-系统日志操作表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/syslogoperate")
+@RequestMapping("/v1/sys-log-operate")
 public class SysLogOperateApi {
 
     /**

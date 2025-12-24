@@ -31,7 +31,7 @@ import java.util.List;
 @Tag(name = "${table.comment!} 接口", description = "${table.comment!} Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("<#if package.ModuleName?? && package.ModuleName != "">/${package.ModuleName}</#if>/v1/${entity?lower_case}")
+@RequestMapping("<#if package.ModuleName?? && package.ModuleName != "">/${package.ModuleName}</#if>/v1/${requestMappingValue}")
 public class ${table.controllerName} {
 
     /**

@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-系统参数 接口", description = "系统管理-系统参数 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysparam")
+@RequestMapping("/v1/sys-param")
 public class SysParamApi {
 
     /**

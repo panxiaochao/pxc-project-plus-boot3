@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-数据字典配置表 接口", description = "系统管理-数据字典配置表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysdictitem")
+@RequestMapping("/v1/sys-dict-item")
 public class SysDictItemApi {
 
     /**

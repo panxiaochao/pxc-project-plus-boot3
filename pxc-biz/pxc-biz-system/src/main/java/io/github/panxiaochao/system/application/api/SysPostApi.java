@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-岗位表 接口", description = "系统管理-岗位表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/syspost")
+@RequestMapping("/v1/sys-post")
 public class SysPostApi {
 
     /**

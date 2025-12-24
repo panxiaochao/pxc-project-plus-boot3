@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-机构部门表 接口", description = "系统管理-机构部门表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysorg")
+@RequestMapping("/v1/sys-org")
 public class SysOrgApi {
 
     /**

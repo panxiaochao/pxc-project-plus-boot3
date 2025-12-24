@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-租户套餐菜单表 接口", description = "系统管理-租户套餐菜单表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/systenantpackagemenu")
+@RequestMapping("/v1/sys-tenant-package-menu")
 public class SysTenantPackageMenuApi {
 
     /**

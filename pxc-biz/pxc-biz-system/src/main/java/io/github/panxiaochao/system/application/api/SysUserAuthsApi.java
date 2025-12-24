@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-用户授权信息表 接口", description = "系统管理-用户授权信息表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysuserauths")
+@RequestMapping("/v1/sys-user-auths")
 public class SysUserAuthsApi {
 
     /**

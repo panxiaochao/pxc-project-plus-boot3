@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-租户用户表 接口", description = "系统管理-租户用户表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/systenantuser")
+@RequestMapping("/v1/sys-tenant-user")
 public class SysTenantUserApi {
 
     /**

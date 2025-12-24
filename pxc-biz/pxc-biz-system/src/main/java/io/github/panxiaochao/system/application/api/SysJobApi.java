@@ -33,7 +33,7 @@ import java.util.List;
 @Tag(name = "系统管理-定时任务调度表 接口", description = "系统管理-定时任务调度表 Api接口")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/sysjob")
+@RequestMapping("/v1/sys-job")
 public class SysJobApi {
 
     /**

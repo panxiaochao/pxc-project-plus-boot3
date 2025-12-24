@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.generator.config.po.TableField;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import io.github.panxiaochao.boot3.core.utils.NamingRuleUtil;
 import io.github.panxiaochao.boot3.core.utils.StringPools;
 
 import java.io.File;
@@ -178,6 +179,7 @@ public class EnhanceFreemarkerTemplateEngine extends FreemarkerTemplateEngine {
         // api
         String controllerName = entityName + "Api";
         objectMap.put("controllerName", controllerName);
+        objectMap.put("requestMappingValue", NamingRuleUtil.toKebabCase(entityName));
         filePath = parentPath + "/application/api/" + controllerName + ".java";
         templatePath = "/templates/application/Controller.java.ftl";
         try {
