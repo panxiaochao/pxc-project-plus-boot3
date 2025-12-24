@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.panxiaochao.system.infrastructure.dao.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.github.panxiaochao.system.infrastructure.dao.po.SysUserPO">
+        <id column="id" property="id"/>
+        <result column="real_name" property="realName"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="avatar" property="avatar"/>
+        <result column="sex" property="sex"/>
+        <result column="address" property="address"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="tel" property="tel"/>
+        <result column="fax" property="fax"/>
+        <result column="skins" property="skins"/>
+        <result column="org_id" property="orgId"/>
+        <result column="org_code" property="orgCode"/>
+        <result column="sort" property="sort"/>
+        <result column="status" property="status"/>
+        <result column="login_nums" property="loginNums"/>
+        <result column="login_error_nums" property="loginErrorNums"/>
+        <result column="login_at" property="loginAt"/>
+        <result column="remark" property="remark"/>
+        <result column="create_by" property="createBy"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="create_at" property="createAt"/>
+        <result column="update_at" property="updateAt"/>
+    </resultMap>
+
+</mapper>

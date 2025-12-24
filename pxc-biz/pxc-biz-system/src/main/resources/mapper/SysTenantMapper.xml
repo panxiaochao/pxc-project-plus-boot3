@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.panxiaochao.system.infrastructure.dao.mapper.SysTenantMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.github.panxiaochao.system.infrastructure.dao.po.SysTenantPO">
+        <id column="id" property="id"/>
+        <result column="tenant_code" property="tenantCode"/>
+        <result column="package_id" property="packageId"/>
+        <result column="contact_user_name" property="contactUserName"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="company_name" property="companyName"/>
+        <result column="social_code" property="socialCode"/>
+        <result column="company_address" property="companyAddress"/>
+        <result column="company_intro" property="companyIntro"/>
+        <result column="company_domain" property="companyDomain"/>
+        <result column="mode" property="mode"/>
+        <result column="remark" property="remark"/>
+        <result column="sort" property="sort"/>
+        <result column="status" property="status"/>
+        <result column="create_at" property="createAt"/>
+        <result column="update_at" property="updateAt"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="expire_at" property="expireAt"/>
+    </resultMap>
+
+</mapper>

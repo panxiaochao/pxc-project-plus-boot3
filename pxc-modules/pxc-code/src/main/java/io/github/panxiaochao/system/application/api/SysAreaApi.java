@@ -1,0 +1,81 @@
+package io.github.panxiaochao.system.application.api;
+
+import io.github.panxiaochao.boot3.core.response.R;
+import io.github.panxiaochao.boot3.core.response.page.PageResponse;
+import io.github.panxiaochao.system.application.api.dto.sysarea.SysAreaCreateDTO;
+import io.github.panxiaochao.system.application.api.dto.sysarea.SysAreaPageQueryDTO;
+import io.github.panxiaochao.system.application.api.dto.sysarea.SysAreaUpdateDTO;
+import io.github.panxiaochao.system.application.api.vo.sysarea.SysAreaQueryVO;
+import io.github.panxiaochao.system.application.api.vo.sysarea.SysAreaVO;
+import io.github.panxiaochao.system.application.service.SysAreaAppService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * <p>系统管理-全国5级行政区划 接口.</p>
+ *
+ * @author Lypxc
+ * @since 2025-12-24
+ */
+@Tag(name = "系统管理-全国5级行政区划 接口", description = "系统管理-全国5级行政区划 Api接口")
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/v1/sysarea")
+public class SysAreaApi {
+
+    /**
+     * 系统管理-全国5级行政区划 服务
+     */
+    private final SysAreaAppService sysAreaAppService;
+
+    @Operation(summary = "查询分页", description = "查询分页")
+    @PostMapping(value = "/page")
+    public R<PageResponse<SysAreaQueryVO>> page(@RequestBody SysAreaPageQueryDTO pageQueryDTO) {
+        return R.ok(sysAreaAppService.page(pageQueryDTO));
+    }
+
+    @Operation(summary = "获取详情", description = "获取详情")
+    @Parameter(name = "id", description = "系统管理-全国5级行政区划 ID")
+    @GetMapping(value = "/get")
+    public R<SysAreaVO> getById(@RequestParam String id) {
+        return sysAreaAppService.getById(id);
+    }
+
+    @Operation(summary = "保存", description = "保存")
+    @PostMapping
+    public R<SysAreaVO> save(@RequestBody SysAreaCreateDTO sysAreaCreateDTO) {
+        return sysAreaAppService.save(sysAreaCreateDTO);
+    }
+
+    @Operation(summary = "更新", description = "根据主键更新")
+    @PutMapping
+    public R<Void> update(@RequestBody SysAreaUpdateDTO sysAreaUpdateDTO) {
+        return sysAreaAppService.update(sysAreaUpdateDTO);
+    }
+
+    @Operation(summary = "删除", description = "根据主键删除")
+    @Parameter(name = "id", description = "系统管理-全国5级行政区划 ID")
+    @PostMapping(value = "/delete")
+    public R<Void> deleteById(String id) {
+        return sysAreaAppService.deleteById(id);
+    }
+
+    @Operation(summary = "批量删除", description = "根据主键数组删除")
+    @Parameter(name = "idList", description = "系统管理-全国5级行政区划 ID数组")
+    @PostMapping(value = "/deleteBatch")
+    public R<Void> deleteByIds(List<String> idList) {
+        return sysAreaAppService.deleteByIds(idList);
+    }
+
+}

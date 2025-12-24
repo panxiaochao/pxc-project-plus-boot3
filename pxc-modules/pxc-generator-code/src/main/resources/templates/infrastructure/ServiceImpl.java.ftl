@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>${table.comment!} Dao服务实现类.</p>
@@ -106,6 +107,8 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
             if (pageQueryDto.get${field.propertyName?cap_first}() != null) {
             <#elseif field.propertyType="byte[]">
             if (pageQueryDto.get${field.propertyName?cap_first}() != null) {
+            <#elseif field.propertyType="Boolean">
+            if (Objects.nonNull(pageQueryDto.get${field.propertyName?cap_first}())) {
             <#else>
             if (StringUtils.isNotBlank(pageQueryDto.get${field.propertyName?cap_first}())) {
             </#if>

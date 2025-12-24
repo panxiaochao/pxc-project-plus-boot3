@@ -109,7 +109,7 @@ public class EnhanceFreemarkerTemplateEngine extends FreemarkerTemplateEngine {
 				// 生成 infrastructure and xml 模块
 				outputInfrastructure(config, objectMap, tableInfo);
 				// 生成 pom 文件
-				outputPom(config);
+				// outputPom(config);
 			});
 		}
 		catch (Exception e) {
