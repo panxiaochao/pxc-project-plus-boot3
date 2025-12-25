@@ -12,8 +12,9 @@
 
     <!-- 子模块 -->
     <modules>
-        <module>pxc-modules</module>
+        <module>pxc-module</module>
         <module>pxc-biz</module>
+        <module>pxc-common</module>
     </modules>
 
     <properties>
@@ -96,7 +97,7 @@
             <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
             <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
 
@@ -120,6 +121,7 @@
                 <version>${caffeine.version}</version>
             </dependency>
 
+            <!-- 提供 Redis 连接池 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>

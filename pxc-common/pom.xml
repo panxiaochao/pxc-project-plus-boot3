@@ -10,16 +10,14 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>pxc-modules</artifactId>
+    <artifactId>pxc-common</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
-    <description>
-        额外模块工具，包括定制代码生成等
-    </description>
+    <description>pxc-common 公共通用模块，包括权限、缓存、公共工具类等</description>
 
     <modules>
-        <module>pxc-generator-code</module>
-        <module>pxc-code</module>
+        <module>pxc-common-bom</module>
+        <module>pxc-common-satoken</module>
     </modules>
 
 </project>
