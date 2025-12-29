@@ -33,6 +33,7 @@
         <mysql-connector-j.version>9.5.0</mysql-connector-j.version>
         <pxc-framework-boot3.version>3.0.1-SNAPSHOT</pxc-framework-boot3.version>
         <springdoc-openapi.version>3.0.0</springdoc-openapi.version>
+        <springdoc-openapi-common.version>1.8.0</springdoc-openapi-common.version>
         <knife4j-openapi3-spring-boot-starter.version>4.6.0</knife4j-openapi3-spring-boot-starter.version>
         <sa-token.version>1.44.0</sa-token.version>
         <hutool.version>5.8.42</hutool.version>
@@ -72,10 +73,13 @@
             <!-- SpringDoc 依赖管理 -->
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi</artifactId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-common</artifactId>
+                <version>${springdoc-openapi-common.version}</version>
             </dependency>
 
             <!-- knife4j Doc 文档 -->

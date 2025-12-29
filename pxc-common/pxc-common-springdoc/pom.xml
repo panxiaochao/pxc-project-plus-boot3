@@ -5,20 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.panxiaochao</groupId>
-        <artifactId>pxc-project-plus-boot3</artifactId>
+        <artifactId>pxc-common</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>pxc-common</artifactId>
+    <artifactId>pxc-common-springdoc</artifactId>
     <name>${project.artifactId}</name>
-    <packaging>pom</packaging>
-    <description>pxc-common 公共通用模块，包括权限、缓存、公共工具类、文档生成等</description>
+    <description>pxc-common-springdoc 基于 SpringDoc 文档生成公共模块</description>
 
-    <modules>
-        <module>pxc-common-bom</module>
-        <module>pxc-common-satoken</module>
-        <module>pxc-common-springdoc</module>
-    </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+    </dependencies>
 </project>
