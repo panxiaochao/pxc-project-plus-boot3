@@ -3,7 +3,7 @@ package io.github.panxiaochao.common.satoken.utils;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.stp.parameter.SaLoginParameter;
-import cn.hutool.core.convert.Convert;
+import io.github.panxiaochao.boot3.core.utils.ConvertUtil;
 import io.github.panxiaochao.boot3.core.utils.ObjectUtil;
 import io.github.panxiaochao.common.satoken.model.LoginUser;
 
@@ -72,38 +72,49 @@ public class LoginHelper {
     }
 
     /**
+     * 获取用户基于 loginId
+     */
+    public static LoginUser getLoginUserByLoginId(Object loginId) {
+        SaSession session = StpUtil.getSessionByLoginId(loginId);
+        if (ObjectUtil.isEmpty(session)) {
+            return null;
+        }
+        return (LoginUser) session.get(LOGIN_USER_KEY);
+    }
+
+    /**
      * 获取用户id
      */
     public static Integer getUserId() {
-        return Convert.toInt(getExtra(USER_KEY));
+        return ConvertUtil.toInteger(getExtra(USER_KEY));
     }
 
     /**
      * 获取用户账户
      */
     public static String getUserName() {
-        return Convert.toStr(getExtra(USER_NAME_KEY));
+        return ConvertUtil.toString(getExtra(USER_NAME_KEY));
     }
 
     /**
      * 获取租户ID
      */
     public static String getTenantId() {
-        return Convert.toStr(getExtra(TENANT_KEY));
+        return ConvertUtil.toString(getExtra(TENANT_KEY));
     }
 
     /**
      * 获取部门ID
      */
     public static Integer getOrgId() {
-        return Convert.toInt(getExtra(ORG_KEY));
+        return ConvertUtil.toInteger(getExtra(ORG_KEY));
     }
 
     /**
      * 获取部门Code
      */
     public static String getOrgCode() {
-        return Convert.toStr(getExtra(ORG_CODE_KEY));
+        return ConvertUtil.toString(getExtra(ORG_CODE_KEY));
     }
 
     /**
