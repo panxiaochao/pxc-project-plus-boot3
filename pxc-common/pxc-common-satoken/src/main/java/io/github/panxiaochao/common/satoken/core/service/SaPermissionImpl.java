@@ -1,7 +1,7 @@
 package io.github.panxiaochao.common.satoken.core.service;
 
 import cn.dev33.satoken.stp.StpInterface;
-import io.github.panxiaochao.boot3.core.utils.CollectionUtil;
+import io.github.panxiaochao.boot3.utils.CollectionUtil;
 import io.github.panxiaochao.common.satoken.model.LoginUser;
 import io.github.panxiaochao.common.satoken.utils.LoginHelper;
 

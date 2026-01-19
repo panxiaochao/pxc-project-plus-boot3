@@ -1,6 +1,6 @@
 package io.github.panxiaochao.system.application.repository;
 
-import io.github.panxiaochao.boot3.core.response.page.Pagination;
+import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.system.application.api.dto.sysuserorg.SysUserOrgPageQueryDTO;
 import io.github.panxiaochao.system.application.api.dto.sysuserorg.SysUserOrgQueryDTO;
 import io.github.panxiaochao.system.application.api.vo.sysuserorg.SysUserOrgQueryVO;

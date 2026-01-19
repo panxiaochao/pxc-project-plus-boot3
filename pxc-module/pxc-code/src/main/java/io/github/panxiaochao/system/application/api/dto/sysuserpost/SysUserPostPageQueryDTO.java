@@ -1,6 +1,6 @@
 package io.github.panxiaochao.system.application.api.dto.sysuserpost;
 
-import io.github.panxiaochao.boot3.core.response.page.PageRequest;
+import io.github.panxiaochao.boot3.common.response.page.PageRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;

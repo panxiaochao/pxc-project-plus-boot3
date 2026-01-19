@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
-import io.github.panxiaochao.boot3.core.response.page.Pagination;
+import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.system.application.api.dto.sysuserrole.SysUserRolePageQueryDTO;
 import io.github.panxiaochao.system.application.api.dto.sysuserrole.SysUserRoleQueryDTO;
 import io.github.panxiaochao.system.application.api.vo.sysuserrole.SysUserRoleQueryVO;

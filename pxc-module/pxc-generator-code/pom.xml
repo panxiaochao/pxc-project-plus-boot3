@@ -27,7 +27,20 @@
                     <artifactId>HikariCP</artifactId>
                     <groupId>com.zaxxer</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>spring-boot</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <artifactId>spring-boot</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <version>${spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>

@@ -3,8 +3,8 @@ package io.github.panxiaochao.common.satoken.utils;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.stp.parameter.SaLoginParameter;
-import io.github.panxiaochao.boot3.core.utils.ConvertUtil;
-import io.github.panxiaochao.boot3.core.utils.ObjectUtil;
+import io.github.panxiaochao.boot3.utils.ConvertUtil;
+import io.github.panxiaochao.boot3.utils.ObjectUtil;
 import io.github.panxiaochao.common.satoken.model.LoginUser;
 
 /**

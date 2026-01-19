@@ -1,7 +1,7 @@
 package ${application}.api;
 
-import io.github.panxiaochao.boot3.core.response.R;
-import io.github.panxiaochao.boot3.core.response.page.PageResponse;
+import io.github.panxiaochao.boot3.common.response.R;
+import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import ${application}.api.dto.${entity?lower_case}.${entity}CreateDTO;
 import ${application}.api.dto.${entity?lower_case}.${entity}PageQueryDTO;
 import ${application}.api.dto.${entity?lower_case}.${entity}UpdateDTO;

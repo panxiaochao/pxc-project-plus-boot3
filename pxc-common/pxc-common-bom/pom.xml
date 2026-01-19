@@ -23,6 +23,12 @@
                 <artifactId>pxc-common-satoken</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <!-- SpringDoc 依赖管理 -->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-common-springdoc</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

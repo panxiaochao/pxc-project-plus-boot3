@@ -1,7 +1,7 @@
 package io.github.panxiaochao.common.satoken.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import io.github.panxiaochao.boot3.core.utils.JacksonUtil;
+import io.github.panxiaochao.boot3.utils.JacksonUtil;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,6 +1,6 @@
 package ${application}.repository;
 
-import io.github.panxiaochao.boot3.core.response.page.Pagination;
+import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import ${application}.api.dto.${entity?lower_case}.${entity}PageQueryDTO;
 import ${application}.api.dto.${entity?lower_case}.${entity}QueryDTO;
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;

@@ -23,8 +23,8 @@ import com.baomidou.mybatisplus.generator.config.po.TableField;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import io.github.panxiaochao.boot3.core.utils.NamingRuleUtil;
-import io.github.panxiaochao.boot3.core.utils.StringPools;
+import io.github.panxiaochao.boot3.utils.NamingRuleUtil;
+import io.github.panxiaochao.boot3.utils.StringPools;
 
 import java.io.File;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package io.github.panxiaochao.system.application.repository;
 
-import io.github.panxiaochao.boot3.core.response.page.Pagination;
+import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.system.application.api.dto.sysuserrole.SysUserRolePageQueryDTO;
 import io.github.panxiaochao.system.application.api.dto.sysuserrole.SysUserRoleQueryDTO;
 import io.github.panxiaochao.system.application.api.vo.sysuserrole.SysUserRoleQueryVO;

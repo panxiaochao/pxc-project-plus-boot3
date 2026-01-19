@@ -1,8 +1,8 @@
 package io.github.panxiaochao.system.application.service;
 
-import io.github.panxiaochao.boot3.core.response.R;
-import io.github.panxiaochao.boot3.core.response.page.PageResponse;
-import io.github.panxiaochao.boot3.core.response.page.Pagination;
+import io.github.panxiaochao.boot3.common.response.R;
+import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.system.application.api.dto.sysuserorg.SysUserOrgCreateDTO;
 import io.github.panxiaochao.system.application.api.dto.sysuserorg.SysUserOrgPageQueryDTO;
 import io.github.panxiaochao.system.application.api.dto.sysuserorg.SysUserOrgUpdateDTO;

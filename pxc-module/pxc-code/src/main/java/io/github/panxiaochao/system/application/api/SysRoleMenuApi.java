@@ -1,7 +1,7 @@
 package io.github.panxiaochao.system.application.api;
 
-import io.github.panxiaochao.boot3.core.response.R;
-import io.github.panxiaochao.boot3.core.response.page.PageResponse;
+import io.github.panxiaochao.boot3.common.response.R;
+import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.system.application.api.dto.sysrolemenu.SysRoleMenuCreateDTO;
 import io.github.panxiaochao.system.application.api.dto.sysrolemenu.SysRoleMenuPageQueryDTO;
 import io.github.panxiaochao.system.application.api.dto.sysrolemenu.SysRoleMenuUpdateDTO;
