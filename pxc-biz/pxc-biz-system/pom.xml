@@ -25,6 +25,16 @@
             <groupId>io.github.panxiaochao</groupId>
             <artifactId>pxc-framework-boot3-mybatis-plus</artifactId>
         </dependency>
+        <!-- pxc-framework-boot3-redis -->
+        <dependency>
+            <groupId>io.github.panxiaochao</groupId>
+            <artifactId>pxc-framework-boot3-redis</artifactId>
+        </dependency>
+        <!-- 公共核心模块 -->
+        <dependency>
+            <groupId>io.github.panxiaochao</groupId>
+            <artifactId>pxc-common-core</artifactId>
+        </dependency>
         <!-- mapstruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>

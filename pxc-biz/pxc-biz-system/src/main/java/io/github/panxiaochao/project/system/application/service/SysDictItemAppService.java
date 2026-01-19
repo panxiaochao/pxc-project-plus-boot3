@@ -3,8 +3,11 @@ package io.github.panxiaochao.project.system.application.service;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.utils.DictUtil;
+import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemVO;
@@ -13,9 +16,13 @@ import io.github.panxiaochao.project.system.application.repository.ISysDictItemR
 import io.github.panxiaochao.project.system.domain.entity.sysdictitem.SysDictItemBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysDictItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -102,6 +109,23 @@ public class SysDictItemAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysDictItemService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 发布数据字典
+     */
+    @Async
+    public void publishedData() {
+        SysDictItemQueryDTO queryDto = new SysDictItemQueryDTO();
+        queryDto.setStatus(GlobalConstant.STATUS_NORMAL);
+        List<SysDictItemQueryVO> list = sysDictItemReadModelService.selectList(queryDto);
+        // 按照 dictCode 分组，并转换为 Map<String, Map<String, String>>
+        Map<String, Map<String, String>> groupedDictMap = list.stream()
+            .collect(Collectors.groupingBy(SysDictItemQueryVO::getDictCode,
+                    Collectors.toMap(SysDictItemQueryVO::getDictItemValue, SysDictItemQueryVO::getDictItemText,
+                            (a, b) -> a, LinkedHashMap::new)));
+        // 加载所有数据字典
+        DictUtil.loadAllDict(groupedDictMap);
     }
 
 }
