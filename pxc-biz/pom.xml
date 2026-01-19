@@ -16,7 +16,10 @@
     <description>pxc-biz 业务模块</description>
 
     <modules>
+        <module>pxc-biz-bom</module>
+        <module>pxc-biz-auth</module>
         <module>pxc-biz-system</module>
+        <module>pxc-biz-web</module>
     </modules>
 
 </project>

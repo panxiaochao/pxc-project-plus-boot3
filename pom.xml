@@ -59,6 +59,24 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- pxc-common 依赖管理 -->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-common-bom</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- pxc-biz 依赖管理 -->
+            <dependency>
+                <groupId>io.github.panxiaochao</groupId>
+                <artifactId>pxc-biz-bom</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Spring 依赖管理 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -152,13 +170,6 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
-            </dependency>
-
-            <!-- pxc-biz-system 系统管理模块 -->
-            <dependency>
-                <groupId>io.github.panxiaochao</groupId>
-                <artifactId>pxc-biz-system</artifactId>
-                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
