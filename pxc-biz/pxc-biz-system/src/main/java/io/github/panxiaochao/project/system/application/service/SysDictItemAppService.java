@@ -5,6 +5,7 @@ import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
+import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
@@ -120,12 +121,17 @@ public class SysDictItemAppService {
         queryDto.setStatus(GlobalConstant.STATUS_NORMAL);
         List<SysDictItemQueryVO> list = sysDictItemReadModelService.selectList(queryDto);
         // 按照 dictCode 分组，并转换为 Map<String, Map<String, String>>
-        Map<String, Map<String, String>> groupedDictMap = list.stream()
+        // @formatter:off
+        Map<String, Map<String, Map<String, String>>> dictMap = list.stream()
             .collect(Collectors.groupingBy(SysDictItemQueryVO::getDictCode,
-                    Collectors.toMap(SysDictItemQueryVO::getDictItemValue, SysDictItemQueryVO::getDictItemText,
-                            (a, b) -> a, LinkedHashMap::new)));
+                    Collectors.toMap(
+                            item -> GlobalRedisConstant.KEY_SYS_DICT_ITEM + item.getDictItemValue(),
+                            item -> Map.of(item.getDictItemValue(), item.getDictItemText()),
+                            (a, b) -> a,
+                            LinkedHashMap::new)));
+        // @formatter:on
         // 加载所有数据字典
-        DictUtil.loadAllDict(groupedDictMap);
+        dictMap.forEach((key, value) -> DictUtil.loadAllDict(GlobalRedisConstant.KEY_SYS_DICT_ITEM, value));
     }
 
 }

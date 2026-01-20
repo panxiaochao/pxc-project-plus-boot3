@@ -5,6 +5,7 @@ import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
+import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamQueryDTO;
@@ -120,11 +121,17 @@ public class SysParamAppService {
         queryDto.setStatus(GlobalConstant.STATUS_NORMAL);
         List<SysParamQueryVO> list = sysParamReadModelService.selectList(queryDto);
         // 按照 paramType 分组，并转换为 Map<String, Map<String, String>>
-        Map<String, Map<String, String>> groupedDictMap = list.stream()
-            .collect(Collectors.groupingBy(SysParamQueryVO::getParamType, Collectors.toMap(SysParamQueryVO::getParamKey,
-                    SysParamQueryVO::getParamValue, (a, b) -> a, LinkedHashMap::new)));
+        // @formatter:off
+        Map<String, Map<String, Map<String, String>>> dictMap = list.stream()
+            .collect(Collectors.groupingBy(SysParamQueryVO::getParamKey,
+                    Collectors.toMap(
+                            item -> GlobalRedisConstant.KEY_SYS_PARAM + item.getParamKey(),
+                            item ->  Map.of(item.getParamKey(), item.getParamValue())  ,
+                            (a, b) -> a,
+                            LinkedHashMap::new)));
+        // @formatter:on
         // 加载所有数据字典
-        DictUtil.loadAllDict(groupedDictMap);
+        dictMap.forEach((key, value) -> DictUtil.loadAllDict(GlobalRedisConstant.KEY_SYS_PARAM, value));
     }
 
 }
