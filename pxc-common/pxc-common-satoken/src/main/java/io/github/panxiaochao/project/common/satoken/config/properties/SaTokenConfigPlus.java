@@ -1,6 +1,5 @@
 package io.github.panxiaochao.project.common.satoken.config.properties;
 
-import cn.dev33.satoken.config.SaTokenConfig;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -10,7 +9,8 @@ import java.util.List;
 
 /**
  * <p>
- * Sa-Token 配置类 Model 扩展类
+ * Sa-Token 配置类 Model 扩展类,
+ * 需要走注册类型，因为Sa-Token已经自己注册了，参考类文件{@link cn.dev33.satoken.spring.SaBeanRegister}
  * </p>
  *
  * @author lypxc
@@ -19,8 +19,8 @@ import java.util.List;
  */
 @Setter
 @Getter
-@ConfigurationProperties(prefix = "sa-token", ignoreInvalidFields = true)
-public class SaTokenConfigPlus extends SaTokenConfig {
+@ConfigurationProperties(prefix = "sa-token-plus", ignoreInvalidFields = true)
+public class SaTokenConfigPlus {
 
     /**
      * Url 白名单, 格式如下

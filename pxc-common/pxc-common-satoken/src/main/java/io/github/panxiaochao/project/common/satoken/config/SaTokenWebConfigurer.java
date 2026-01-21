@@ -6,6 +6,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import io.github.panxiaochao.project.common.satoken.config.properties.SaTokenConfigPlus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @AutoConfiguration
 @RequiredArgsConstructor
+@EnableConfigurationProperties(SaTokenConfigPlus.class)
 public class SaTokenWebConfigurer implements WebMvcConfigurer {
 
     private final SaTokenConfigPlus saTokenConfigPlus;

@@ -15,6 +15,7 @@
         <module>pxc-module</module>
         <module>pxc-biz</module>
         <module>pxc-common</module>
+        <module>pxc-application-starter</module>
     </modules>
 
     <properties>
@@ -170,6 +171,13 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- mysql -->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql-connector-j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

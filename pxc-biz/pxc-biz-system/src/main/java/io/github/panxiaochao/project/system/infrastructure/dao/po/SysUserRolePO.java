@@ -1,6 +1,5 @@
 package io.github.panxiaochao.project.system.infrastructure.dao.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
@@ -22,13 +21,12 @@ public class SysUserRolePO {
     /**
      * 用户ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId
     private Integer userId;
 
     /**
      * 角色ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer roleId;
 
 }

@@ -4,13 +4,11 @@ import cn.dev33.satoken.dao.SaTokenDao;
 import cn.dev33.satoken.jwt.StpLogicJwtForSimple;
 import cn.dev33.satoken.stp.StpInterface;
 import cn.dev33.satoken.stp.StpLogic;
-import io.github.panxiaochao.project.common.satoken.config.properties.SaTokenConfigPlus;
 import io.github.panxiaochao.project.common.satoken.core.dao.PlusSaTokenDao;
 import io.github.panxiaochao.project.common.satoken.core.service.SaPermissionImpl;
 import io.github.panxiaochao.project.common.satoken.handler.SaTokenExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -24,23 +22,14 @@ import org.springframework.context.annotation.Bean;
  */
 @AutoConfiguration
 @RequiredArgsConstructor
-@EnableConfigurationProperties(SaTokenConfigPlus.class)
 public class SaTokenAutoConfiguration {
-
-    /**
-     * Sa-Token 配置类 Model 扩展类
-     */
-    private final SaTokenConfigPlus saTokenConfigPlus;
 
     /**
      * Sa-Token 整合 jwt (简单模式)
      */
     @Bean
     public StpLogic getStpLogicJwt() {
-        StpLogicJwtForSimple stpLogicJwtForSimple = new StpLogicJwtForSimple();
-        // 设置自定义配置
-        // stpLogicJwtForSimple.setConfig(saTokenConfigPlus);
-        return stpLogicJwtForSimple;
+        return new StpLogicJwtForSimple();
     }
 
     /**

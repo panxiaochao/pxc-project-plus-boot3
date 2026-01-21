@@ -1,9 +1,7 @@
 package io.github.panxiaochao.project.system.web.config.rnnner;
 
-import io.github.panxiaochao.boot3.redis.utils.RedissonUtil;
-import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
+import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.system.application.service.SysDictItemAppService;
-import io.github.panxiaochao.project.system.application.service.SysParamAppService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -29,27 +27,22 @@ public class DictRunner implements ApplicationRunner {
      */
     private final SysDictItemAppService sysDictItemAppService;
 
-    /**
-     * 系统参数 App服务类.
-     */
-    private final SysParamAppService sysParamAppService;
-
     @Override
     public void run(ApplicationArguments args) {
         // 单线程执行
         // Executors.newSingleThreadExecutor().submit(this::publishedData);
-        publishedData();
+        publishedDictData();
     }
 
-    void publishedData() {
-        // 数据字典缓存
-        if (RedissonUtil.getKeysByPattern(GlobalRedisConstant.KEY_ALL_SYS_DICT).isEmpty()) {
-            sysDictItemAppService.publishedData();
-        }
-        // 系统参数缓存
-        if (RedissonUtil.getKeysByPattern(GlobalRedisConstant.KEY_ALL_SYS_PARAM).isEmpty()) {
-            sysParamAppService.publishedData();
-        }
+    /**
+     * 发布数据字典缓存.
+     */
+    void publishedDictData() {
+        // 1.先清空所有字典缓存
+        DictUtil.clearAllDict();
+        // 2.再加载数据字典缓存，防止缓存过期
+        sysDictItemAppService.publishedData();
+
     }
 
 }

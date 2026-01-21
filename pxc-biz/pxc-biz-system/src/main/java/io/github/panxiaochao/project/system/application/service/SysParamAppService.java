@@ -3,12 +3,8 @@ package io.github.panxiaochao.project.system.application.service;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
-import io.github.panxiaochao.boot3.utils.DictUtil;
-import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
-import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamVO;
@@ -17,13 +13,9 @@ import io.github.panxiaochao.project.system.application.repository.ISysParamRead
 import io.github.panxiaochao.project.system.domain.entity.sysparam.SysParamBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysParamService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -110,28 +102,6 @@ public class SysParamAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysParamService.deleteByIds(idList);
         return R.ok();
-    }
-
-    /**
-     * 发布数据字典
-     */
-    @Async
-    public void publishedData() {
-        SysParamQueryDTO queryDto = new SysParamQueryDTO();
-        queryDto.setStatus(GlobalConstant.STATUS_NORMAL);
-        List<SysParamQueryVO> list = sysParamReadModelService.selectList(queryDto);
-        // 按照 paramType 分组，并转换为 Map<String, Map<String, String>>
-        // @formatter:off
-        Map<String, Map<String, Map<String, String>>> dictMap = list.stream()
-            .collect(Collectors.groupingBy(SysParamQueryVO::getParamKey,
-                    Collectors.toMap(
-                            item -> GlobalRedisConstant.KEY_SYS_PARAM + item.getParamKey(),
-                            item ->  Map.of(item.getParamKey(), item.getParamValue())  ,
-                            (a, b) -> a,
-                            LinkedHashMap::new)));
-        // @formatter:on
-        // 加载所有数据字典
-        dictMap.forEach((key, value) -> DictUtil.loadAllDict(GlobalRedisConstant.KEY_SYS_PARAM, value));
     }
 
 }

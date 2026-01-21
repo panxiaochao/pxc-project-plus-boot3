@@ -1,6 +1,5 @@
 package io.github.panxiaochao.project.system.infrastructure.dao.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
@@ -22,13 +21,12 @@ public class SysTenantPackageMenuPO {
     /**
      * 租户套餐id
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId
     private Integer packageId;
 
     /**
      * 菜单ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer menuId;
 
 }
