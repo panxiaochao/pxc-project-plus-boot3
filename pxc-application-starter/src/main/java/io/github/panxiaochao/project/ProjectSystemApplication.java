@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * <p>
@@ -28,18 +28,33 @@ public class ProjectSystemApplication {
 
     /**
      * @param args args
-     * @throws Exception Exception
      */
-    public static void main(String[] args) throws Exception {
-        long start = System.currentTimeMillis();
+    public static void main(String[] args) {
         ConfigurableApplicationContext application = SpringApplication.run(ProjectSystemApplication.class, args);
-        long end = System.currentTimeMillis() - start;
+
+        // 打印启动应用信息
+        printApplicationInfo(application);
+    }
+
+    /**
+     * 打印启动应用信息
+     * @param application application 上下文
+     */
+    private static void printApplicationInfo(ConfigurableApplicationContext application) {
         Environment env = application.getEnvironment();
-        String ip = InetAddress.getLocalHost().getHostAddress();
-        String applicationName = env.getProperty("spring.application.name");
+        // 获取 IP 地址
+        String ip;
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e) {
+            LOG.warn("无法获取本地主机IP地址，使用localhost代替", e);
+            ip = "localhost";
+        }
+        String applicationName = env.getProperty("spring.application.name", "Application");
         String port = env.getProperty("server.port");
-        String path = env.getProperty("server.servlet.context-path");
-        if (!StringUtils.hasText(path) || PATH.equals(path)) {
+        String path = env.getProperty("server.servlet.context-path", PATH);
+        if (PATH.equals(path)) {
             path = "";
         }
         // 额外信息
@@ -54,7 +69,6 @@ public class ProjectSystemApplication {
         banner += String.format("Local        访问网址: http://localhost:%s%s\n", port, path);
         banner += String.format("External     访问网址: http://%s:%s%s\n", ip, port, path);
         banner += String.format("Doc          访问网址: http://%s:%s%s/doc.html\n", ip, port, path);
-        banner += String.format("Cost         启动: %d ms\n", end);
         LOG.info(banner);
     }
 

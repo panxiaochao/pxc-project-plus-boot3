@@ -25,6 +25,11 @@
             <groupId>io.github.panxiaochao</groupId>
             <artifactId>pxc-biz-system</artifactId>
         </dependency>
+        <!-- SpringDoc Swagger 文档生成公共模块 -->
+        <dependency>
+            <groupId>io.github.panxiaochao</groupId>
+            <artifactId>pxc-common-springdoc</artifactId>
+        </dependency>
         <!-- mysql -->
         <dependency>
             <groupId>com.mysql</groupId>

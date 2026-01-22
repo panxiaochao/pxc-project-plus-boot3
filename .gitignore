@@ -56,5 +56,14 @@ buildNumber.properties
 .iml
 .idea
 .idea/
+pxc-module/pxc-code/**
 
 .flattened-pom.xml
+
+# VSCode
+.vscode
+
+# macOS
+.DS_Store
+
+.trae

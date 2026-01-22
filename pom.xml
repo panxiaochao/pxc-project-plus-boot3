@@ -35,7 +35,7 @@
         <mybatis-plus-boot3.version>3.5.15</mybatis-plus-boot3.version>
         <mysql-connector-j.version>9.5.0</mysql-connector-j.version>
         <pxc-framework-boot3.version>3.0.1-SNAPSHOT</pxc-framework-boot3.version>
-        <springdoc-openapi.version>3.0.0</springdoc-openapi.version>
+        <springdoc-openapi.version>2.8.15</springdoc-openapi.version>
         <springdoc-openapi-common.version>1.8.0</springdoc-openapi-common.version>
         <knife4j-openapi3-spring-boot-starter.version>4.6.0</knife4j-openapi3-spring-boot-starter.version>
         <sa-token.version>1.44.0</sa-token.version>
