@@ -1,7 +1,6 @@
 package ${application}.convert;
 
 import ${application}.api.dto.${entity?lower_case}.${entity}CreateDTO;
-import ${application}.api.dto.${entity?lower_case}.${entity}QueryDTO;
 import ${application}.api.dto.${entity?lower_case}.${entity}UpdateDTO;
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;
 import ${application}.api.vo.${entity?lower_case}.${entity}VO;
@@ -40,14 +39,6 @@ public interface I${entity}DTOConvert {
      * @return ${table.comment!} 实体
      */
     ${entity}BO fromUpdateDTO(${entity}UpdateDTO updateDto);
-
-    /**
-     * ${table.comment!} 查询请求数据传输对象 转 ${table.comment!} 实体
-     *
-     * @param queryDto ${table.comment!} 查询请求数据传输对象
-     * @return ${table.comment!} 实体
-     */
-    ${entity}BO fromQueryRequest(${entity}QueryDTO queryDto);
 
     /**
      * ${table.comment!} 实体 转 ${table.comment!} 响应数据传输对象

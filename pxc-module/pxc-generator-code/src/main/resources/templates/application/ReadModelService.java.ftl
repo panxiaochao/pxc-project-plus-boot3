@@ -2,7 +2,6 @@ package ${application}.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import ${application}.api.dto.${entity?lower_case}.${entity}PageQueryDTO;
-import ${application}.api.dto.${entity?lower_case}.${entity}QueryDTO;
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public interface I${entity}ReadModelService {
 
     /**
      * 查询分页
-     * @param pagination  分页属性对象
+     * @param pagination 分页属性对象
      * @param pageQueryDTO ${table.comment!} 分页查询请求对象
      * @return 分页结果数组
      */
@@ -28,13 +27,13 @@ public interface I${entity}ReadModelService {
      * @param queryDto ${table.comment!} 查询请求对象数组
      * @return ${table.comment!} 结果数组
      */
-    List<${entity}QueryVO> selectList(${entity}QueryDTO queryDto);
+    List<${entity}QueryVO> selectList(${entity}PageQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto ${table.comment!} 查询请求对象
      * @return ${table.comment!} 查询响应对象
      */
-    ${entity}QueryVO getOne(${entity}QueryDTO queryDto);
+    ${entity}QueryVO getOne(${entity}PageQueryDTO queryDto);
 
 }

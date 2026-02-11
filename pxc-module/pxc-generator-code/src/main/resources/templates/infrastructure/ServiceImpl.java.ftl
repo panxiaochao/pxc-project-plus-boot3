@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import ${application}.api.dto.${entity?lower_case}.${entity}PageQueryDTO;
-import ${application}.api.dto.${entity?lower_case}.${entity}QueryDTO;
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;
 import ${application}.repository.I${entity}ReadModelService;
 import ${domain}.entity.${entity?lower_case}.${entity}BO;
@@ -58,10 +57,9 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @return 结果数组
      */
     @Override
-    public List<${entity}QueryVO> selectList(${entity}QueryDTO queryDto) {
+    public List<${entity}QueryVO> selectList(${entity}PageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<${entity}PO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<${entity}PO> lqw = lambdaQuery(queryDto);
         return I${entity}POConvert.INSTANCE.toQueryVO(${entity?uncap_first}Mapper.selectList(lqw));
     }
 
@@ -71,11 +69,10 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @return ${table.comment!} 查询响应对象
      */
     @Override
-    public ${entity}QueryVO getOne(${entity}QueryDTO queryDto) {
+    public ${entity}QueryVO getOne(${entity}PageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<${entity}PO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<${entity}PO> lqw = lambdaQuery(queryDto);
             ${entity}PO ${entity?uncap_first}PO = ${entity?uncap_first}Mapper.selectOne(lqw);
             return I${entity}POConvert.INSTANCE.toQueryVO(${entity?uncap_first}PO);
         }
@@ -170,7 +167,7 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      */
     @Override
     public void updateBatch(List<${entity}BO> ${entity?uncap_first}List) {
-    List<${entity}PO> ${entity?uncap_first}POList = I${entity}POConvert.INSTANCE.fromEntity(${entity?uncap_first}List);
+        List<${entity}PO> ${entity?uncap_first}POList = I${entity}POConvert.INSTANCE.fromEntity(${entity?uncap_first}List);
         Db.updateBatchById(${entity?uncap_first}POList);
     }
 
