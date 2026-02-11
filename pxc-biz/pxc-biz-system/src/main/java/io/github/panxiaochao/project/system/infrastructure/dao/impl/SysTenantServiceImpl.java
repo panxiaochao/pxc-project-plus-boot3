@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenant.SysTenantPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.systenant.SysTenantQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenant.SysTenantBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -60,10 +59,9 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
      * @return 结果数组
      */
     @Override
-    public List<SysTenantQueryVO> selectList(SysTenantQueryDTO queryDto) {
+    public List<SysTenantQueryVO> selectList(SysTenantPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysTenantPO> lqw = lambdaQuery(queryDto);
         return ISysTenantPOConvert.INSTANCE.toQueryVO(sysTenantMapper.selectList(lqw));
     }
 
@@ -73,11 +71,10 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
      * @return 系统管理-租户表 查询响应对象
      */
     @Override
-    public SysTenantQueryVO getOne(SysTenantQueryDTO queryDto) {
+    public SysTenantQueryVO getOne(SysTenantPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysTenantPO> lqw = lambdaQuery(queryDto);
             SysTenantPO sysTenantPO = sysTenantMapper.selectOne(lqw);
             return ISysTenantPOConvert.INSTANCE.toQueryVO(sysTenantPO);
         }

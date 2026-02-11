@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.syslogoperate.SysLogOperatePageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.syslogoperate.SysLogOperateQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysLogOperateReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.syslogoperate.SysLogOperateBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -60,10 +59,9 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
      * @return 结果数组
      */
     @Override
-    public List<SysLogOperateQueryVO> selectList(SysLogOperateQueryDTO queryDto) {
+    public List<SysLogOperateQueryVO> selectList(SysLogOperatePageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysLogOperatePO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysLogOperatePO> lqw = lambdaQuery(queryDto);
         return ISysLogOperatePOConvert.INSTANCE.toQueryVO(sysLogOperateMapper.selectList(lqw));
     }
 
@@ -73,11 +71,10 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
      * @return 系统管理-系统日志操作表 查询响应对象
      */
     @Override
-    public SysLogOperateQueryVO getOne(SysLogOperateQueryDTO queryDto) {
+    public SysLogOperateQueryVO getOne(SysLogOperatePageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysLogOperatePO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysLogOperatePO> lqw = lambdaQuery(queryDto);
             SysLogOperatePO sysLogOperatePO = sysLogOperateMapper.selectOne(lqw);
             return ISysLogOperatePOConvert.INSTANCE.toQueryVO(sysLogOperatePO);
         }

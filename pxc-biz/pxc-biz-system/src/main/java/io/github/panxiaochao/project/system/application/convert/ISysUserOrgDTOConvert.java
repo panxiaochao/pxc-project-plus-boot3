@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.sysuserorg.SysUserOrgCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserorg.SysUserOrgQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserorg.SysUserOrgUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysUserOrgDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysUserOrgDTOConvert {
      * @return 系统管理-用户机构/部门表 实体
      */
     SysUserOrgBO fromUpdateDTO(SysUserOrgUpdateDTO updateDto);
-
-    /**
-     * 系统管理-用户机构/部门表 查询请求数据传输对象 转 系统管理-用户机构/部门表 实体
-     * @param queryDto 系统管理-用户机构/部门表 查询请求数据传输对象
-     * @return 系统管理-用户机构/部门表 实体
-     */
-    SysUserOrgBO fromQueryRequest(SysUserOrgQueryDTO queryDto);
 
     /**
      * 系统管理-用户机构/部门表 实体 转 系统管理-用户机构/部门表 响应数据传输对象

@@ -2,7 +2,6 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleQueryVO;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 public interface ISysRoleReadModelService {
 
@@ -30,13 +29,13 @@ public interface ISysRoleReadModelService {
      * @param queryDto 系统管理-角色表 查询请求对象数组
      * @return 系统管理-角色表 结果数组
      */
-    List<SysRoleQueryVO> selectList(SysRoleQueryDTO queryDto);
+    List<SysRoleQueryVO> selectList(SysRolePageQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-角色表 查询请求对象
      * @return 系统管理-角色表 查询响应对象
      */
-    SysRoleQueryVO getOne(SysRoleQueryDTO queryDto);
+    SysRoleQueryVO getOne(SysRolePageQueryDTO queryDto);
 
 }

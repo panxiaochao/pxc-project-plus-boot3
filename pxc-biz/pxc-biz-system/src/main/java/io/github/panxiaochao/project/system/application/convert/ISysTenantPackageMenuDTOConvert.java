@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysTenantPackageMenuDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysTenantPackageMenuDTOConvert {
      * @return 系统管理-租户套餐菜单表 实体
      */
     SysTenantPackageMenuBO fromUpdateDTO(SysTenantPackageMenuUpdateDTO updateDto);
-
-    /**
-     * 系统管理-租户套餐菜单表 查询请求数据传输对象 转 系统管理-租户套餐菜单表 实体
-     * @param queryDto 系统管理-租户套餐菜单表 查询请求数据传输对象
-     * @return 系统管理-租户套餐菜单表 实体
-     */
-    SysTenantPackageMenuBO fromQueryRequest(SysTenantPackageMenuQueryDTO queryDto);
 
     /**
      * 系统管理-租户套餐菜单表 实体 转 系统管理-租户套餐菜单表 响应数据传输对象

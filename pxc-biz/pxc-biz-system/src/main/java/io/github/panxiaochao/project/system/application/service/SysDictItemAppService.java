@@ -7,7 +7,6 @@ import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemVO;
@@ -116,7 +115,7 @@ public class SysDictItemAppService {
      */
     @Async
     public void publishedData() {
-        SysDictItemQueryDTO queryDto = new SysDictItemQueryDTO();
+        SysDictItemPageQueryDTO queryDto = new SysDictItemPageQueryDTO();
         queryDto.setStatus(GlobalConstant.STATUS_NORMAL);
         List<SysDictItemQueryVO> list = sysDictItemReadModelService.selectList(queryDto);
         // 按照 dictCode 分组，并转换为 Map<String, Map<String, String>>

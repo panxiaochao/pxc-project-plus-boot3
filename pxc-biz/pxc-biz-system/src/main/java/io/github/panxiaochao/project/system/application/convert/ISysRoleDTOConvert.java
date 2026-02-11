@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysRoleDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysRoleDTOConvert {
      * @return 系统管理-角色表 实体
      */
     SysRoleBO fromUpdateDTO(SysRoleUpdateDTO updateDto);
-
-    /**
-     * 系统管理-角色表 查询请求数据传输对象 转 系统管理-角色表 实体
-     * @param queryDto 系统管理-角色表 查询请求数据传输对象
-     * @return 系统管理-角色表 实体
-     */
-    SysRoleBO fromQueryRequest(SysRoleQueryDTO queryDto);
 
     /**
      * 系统管理-角色表 实体 转 系统管理-角色表 响应数据传输对象

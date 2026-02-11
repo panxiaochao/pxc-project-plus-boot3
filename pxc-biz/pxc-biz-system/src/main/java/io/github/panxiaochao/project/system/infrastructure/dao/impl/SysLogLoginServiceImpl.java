@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysLogLoginReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysloglogin.SysLogLoginBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -60,10 +59,9 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
      * @return 结果数组
      */
     @Override
-    public List<SysLogLoginQueryVO> selectList(SysLogLoginQueryDTO queryDto) {
+    public List<SysLogLoginQueryVO> selectList(SysLogLoginPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysLogLoginPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysLogLoginPO> lqw = lambdaQuery(queryDto);
         return ISysLogLoginPOConvert.INSTANCE.toQueryVO(sysLogLoginMapper.selectList(lqw));
     }
 
@@ -73,11 +71,10 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
      * @return 系统管理-系统日志登录/登出表 查询响应对象
      */
     @Override
-    public SysLogLoginQueryVO getOne(SysLogLoginQueryDTO queryDto) {
+    public SysLogLoginQueryVO getOne(SysLogLoginPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysLogLoginPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysLogLoginPO> lqw = lambdaQuery(queryDto);
             SysLogLoginPO sysLogLoginPO = sysLogLoginMapper.selectOne(lqw);
             return ISysLogLoginPOConvert.INSTANCE.toQueryVO(sysLogLoginPO);
         }

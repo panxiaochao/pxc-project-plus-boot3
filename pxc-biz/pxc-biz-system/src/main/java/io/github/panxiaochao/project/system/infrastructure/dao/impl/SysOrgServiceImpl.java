@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysOrgReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysorg.SysOrgBO;
@@ -27,7 +26,7 @@ import java.util.Objects;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -60,10 +59,9 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
      * @return 结果数组
      */
     @Override
-    public List<SysOrgQueryVO> selectList(SysOrgQueryDTO queryDto) {
+    public List<SysOrgQueryVO> selectList(SysOrgPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysOrgPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysOrgPO> lqw = lambdaQuery(queryDto);
         return ISysOrgPOConvert.INSTANCE.toQueryVO(sysOrgMapper.selectList(lqw));
     }
 
@@ -73,11 +71,10 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
      * @return 系统管理-机构部门表 查询响应对象
      */
     @Override
-    public SysOrgQueryVO getOne(SysOrgQueryDTO queryDto) {
+    public SysOrgQueryVO getOne(SysOrgPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysOrgPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysOrgPO> lqw = lambdaQuery(queryDto);
             SysOrgPO sysOrgPO = sysOrgMapper.selectOne(lqw);
             return ISysOrgPOConvert.INSTANCE.toQueryVO(sysOrgPO);
         }

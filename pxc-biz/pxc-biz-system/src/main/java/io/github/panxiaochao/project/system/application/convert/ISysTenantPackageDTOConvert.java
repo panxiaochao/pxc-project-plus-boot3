@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackageCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackageUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysTenantPackageDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysTenantPackageDTOConvert {
      * @return 系统管理-租户套餐表 实体
      */
     SysTenantPackageBO fromUpdateDTO(SysTenantPackageUpdateDTO updateDto);
-
-    /**
-     * 系统管理-租户套餐表 查询请求数据传输对象 转 系统管理-租户套餐表 实体
-     * @param queryDto 系统管理-租户套餐表 查询请求数据传输对象
-     * @return 系统管理-租户套餐表 实体
-     */
-    SysTenantPackageBO fromQueryRequest(SysTenantPackageQueryDTO queryDto);
 
     /**
      * 系统管理-租户套餐表 实体 转 系统管理-租户套餐表 响应数据传输对象

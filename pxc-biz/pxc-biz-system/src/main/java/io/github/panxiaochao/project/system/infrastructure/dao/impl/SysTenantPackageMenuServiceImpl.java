@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantPackageMenuReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenantpackagemenu.SysTenantPackageMenuBO;
@@ -25,7 +24,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -61,10 +60,9 @@ public class SysTenantPackageMenuServiceImpl
      * @return 结果数组
      */
     @Override
-    public List<SysTenantPackageMenuQueryVO> selectList(SysTenantPackageMenuQueryDTO queryDto) {
+    public List<SysTenantPackageMenuQueryVO> selectList(SysTenantPackageMenuPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = lambdaQuery(queryDto);
         return ISysTenantPackageMenuPOConvert.INSTANCE.toQueryVO(sysTenantPackageMenuMapper.selectList(lqw));
     }
 
@@ -74,11 +72,10 @@ public class SysTenantPackageMenuServiceImpl
      * @return 系统管理-租户套餐菜单表 查询响应对象
      */
     @Override
-    public SysTenantPackageMenuQueryVO getOne(SysTenantPackageMenuQueryDTO queryDto) {
+    public SysTenantPackageMenuQueryVO getOne(SysTenantPackageMenuPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = lambdaQuery(queryDto);
             SysTenantPackageMenuPO sysTenantPackageMenuPO = sysTenantPackageMenuMapper.selectOne(lqw);
             return ISysTenantPackageMenuPOConvert.INSTANCE.toQueryVO(sysTenantPackageMenuPO);
         }

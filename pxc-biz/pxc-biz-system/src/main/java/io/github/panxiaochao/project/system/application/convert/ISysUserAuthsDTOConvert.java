@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysUserAuthsDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysUserAuthsDTOConvert {
      * @return 系统管理-用户授权信息表 实体
      */
     SysUserAuthsBO fromUpdateDTO(SysUserAuthsUpdateDTO updateDto);
-
-    /**
-     * 系统管理-用户授权信息表 查询请求数据传输对象 转 系统管理-用户授权信息表 实体
-     * @param queryDto 系统管理-用户授权信息表 查询请求数据传输对象
-     * @return 系统管理-用户授权信息表 实体
-     */
-    SysUserAuthsBO fromQueryRequest(SysUserAuthsQueryDTO queryDto);
 
     /**
      * 系统管理-用户授权信息表 实体 转 系统管理-用户授权信息表 响应数据传输对象

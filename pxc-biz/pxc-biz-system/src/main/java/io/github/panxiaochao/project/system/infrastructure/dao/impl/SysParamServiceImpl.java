@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysParamReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysparam.SysParamBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -60,10 +59,9 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
      * @return 结果数组
      */
     @Override
-    public List<SysParamQueryVO> selectList(SysParamQueryDTO queryDto) {
+    public List<SysParamQueryVO> selectList(SysParamPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysParamPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysParamPO> lqw = lambdaQuery(queryDto);
         return ISysParamPOConvert.INSTANCE.toQueryVO(sysParamMapper.selectList(lqw));
     }
 
@@ -73,11 +71,10 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
      * @return 系统管理-系统参数 查询响应对象
      */
     @Override
-    public SysParamQueryVO getOne(SysParamQueryDTO queryDto) {
+    public SysParamQueryVO getOne(SysParamPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysParamPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysParamPO> lqw = lambdaQuery(queryDto);
             SysParamPO sysParamPO = sysParamMapper.selectOne(lqw);
             return ISysParamPOConvert.INSTANCE.toQueryVO(sysParamPO);
         }

@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysMenuReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysmenu.SysMenuBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysMenuQueryVO> selectList(SysMenuQueryDTO queryDto) {
+    public List<SysMenuQueryVO> selectList(SysMenuPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysMenuPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysMenuPO> lqw = lambdaQuery(queryDto);
         return ISysMenuPOConvert.INSTANCE.toQueryVO(sysMenuMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
      * @return 系统管理-菜单配置 查询响应对象
      */
     @Override
-    public SysMenuQueryVO getOne(SysMenuQueryDTO queryDto) {
+    public SysMenuQueryVO getOne(SysMenuPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysMenuPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysMenuPO> lqw = lambdaQuery(queryDto);
             SysMenuPO sysMenuPO = sysMenuMapper.selectOne(lqw);
             return ISysMenuPOConvert.INSTANCE.toQueryVO(sysMenuPO);
         }

@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysRoleReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysrole.SysRoleBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysRoleQueryVO> selectList(SysRoleQueryDTO queryDto) {
+    public List<SysRoleQueryVO> selectList(SysRolePageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysRolePO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysRolePO> lqw = lambdaQuery(queryDto);
         return ISysRolePOConvert.INSTANCE.toQueryVO(sysRoleMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
      * @return 系统管理-角色表 查询响应对象
      */
     @Override
-    public SysRoleQueryVO getOne(SysRoleQueryDTO queryDto) {
+    public SysRoleQueryVO getOne(SysRolePageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysRolePO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysRolePO> lqw = lambdaQuery(queryDto);
             SysRolePO sysRolePO = sysRoleMapper.selectOne(lqw);
             return ISysRolePOConvert.INSTANCE.toQueryVO(sysRolePO);
         }

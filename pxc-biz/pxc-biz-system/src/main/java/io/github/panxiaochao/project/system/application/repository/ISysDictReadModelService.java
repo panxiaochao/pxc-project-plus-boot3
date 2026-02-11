@@ -2,7 +2,6 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictQueryVO;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 public interface ISysDictReadModelService {
 
@@ -30,13 +29,13 @@ public interface ISysDictReadModelService {
      * @param queryDto 系统管理-数据字典表 查询请求对象数组
      * @return 系统管理-数据字典表 结果数组
      */
-    List<SysDictQueryVO> selectList(SysDictQueryDTO queryDto);
+    List<SysDictQueryVO> selectList(SysDictPageQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-数据字典表 查询请求对象
      * @return 系统管理-数据字典表 查询响应对象
      */
-    SysDictQueryVO getOne(SysDictQueryDTO queryDto);
+    SysDictQueryVO getOne(SysDictPageQueryDTO queryDto);
 
 }

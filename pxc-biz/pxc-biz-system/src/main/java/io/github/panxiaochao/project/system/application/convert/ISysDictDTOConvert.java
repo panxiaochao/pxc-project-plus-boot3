@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysDictDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysDictDTOConvert {
      * @return 系统管理-数据字典表 实体
      */
     SysDictBO fromUpdateDTO(SysDictUpdateDTO updateDto);
-
-    /**
-     * 系统管理-数据字典表 查询请求数据传输对象 转 系统管理-数据字典表 实体
-     * @param queryDto 系统管理-数据字典表 查询请求数据传输对象
-     * @return 系统管理-数据字典表 实体
-     */
-    SysDictBO fromQueryRequest(SysDictQueryDTO queryDto);
 
     /**
      * 系统管理-数据字典表 实体 转 系统管理-数据字典表 响应数据传输对象

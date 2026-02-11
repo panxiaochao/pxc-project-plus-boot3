@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysMenuDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysMenuDTOConvert {
      * @return 系统管理-菜单配置 实体
      */
     SysMenuBO fromUpdateDTO(SysMenuUpdateDTO updateDto);
-
-    /**
-     * 系统管理-菜单配置 查询请求数据传输对象 转 系统管理-菜单配置 实体
-     * @param queryDto 系统管理-菜单配置 查询请求数据传输对象
-     * @return 系统管理-菜单配置 实体
-     */
-    SysMenuBO fromQueryRequest(SysMenuQueryDTO queryDto);
 
     /**
      * 系统管理-菜单配置 实体 转 系统管理-菜单配置 响应数据传输对象

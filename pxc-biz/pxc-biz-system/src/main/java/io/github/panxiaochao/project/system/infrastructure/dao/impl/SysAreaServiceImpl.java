@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysAreaReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysarea.SysAreaBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysAreaServiceImpl implements ISysAreaService, ISysAreaReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysAreaQueryVO> selectList(SysAreaQueryDTO queryDto) {
+    public List<SysAreaQueryVO> selectList(SysAreaPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysAreaPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysAreaPO> lqw = lambdaQuery(queryDto);
         return ISysAreaPOConvert.INSTANCE.toQueryVO(sysAreaMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysAreaServiceImpl implements ISysAreaService, ISysAreaReadModelSer
      * @return 系统管理-全国5级行政区划 查询响应对象
      */
     @Override
-    public SysAreaQueryVO getOne(SysAreaQueryDTO queryDto) {
+    public SysAreaQueryVO getOne(SysAreaPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysAreaPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysAreaPO> lqw = lambdaQuery(queryDto);
             SysAreaPO sysAreaPO = sysAreaMapper.selectOne(lqw);
             return ISysAreaPOConvert.INSTANCE.toQueryVO(sysAreaPO);
         }

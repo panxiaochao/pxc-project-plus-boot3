@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuser.SysUserBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysUserQueryVO> selectList(SysUserQueryDTO queryDto) {
+    public List<SysUserQueryVO> selectList(SysUserPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysUserPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(queryDto);
         return ISysUserPOConvert.INSTANCE.toQueryVO(sysUserMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      * @return 系统管理-用户表 查询响应对象
      */
     @Override
-    public SysUserQueryVO getOne(SysUserQueryDTO queryDto) {
+    public SysUserQueryVO getOne(SysUserPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysUserPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(queryDto);
             SysUserPO sysUserPO = sysUserMapper.selectOne(lqw);
             return ISysUserPOConvert.INSTANCE.toQueryVO(sysUserPO);
         }

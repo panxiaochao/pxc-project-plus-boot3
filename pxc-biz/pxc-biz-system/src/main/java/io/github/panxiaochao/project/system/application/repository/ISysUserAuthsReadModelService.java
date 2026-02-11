@@ -2,7 +2,6 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 public interface ISysUserAuthsReadModelService {
 
@@ -30,13 +29,13 @@ public interface ISysUserAuthsReadModelService {
      * @param queryDto 系统管理-用户授权信息表 查询请求对象数组
      * @return 系统管理-用户授权信息表 结果数组
      */
-    List<SysUserAuthsQueryVO> selectList(SysUserAuthsQueryDTO queryDto);
+    List<SysUserAuthsQueryVO> selectList(SysUserAuthsPageQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-用户授权信息表 查询请求对象
      * @return 系统管理-用户授权信息表 查询响应对象
      */
-    SysUserAuthsQueryVO getOne(SysUserAuthsQueryDTO queryDto);
+    SysUserAuthsQueryVO getOne(SysUserAuthsPageQueryDTO queryDto);
 
 }

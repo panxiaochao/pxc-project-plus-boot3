@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserpost.SysUserPostPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserpost.SysUserPostQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserPostReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuserpost.SysUserPostBO;
@@ -25,7 +24,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
      * @return 结果数组
      */
     @Override
-    public List<SysUserPostQueryVO> selectList(SysUserPostQueryDTO queryDto) {
+    public List<SysUserPostQueryVO> selectList(SysUserPostPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysUserPostPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysUserPostPO> lqw = lambdaQuery(queryDto);
         return ISysUserPostPOConvert.INSTANCE.toQueryVO(sysUserPostMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
      * @return 系统管理-用户岗位关联表 查询响应对象
      */
     @Override
-    public SysUserPostQueryVO getOne(SysUserPostQueryDTO queryDto) {
+    public SysUserPostQueryVO getOne(SysUserPostPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysUserPostPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysUserPostPO> lqw = lambdaQuery(queryDto);
             SysUserPostPO sysUserPostPO = sysUserPostMapper.selectOne(lqw);
             return ISysUserPostPOConvert.INSTANCE.toQueryVO(sysUserPostPO);
         }

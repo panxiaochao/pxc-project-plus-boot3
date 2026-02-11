@@ -1,7 +1,6 @@
 package io.github.panxiaochao.project.system.application.convert;
 
 import io.github.panxiaochao.project.system.application.api.dto.sysrolemenu.SysRoleMenuCreateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysrolemenu.SysRoleMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrolemenu.SysRoleMenuUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuVO;
@@ -17,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Mapper
 public interface ISysRoleMenuDTOConvert {
@@ -40,13 +39,6 @@ public interface ISysRoleMenuDTOConvert {
      * @return 系统管理-角色菜单表 实体
      */
     SysRoleMenuBO fromUpdateDTO(SysRoleMenuUpdateDTO updateDto);
-
-    /**
-     * 系统管理-角色菜单表 查询请求数据传输对象 转 系统管理-角色菜单表 实体
-     * @param queryDto 系统管理-角色菜单表 查询请求数据传输对象
-     * @return 系统管理-角色菜单表 实体
-     */
-    SysRoleMenuBO fromQueryRequest(SysRoleMenuQueryDTO queryDto);
 
     /**
      * 系统管理-角色菜单表 实体 转 系统管理-角色菜单表 响应数据传输对象

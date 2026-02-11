@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysPostReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.syspost.SysPostBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysPostQueryVO> selectList(SysPostQueryDTO queryDto) {
+    public List<SysPostQueryVO> selectList(SysPostPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysPostPO> lqw = lambdaQuery(queryDto);
         return ISysPostPOConvert.INSTANCE.toQueryVO(sysPostMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
      * @return 系统管理-岗位表 查询响应对象
      */
     @Override
-    public SysPostQueryVO getOne(SysPostQueryDTO queryDto) {
+    public SysPostQueryVO getOne(SysPostPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysPostPO> lqw = lambdaQuery(queryDto);
             SysPostPO sysPostPO = sysPostMapper.selectOne(lqw);
             return ISysPostPOConvert.INSTANCE.toQueryVO(sysPostPO);
         }

@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantuser.SysTenantUserPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.systenantuser.SysTenantUserQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantuser.SysTenantUserQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantUserReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenantuser.SysTenantUserBO;
@@ -25,7 +24,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysTenantUserServiceImpl implements ISysTenantUserService, ISysTena
      * @return 结果数组
      */
     @Override
-    public List<SysTenantUserQueryVO> selectList(SysTenantUserQueryDTO queryDto) {
+    public List<SysTenantUserQueryVO> selectList(SysTenantUserPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantUserPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysTenantUserPO> lqw = lambdaQuery(queryDto);
         return ISysTenantUserPOConvert.INSTANCE.toQueryVO(sysTenantUserMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysTenantUserServiceImpl implements ISysTenantUserService, ISysTena
      * @return 系统管理-租户用户表 查询响应对象
      */
     @Override
-    public SysTenantUserQueryVO getOne(SysTenantUserQueryDTO queryDto) {
+    public SysTenantUserQueryVO getOne(SysTenantUserPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantUserPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysTenantUserPO> lqw = lambdaQuery(queryDto);
             SysTenantUserPO sysTenantUserPO = sysTenantUserMapper.selectOne(lqw);
             return ISysTenantUserPOConvert.INSTANCE.toQueryVO(sysTenantUserPO);
         }

@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysDictReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysdict.SysDictBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysDictServiceImpl implements ISysDictService, ISysDictReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysDictQueryVO> selectList(SysDictQueryDTO queryDto) {
+    public List<SysDictQueryVO> selectList(SysDictPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysDictPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysDictPO> lqw = lambdaQuery(queryDto);
         return ISysDictPOConvert.INSTANCE.toQueryVO(sysDictMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysDictServiceImpl implements ISysDictService, ISysDictReadModelSer
      * @return 系统管理-数据字典表 查询响应对象
      */
     @Override
-    public SysDictQueryVO getOne(SysDictQueryDTO queryDto) {
+    public SysDictQueryVO getOne(SysDictPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysDictPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysDictPO> lqw = lambdaQuery(queryDto);
             SysDictPO sysDictPO = sysDictMapper.selectOne(lqw);
             return ISysDictPOConvert.INSTANCE.toQueryVO(sysDictPO);
         }

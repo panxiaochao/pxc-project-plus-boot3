@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRolePageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserRoleReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuserrole.SysUserRoleBO;
@@ -25,7 +24,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysUserRoleServiceImpl implements ISysUserRoleService, ISysUserRole
      * @return 结果数组
      */
     @Override
-    public List<SysUserRoleQueryVO> selectList(SysUserRoleQueryDTO queryDto) {
+    public List<SysUserRoleQueryVO> selectList(SysUserRolePageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysUserRolePO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysUserRolePO> lqw = lambdaQuery(queryDto);
         return ISysUserRolePOConvert.INSTANCE.toQueryVO(sysUserRoleMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysUserRoleServiceImpl implements ISysUserRoleService, ISysUserRole
      * @return 系统管理-用户角色表 查询响应对象
      */
     @Override
-    public SysUserRoleQueryVO getOne(SysUserRoleQueryDTO queryDto) {
+    public SysUserRoleQueryVO getOne(SysUserRolePageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysUserRolePO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysUserRolePO> lqw = lambdaQuery(queryDto);
             SysUserRolePO sysUserRolePO = sysUserRoleMapper.selectOne(lqw);
             return ISysUserRolePOConvert.INSTANCE.toQueryVO(sysUserRolePO);
         }

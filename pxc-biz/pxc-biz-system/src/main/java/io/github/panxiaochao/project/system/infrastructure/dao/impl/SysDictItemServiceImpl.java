@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysDictItemReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysdictitem.SysDictItemBO;
@@ -26,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -60,10 +59,9 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
      * @return 结果数组
      */
     @Override
-    public List<SysDictItemQueryVO> selectList(SysDictItemQueryDTO queryDto) {
+    public List<SysDictItemQueryVO> selectList(SysDictItemPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysDictItemPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysDictItemPO> lqw = lambdaQuery(queryDto);
         return ISysDictItemPOConvert.INSTANCE.toQueryVO(sysDictItemMapper.selectList(lqw));
     }
 
@@ -73,11 +71,10 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
      * @return 系统管理-数据字典配置表 查询响应对象
      */
     @Override
-    public SysDictItemQueryVO getOne(SysDictItemQueryDTO queryDto) {
+    public SysDictItemQueryVO getOne(SysDictItemPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysDictItemPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysDictItemPO> lqw = lambdaQuery(queryDto);
             SysDictItemPO sysDictItemPO = sysDictItemMapper.selectOne(lqw);
             return ISysDictItemPOConvert.INSTANCE.toQueryVO(sysDictItemPO);
         }

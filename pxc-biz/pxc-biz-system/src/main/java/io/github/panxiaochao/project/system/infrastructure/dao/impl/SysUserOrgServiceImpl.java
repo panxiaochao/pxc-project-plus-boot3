@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserorg.SysUserOrgPageQueryDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserorg.SysUserOrgQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgQueryVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserOrgReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuserorg.SysUserOrgBO;
@@ -25,7 +24,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-02-11
  */
 @Service
 @RequiredArgsConstructor
@@ -59,10 +58,9 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
      * @return 结果数组
      */
     @Override
-    public List<SysUserOrgQueryVO> selectList(SysUserOrgQueryDTO queryDto) {
+    public List<SysUserOrgQueryVO> selectList(SysUserOrgPageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysUserOrgPO> lqw = Wrappers.lambdaQuery();
-        // TODO 根据自定义条件构造查询条件
+        LambdaQueryWrapper<SysUserOrgPO> lqw = lambdaQuery(queryDto);
         return ISysUserOrgPOConvert.INSTANCE.toQueryVO(sysUserOrgMapper.selectList(lqw));
     }
 
@@ -72,11 +70,10 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
      * @return 系统管理-用户机构/部门表 查询响应对象
      */
     @Override
-    public SysUserOrgQueryVO getOne(SysUserOrgQueryDTO queryDto) {
+    public SysUserOrgQueryVO getOne(SysUserOrgPageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysUserOrgPO> lqw = Wrappers.lambdaQuery();
-            // TODO 根据自定义条件构造查询条件
+            LambdaQueryWrapper<SysUserOrgPO> lqw = lambdaQuery(queryDto);
             SysUserOrgPO sysUserOrgPO = sysUserOrgMapper.selectOne(lqw);
             return ISysUserOrgPOConvert.INSTANCE.toQueryVO(sysUserOrgPO);
         }
