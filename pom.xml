@@ -27,25 +27,25 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- 自定义版本管理 -->
-        <spring-boot.version>3.5.8</spring-boot.version>
-        <spring.version>6.2.15</spring.version>
+        <pxc-framework-boot3.version>3.0.1</pxc-framework-boot3.version>
+        <spring-boot.version>3.5.11</spring-boot.version>
+        <spring.version>6.2.16</spring.version>
         <lombok.version>1.18.42</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <freemarker.version>2.3.34</freemarker.version>
         <mybatis-plus-boot3.version>3.5.15</mybatis-plus-boot3.version>
-        <mysql-connector-j.version>9.5.0</mysql-connector-j.version>
-        <pxc-framework-boot3.version>3.0.1-SNAPSHOT</pxc-framework-boot3.version>
-        <springdoc-openapi.version>2.8.15</springdoc-openapi.version>
+        <mysql-connector-j.version>9.6.0</mysql-connector-j.version>
+        <springdoc-openapi.version>2.8.16</springdoc-openapi.version>
         <springdoc-openapi-common.version>1.8.0</springdoc-openapi-common.version>
         <knife4j-openapi3-spring-boot-starter.version>4.6.0</knife4j-openapi3-spring-boot-starter.version>
-        <sa-token.version>1.44.0</sa-token.version>
-        <hutool.version>5.8.42</hutool.version>
+        <sa-token.version>1.45.0</sa-token.version>
+        <hutool.version>5.8.43</hutool.version>
         <caffeine.version>3.2.3</caffeine.version>
         <commons-pool2.version>2.12.0</commons-pool2.version>
-        <logback.version>1.5.29</logback.version>
+        <logback.version>1.5.32</logback.version>
 
         <!-- 插件版本管理 -->
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <spring-javaformat-maven-plugin.version>0.0.47</spring-javaformat-maven-plugin.version>
     </properties>
