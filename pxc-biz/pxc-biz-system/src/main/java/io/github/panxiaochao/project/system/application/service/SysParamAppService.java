@@ -1,8 +1,11 @@
 package io.github.panxiaochao.project.system.application.service;
 
+import io.github.panxiaochao.boot3.common.constants.CommonConstant;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.redis.utils.RedissonUtil;
+import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamUpdateDTO;
@@ -13,6 +16,12 @@ import io.github.panxiaochao.project.system.application.repository.ISysParamRead
 import io.github.panxiaochao.project.system.domain.entity.sysparam.SysParamBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysParamService;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RBatch;
+import org.redisson.api.RMapAsync;
+import org.redisson.api.RedissonClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +37,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SysParamAppService {
+
+    /**
+     * LOGGER SysParamAppService.class
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SysParamAppService.class);
 
     /**
      * 系统管理-系统参数 Domain接口服务类
@@ -102,6 +116,27 @@ public class SysParamAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysParamService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 发布系统参数
+     */
+    @Async
+    public void publishedData() {
+        RedissonClient redissonClient = RedissonUtil.ofRedissonClient();
+        RBatch batch = redissonClient.createBatch();
+        long startTime = System.currentTimeMillis();
+        SysParamPageQueryDTO sysParamPageQueryDTO = new SysParamPageQueryDTO();
+        sysParamPageQueryDTO.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        List<SysParamQueryVO> list = sysParamReadModelService.selectList(sysParamPageQueryDTO);
+        RedissonUtil.deleteKeyByPattern(GlobalRedisConstant.KEY_ALL_SYS_PARAM);
+        list.forEach(s -> {
+            RMapAsync<String, Object> sysParamMap = batch.getMap(GlobalRedisConstant.KEY_SYS_PARAM + s.getParamKey());
+            sysParamMap.putAsync("paramKey", s.getParamKey());
+            sysParamMap.putAsync("paramValue", s.getParamValue());
+        });
+        batch.execute();
+        LOGGER.info("[pxc-project-plus-boot3] 系统参数加载成功, 耗时 {} ms", (System.currentTimeMillis() - startTime));
     }
 
 }

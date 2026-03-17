@@ -14,7 +14,7 @@ public interface GlobalRedisConstant {
     /**
      * Redis Auth-User 前缀 KEY
      */
-    String REDIS_AUTH_USER_ROOT_KEY = "Project-Auth-User:";
+    String REDIS_AUTH_USER_ROOT_KEY = "project-auth-user:";
 
     /**
      * LOGIN_TOKEN 前缀
@@ -39,7 +39,7 @@ public interface GlobalRedisConstant {
     /**
      * 缓存 Cache 前缀
      */
-    String REDIS_CACHE_ROOT_KEY = "Project-Cache:";
+    String REDIS_CACHE_ROOT_KEY = "project-cache:";
 
     /**
      * 数据字典 主表 REDIS_KEY
