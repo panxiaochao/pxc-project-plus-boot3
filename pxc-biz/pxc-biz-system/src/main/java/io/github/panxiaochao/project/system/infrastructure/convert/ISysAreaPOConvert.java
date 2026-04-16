@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaVO;
 import io.github.panxiaochao.project.system.domain.entity.sysarea.SysAreaBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysAreaPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysAreaPOConvert {
@@ -65,5 +66,19 @@ public interface ISysAreaPOConvert {
      * @return 系统管理-全国5级行政区划 查询响应数据传输对象列表
      */
     List<SysAreaQueryVO> toQueryVO(List<SysAreaPO> sysAreaPOList);
+
+    /**
+     * 系统管理-全国5级行政区划 持久化对象 转 系统管理-全国5级行政区划 响应数据传输对象
+     * @param sysAreaPO 系统管理-全国5级行政区划 持久化对象
+     * @return 系统管理-全国5级行政区划 响应数据传输对象
+     */
+    SysAreaVO toVO(SysAreaPO sysAreaPO);
+
+    /**
+     * 系统管理-全国5级行政区划 持久化对象列表 转 系统管理-全国5级行政区划 响应数据传输对象列表
+     * @param sysAreaPOList 系统管理-全国5级行政区划 持久化对象列表
+     * @return 系统管理-全国5级行政区划 响应数据传输对象列表
+     */
+    List<SysAreaVO> toVO(List<SysAreaPO> sysAreaPOList);
 
 }

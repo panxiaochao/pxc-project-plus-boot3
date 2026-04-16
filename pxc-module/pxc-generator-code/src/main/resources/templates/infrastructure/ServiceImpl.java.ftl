@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import ${application}.api.dto.${entity?lower_case}.${entity}PageQueryDTO;
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;
+import ${application}.api.vo.${entity?lower_case}.${entity}VO;
 import ${application}.repository.I${entity}ReadModelService;
 import ${domain}.entity.${entity?lower_case}.${entity}BO;
 import ${domain}.repository.I${entity}Service;
@@ -69,12 +70,12 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @return ${table.comment!} 查询响应对象
      */
     @Override
-    public ${entity}QueryVO getOne(${entity}PageQueryDTO queryDto) {
+    public ${entity}VO getOne(${entity}PageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<${entity}PO> lqw = lambdaQuery(queryDto);
             ${entity}PO ${entity?uncap_first}PO = ${entity?uncap_first}Mapper.selectOne(lqw);
-            return I${entity}POConvert.INSTANCE.toQueryVO(${entity?uncap_first}PO);
+            return I${entity}POConvert.INSTANCE.toVO(${entity?uncap_first}PO);
         }
         catch (Exception e) {
             return null;

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserpost.SysUserPostPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserPostReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuserpost.SysUserPostBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserPostService;
@@ -24,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
      * @return 系统管理-用户岗位关联表 查询响应对象
      */
     @Override
-    public SysUserPostQueryVO getOne(SysUserPostPageQueryDTO queryDto) {
+    public SysUserPostVO getOne(SysUserPostPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysUserPostPO> lqw = lambdaQuery(queryDto);
             SysUserPostPO sysUserPostPO = sysUserPostMapper.selectOne(lqw);
-            return ISysUserPostPOConvert.INSTANCE.toQueryVO(sysUserPostPO);
+            return ISysUserPostPOConvert.INSTANCE.toVO(sysUserPostPO);
         }
         catch (Exception e) {
             return null;

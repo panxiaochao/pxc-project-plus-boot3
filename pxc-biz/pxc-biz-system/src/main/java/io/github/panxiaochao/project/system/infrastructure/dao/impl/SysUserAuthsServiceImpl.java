@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserAuthsReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuserauths.SysUserAuthsBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserAuthsService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
      * @return 系统管理-用户授权信息表 查询响应对象
      */
     @Override
-    public SysUserAuthsQueryVO getOne(SysUserAuthsPageQueryDTO queryDto) {
+    public SysUserAuthsVO getOne(SysUserAuthsPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysUserAuthsPO> lqw = lambdaQuery(queryDto);
             SysUserAuthsPO sysUserAuthsPO = sysUserAuthsMapper.selectOne(lqw);
-            return ISysUserAuthsPOConvert.INSTANCE.toQueryVO(sysUserAuthsPO);
+            return ISysUserAuthsPOConvert.INSTANCE.toVO(sysUserAuthsPO);
         }
         catch (Exception e) {
             return null;

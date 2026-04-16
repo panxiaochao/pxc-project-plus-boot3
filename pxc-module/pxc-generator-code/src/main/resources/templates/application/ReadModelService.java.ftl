@@ -31,9 +31,9 @@ public interface I${entity}ReadModelService {
 
     /**
      * 查询单条记录
-     * @param queryDto ${table.comment!} 查询请求对象
-     * @return ${table.comment!} 查询响应对象
+     * @param queryDto ${table.comment!} 请求对象
+     * @return ${table.comment!} 对象
      */
-    ${entity}QueryVO getOne(${entity}PageQueryDTO queryDto);
+    ${entity}VO getOne(${entity}PageQueryDTO queryDto);
 
 }

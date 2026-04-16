@@ -26,7 +26,7 @@ public class PxcMybatisPlusGeneratorTest {
             .parent("io.github.panxiaochao.project")
             .moduleName("system")
             .entityName("po")
-            .insertFields("create_at", "create_by", "update_at", "update_by")
+            .insertFields("create_at", "create_by")
             .updateFields("update_at", "update_by")
             .logicDeleteColumnName("is_delete")
             // .includes("sys_area", "sys_dict", "sys_dict_item", "sys_job",

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.syslogoperate.SysLogOperatePageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateVO;
 import io.github.panxiaochao.project.system.application.repository.ISysLogOperateReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.syslogoperate.SysLogOperateBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysLogOperateService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
      * @return 系统管理-系统日志操作表 查询响应对象
      */
     @Override
-    public SysLogOperateQueryVO getOne(SysLogOperatePageQueryDTO queryDto) {
+    public SysLogOperateVO getOne(SysLogOperatePageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysLogOperatePO> lqw = lambdaQuery(queryDto);
             SysLogOperatePO sysLogOperatePO = sysLogOperateMapper.selectOne(lqw);
-            return ISysLogOperatePOConvert.INSTANCE.toQueryVO(sysLogOperatePO);
+            return ISysLogOperatePOConvert.INSTANCE.toVO(sysLogOperatePO);
         }
         catch (Exception e) {
             return null;

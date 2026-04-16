@@ -1,5 +1,6 @@
 package io.github.panxiaochao.project.system.infrastructure.dao.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Getter
 @Setter
@@ -21,12 +22,13 @@ public class SysRoleMenuPO {
     /**
      * 角色ID
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private Integer roleId;
 
     /**
      * 菜单ID
      */
+    @TableId(type = IdType.ASSIGN_ID)
     private Integer menuId;
 
 }

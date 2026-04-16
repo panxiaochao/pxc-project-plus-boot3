@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictVO;
 import io.github.panxiaochao.project.system.application.repository.ISysDictReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysdict.SysDictBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysDictService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysDictServiceImpl implements ISysDictService, ISysDictReadModelSer
      * @return 系统管理-数据字典表 查询响应对象
      */
     @Override
-    public SysDictQueryVO getOne(SysDictPageQueryDTO queryDto) {
+    public SysDictVO getOne(SysDictPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysDictPO> lqw = lambdaQuery(queryDto);
             SysDictPO sysDictPO = sysDictMapper.selectOne(lqw);
-            return ISysDictPOConvert.INSTANCE.toQueryVO(sysDictPO);
+            return ISysDictPOConvert.INSTANCE.toVO(sysDictPO);
         }
         catch (Exception e) {
             return null;

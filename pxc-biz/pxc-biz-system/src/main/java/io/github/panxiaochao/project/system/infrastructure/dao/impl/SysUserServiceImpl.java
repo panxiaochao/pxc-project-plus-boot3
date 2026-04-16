@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuser.SysUserBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      * @return 系统管理-用户表 查询响应对象
      */
     @Override
-    public SysUserQueryVO getOne(SysUserPageQueryDTO queryDto) {
+    public SysUserVO getOne(SysUserPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(queryDto);
             SysUserPO sysUserPO = sysUserMapper.selectOne(lqw);
-            return ISysUserPOConvert.INSTANCE.toQueryVO(sysUserPO);
+            return ISysUserPOConvert.INSTANCE.toVO(sysUserPO);
         }
         catch (Exception e) {
             return null;

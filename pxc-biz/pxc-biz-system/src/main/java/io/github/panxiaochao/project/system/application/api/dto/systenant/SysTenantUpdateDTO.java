@@ -63,18 +63,6 @@ public class SysTenantUpdateDTO {
     @Schema(description = "租户状态：1正常，0不正常")
     private String status;
 
-    @Schema(description = "创建人")
-    private Integer createAt;
-
-    @Schema(description = "更新人")
-    private Integer updateAt;
-
-    @Schema(description = "创建时间")
-    private LocalDateTime createTime;
-
-    @Schema(description = "更新时间")
-    private LocalDateTime updateTime;
-
     @Schema(description = "过期时间")
     private LocalDateTime expireAt;
 

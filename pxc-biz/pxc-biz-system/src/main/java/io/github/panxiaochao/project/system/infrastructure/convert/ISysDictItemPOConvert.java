@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemVO;
 import io.github.panxiaochao.project.system.domain.entity.sysdictitem.SysDictItemBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysDictItemPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysDictItemPOConvert {
@@ -65,5 +66,19 @@ public interface ISysDictItemPOConvert {
      * @return 系统管理-数据字典配置表 查询响应数据传输对象列表
      */
     List<SysDictItemQueryVO> toQueryVO(List<SysDictItemPO> sysDictItemPOList);
+
+    /**
+     * 系统管理-数据字典配置表 持久化对象 转 系统管理-数据字典配置表 响应数据传输对象
+     * @param sysDictItemPO 系统管理-数据字典配置表 持久化对象
+     * @return 系统管理-数据字典配置表 响应数据传输对象
+     */
+    SysDictItemVO toVO(SysDictItemPO sysDictItemPO);
+
+    /**
+     * 系统管理-数据字典配置表 持久化对象列表 转 系统管理-数据字典配置表 响应数据传输对象列表
+     * @param sysDictItemPOList 系统管理-数据字典配置表 持久化对象列表
+     * @return 系统管理-数据字典配置表 响应数据传输对象列表
+     */
+    List<SysDictItemVO> toVO(List<SysDictItemPO> sysDictItemPOList);
 
 }

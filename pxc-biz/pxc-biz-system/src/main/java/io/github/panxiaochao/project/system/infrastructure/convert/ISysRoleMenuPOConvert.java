@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuVO;
 import io.github.panxiaochao.project.system.domain.entity.sysrolemenu.SysRoleMenuBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysRoleMenuPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysRoleMenuPOConvert {
@@ -65,5 +66,19 @@ public interface ISysRoleMenuPOConvert {
      * @return 系统管理-角色菜单表 查询响应数据传输对象列表
      */
     List<SysRoleMenuQueryVO> toQueryVO(List<SysRoleMenuPO> sysRoleMenuPOList);
+
+    /**
+     * 系统管理-角色菜单表 持久化对象 转 系统管理-角色菜单表 响应数据传输对象
+     * @param sysRoleMenuPO 系统管理-角色菜单表 持久化对象
+     * @return 系统管理-角色菜单表 响应数据传输对象
+     */
+    SysRoleMenuVO toVO(SysRoleMenuPO sysRoleMenuPO);
+
+    /**
+     * 系统管理-角色菜单表 持久化对象列表 转 系统管理-角色菜单表 响应数据传输对象列表
+     * @param sysRoleMenuPOList 系统管理-角色菜单表 持久化对象列表
+     * @return 系统管理-角色菜单表 响应数据传输对象列表
+     */
+    List<SysRoleMenuVO> toVO(List<SysRoleMenuPO> sysRoleMenuPOList);
 
 }

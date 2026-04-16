@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostVO;
 import io.github.panxiaochao.project.system.domain.entity.sysuserpost.SysUserPostBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserPostPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysUserPostPOConvert {
@@ -65,5 +66,19 @@ public interface ISysUserPostPOConvert {
      * @return 系统管理-用户岗位关联表 查询响应数据传输对象列表
      */
     List<SysUserPostQueryVO> toQueryVO(List<SysUserPostPO> sysUserPostPOList);
+
+    /**
+     * 系统管理-用户岗位关联表 持久化对象 转 系统管理-用户岗位关联表 响应数据传输对象
+     * @param sysUserPostPO 系统管理-用户岗位关联表 持久化对象
+     * @return 系统管理-用户岗位关联表 响应数据传输对象
+     */
+    SysUserPostVO toVO(SysUserPostPO sysUserPostPO);
+
+    /**
+     * 系统管理-用户岗位关联表 持久化对象列表 转 系统管理-用户岗位关联表 响应数据传输对象列表
+     * @param sysUserPostPOList 系统管理-用户岗位关联表 持久化对象列表
+     * @return 系统管理-用户岗位关联表 响应数据传输对象列表
+     */
+    List<SysUserPostVO> toVO(List<SysUserPostPO> sysUserPostPOList);
 
 }

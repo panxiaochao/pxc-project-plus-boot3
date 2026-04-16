@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Getter
 @Setter
@@ -94,7 +94,7 @@ public class SysOrgPO {
      * 删除标志：0正常，1删除
      */
     @TableLogic
-    private Boolean isDelete;
+    private Boolean delete;
 
     /**
      * 备注

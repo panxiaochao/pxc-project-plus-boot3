@@ -3,6 +3,7 @@ package io.github.panxiaochao.project.system.application.repository;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenant.SysTenantPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantVO;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 public interface ISysTenantReadModelService {
 
@@ -33,9 +34,9 @@ public interface ISysTenantReadModelService {
 
     /**
      * 查询单条记录
-     * @param queryDto 系统管理-租户表 查询请求对象
-     * @return 系统管理-租户表 查询响应对象
+     * @param queryDto 系统管理-租户表 请求对象
+     * @return 系统管理-租户表 对象
      */
-    SysTenantQueryVO getOne(SysTenantPageQueryDTO queryDto);
+    SysTenantVO getOne(SysTenantPageQueryDTO queryDto);
 
 }

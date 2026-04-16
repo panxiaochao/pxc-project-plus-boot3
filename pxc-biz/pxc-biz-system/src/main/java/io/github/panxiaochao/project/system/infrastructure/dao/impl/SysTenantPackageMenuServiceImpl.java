@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantPackageMenuReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenantpackagemenu.SysTenantPackageMenuBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysTenantPackageMenuService;
@@ -24,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -72,12 +73,12 @@ public class SysTenantPackageMenuServiceImpl
      * @return 系统管理-租户套餐菜单表 查询响应对象
      */
     @Override
-    public SysTenantPackageMenuQueryVO getOne(SysTenantPackageMenuPageQueryDTO queryDto) {
+    public SysTenantPackageMenuVO getOne(SysTenantPackageMenuPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = lambdaQuery(queryDto);
             SysTenantPackageMenuPO sysTenantPackageMenuPO = sysTenantPackageMenuMapper.selectOne(lqw);
-            return ISysTenantPackageMenuPOConvert.INSTANCE.toQueryVO(sysTenantPackageMenuPO);
+            return ISysTenantPackageMenuPOConvert.INSTANCE.toVO(sysTenantPackageMenuPO);
         }
         catch (Exception e) {
             return null;

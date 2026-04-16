@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuVO;
 import io.github.panxiaochao.project.system.application.repository.ISysMenuReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysmenu.SysMenuBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysMenuService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
      * @return 系统管理-菜单配置 查询响应对象
      */
     @Override
-    public SysMenuQueryVO getOne(SysMenuPageQueryDTO queryDto) {
+    public SysMenuVO getOne(SysMenuPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysMenuPO> lqw = lambdaQuery(queryDto);
             SysMenuPO sysMenuPO = sysMenuMapper.selectOne(lqw);
-            return ISysMenuPOConvert.INSTANCE.toQueryVO(sysMenuPO);
+            return ISysMenuPOConvert.INSTANCE.toVO(sysMenuPO);
         }
         catch (Exception e) {
             return null;
@@ -156,7 +157,7 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
             if (pageQueryDto.getCreateBy() != null) {
                 lqw.eq(SysMenuPO::getCreateBy, pageQueryDto.getCreateBy());
             }
-            // 如果 不为空
+            // 如果 更新人 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getUpdateBy())) {
                 lqw.eq(SysMenuPO::getUpdateBy, pageQueryDto.getUpdateBy());
             }

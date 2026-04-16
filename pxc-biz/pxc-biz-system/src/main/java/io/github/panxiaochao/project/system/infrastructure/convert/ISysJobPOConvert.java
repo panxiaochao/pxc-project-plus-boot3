@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysjob.SysJobQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysjob.SysJobVO;
 import io.github.panxiaochao.project.system.domain.entity.sysjob.SysJobBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysJobPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysJobPOConvert {
@@ -65,5 +66,19 @@ public interface ISysJobPOConvert {
      * @return 系统管理-定时任务调度表 查询响应数据传输对象列表
      */
     List<SysJobQueryVO> toQueryVO(List<SysJobPO> sysJobPOList);
+
+    /**
+     * 系统管理-定时任务调度表 持久化对象 转 系统管理-定时任务调度表 响应数据传输对象
+     * @param sysJobPO 系统管理-定时任务调度表 持久化对象
+     * @return 系统管理-定时任务调度表 响应数据传输对象
+     */
+    SysJobVO toVO(SysJobPO sysJobPO);
+
+    /**
+     * 系统管理-定时任务调度表 持久化对象列表 转 系统管理-定时任务调度表 响应数据传输对象列表
+     * @param sysJobPOList 系统管理-定时任务调度表 持久化对象列表
+     * @return 系统管理-定时任务调度表 响应数据传输对象列表
+     */
+    List<SysJobVO> toVO(List<SysJobPO> sysJobPOList);
 
 }

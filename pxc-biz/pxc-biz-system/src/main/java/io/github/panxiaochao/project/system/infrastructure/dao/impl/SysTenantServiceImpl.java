@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenant.SysTenantPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenant.SysTenantBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysTenantService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
      * @return 系统管理-租户表 查询响应对象
      */
     @Override
-    public SysTenantQueryVO getOne(SysTenantPageQueryDTO queryDto) {
+    public SysTenantVO getOne(SysTenantPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysTenantPO> lqw = lambdaQuery(queryDto);
             SysTenantPO sysTenantPO = sysTenantMapper.selectOne(lqw);
-            return ISysTenantPOConvert.INSTANCE.toQueryVO(sysTenantPO);
+            return ISysTenantPOConvert.INSTANCE.toVO(sysTenantPO);
         }
         catch (Exception e) {
             return null;
@@ -144,22 +145,6 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
             // 如果 租户状态：1正常，0不正常 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {
                 lqw.eq(SysTenantPO::getStatus, pageQueryDto.getStatus());
-            }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysTenantPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysTenantPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateTime() != null) {
-                lqw.eq(SysTenantPO::getCreateTime, pageQueryDto.getCreateTime());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateTime() != null) {
-                lqw.eq(SysTenantPO::getUpdateTime, pageQueryDto.getUpdateTime());
             }
             // 如果 过期时间 不为空
             if (pageQueryDto.getExpireAt() != null) {

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginVO;
 import io.github.panxiaochao.project.system.application.repository.ISysLogLoginReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysloglogin.SysLogLoginBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysLogLoginService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
      * @return 系统管理-系统日志登录/登出表 查询响应对象
      */
     @Override
-    public SysLogLoginQueryVO getOne(SysLogLoginPageQueryDTO queryDto) {
+    public SysLogLoginVO getOne(SysLogLoginPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysLogLoginPO> lqw = lambdaQuery(queryDto);
             SysLogLoginPO sysLogLoginPO = sysLogLoginMapper.selectOne(lqw);
-            return ISysLogLoginPOConvert.INSTANCE.toQueryVO(sysLogLoginPO);
+            return ISysLogLoginPOConvert.INSTANCE.toVO(sysLogLoginPO);
         }
         catch (Exception e) {
             return null;

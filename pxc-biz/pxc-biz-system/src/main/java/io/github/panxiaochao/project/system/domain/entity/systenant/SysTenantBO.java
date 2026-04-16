@@ -92,22 +92,22 @@ public class SysTenantBO {
     /**
      * 创建人
      */
-    private Integer createAt;
+    private Integer create;
 
     /**
      * 更新人
      */
-    private Integer updateAt;
+    private Integer updateBy;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createAt;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private LocalDateTime updateAt;
 
     /**
      * 过期时间

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgVO;
 import io.github.panxiaochao.project.system.application.repository.ISysOrgReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysorg.SysOrgBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysOrgService;
@@ -26,7 +27,7 @@ import java.util.Objects;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
      * @return 系统管理-机构部门表 查询响应对象
      */
     @Override
-    public SysOrgQueryVO getOne(SysOrgPageQueryDTO queryDto) {
+    public SysOrgVO getOne(SysOrgPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysOrgPO> lqw = lambdaQuery(queryDto);
             SysOrgPO sysOrgPO = sysOrgMapper.selectOne(lqw);
-            return ISysOrgPOConvert.INSTANCE.toQueryVO(sysOrgPO);
+            return ISysOrgPOConvert.INSTANCE.toVO(sysOrgPO);
         }
         catch (Exception e) {
             return null;
@@ -143,7 +144,7 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
             }
             // 如果 删除标志：0正常，1删除 不为空
             if (Objects.nonNull(pageQueryDto.getIsDelete())) {
-                lqw.eq(SysOrgPO::getIsDelete, pageQueryDto.getIsDelete());
+                lqw.eq(SysOrgPO::getDelete, pageQueryDto.getIsDelete());
             }
             // 如果 备注 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {

@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantVO;
 import io.github.panxiaochao.project.system.domain.entity.systenant.SysTenantBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysTenantPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysTenantPOConvert {
@@ -65,5 +66,19 @@ public interface ISysTenantPOConvert {
      * @return 系统管理-租户表 查询响应数据传输对象列表
      */
     List<SysTenantQueryVO> toQueryVO(List<SysTenantPO> sysTenantPOList);
+
+    /**
+     * 系统管理-租户表 持久化对象 转 系统管理-租户表 响应数据传输对象
+     * @param sysTenantPO 系统管理-租户表 持久化对象
+     * @return 系统管理-租户表 响应数据传输对象
+     */
+    SysTenantVO toVO(SysTenantPO sysTenantPO);
+
+    /**
+     * 系统管理-租户表 持久化对象列表 转 系统管理-租户表 响应数据传输对象列表
+     * @param sysTenantPOList 系统管理-租户表 持久化对象列表
+     * @return 系统管理-租户表 响应数据传输对象列表
+     */
+    List<SysTenantVO> toVO(List<SysTenantPO> sysTenantPOList);
 
 }

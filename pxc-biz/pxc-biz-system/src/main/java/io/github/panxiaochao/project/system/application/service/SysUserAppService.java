@@ -15,7 +15,7 @@ import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.Sys
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserVO;
-import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsVO;
 import io.github.panxiaochao.project.system.application.convert.ISysUserDTOConvert;
 import io.github.panxiaochao.project.system.application.repository.ISysPostReadModelService;
 import io.github.panxiaochao.project.system.application.repository.ISysUserAuthsReadModelService;
@@ -134,7 +134,7 @@ public class SysUserAppService {
         SysUserAuthsPageQueryDTO queryRequest = new SysUserAuthsPageQueryDTO();
         queryRequest.setIdentifier(sysUserCreateDTO.getLoginName());
         queryRequest.setIdentityType(IDENTITY_TYPE_USERNAME);
-        SysUserAuthsQueryVO one = sysUserAuthsReadModelService.getOne(queryRequest);
+        SysUserAuthsVO one = sysUserAuthsReadModelService.getOne(queryRequest);
         if (Objects.nonNull(one)) {
             return R.fail("登录账号[" + sysUserCreateDTO.getLoginName() + "]已存在");
         }

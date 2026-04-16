@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantuser.SysTenantUserPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantuser.SysTenantUserQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.systenantuser.SysTenantUserVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantUserReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenantuser.SysTenantUserBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysTenantUserService;
@@ -24,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysTenantUserServiceImpl implements ISysTenantUserService, ISysTena
      * @return 系统管理-租户用户表 查询响应对象
      */
     @Override
-    public SysTenantUserQueryVO getOne(SysTenantUserPageQueryDTO queryDto) {
+    public SysTenantUserVO getOne(SysTenantUserPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysTenantUserPO> lqw = lambdaQuery(queryDto);
             SysTenantUserPO sysTenantUserPO = sysTenantUserMapper.selectOne(lqw);
-            return ISysTenantUserPOConvert.INSTANCE.toQueryVO(sysTenantUserPO);
+            return ISysTenantUserPOConvert.INSTANCE.toVO(sysTenantUserPO);
         }
         catch (Exception e) {
             return null;

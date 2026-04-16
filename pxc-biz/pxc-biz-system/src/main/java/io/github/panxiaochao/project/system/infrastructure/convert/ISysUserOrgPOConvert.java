@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgVO;
 import io.github.panxiaochao.project.system.domain.entity.sysuserorg.SysUserOrgBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserOrgPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysUserOrgPOConvert {
@@ -65,5 +66,19 @@ public interface ISysUserOrgPOConvert {
      * @return 系统管理-用户机构/部门表 查询响应数据传输对象列表
      */
     List<SysUserOrgQueryVO> toQueryVO(List<SysUserOrgPO> sysUserOrgPOList);
+
+    /**
+     * 系统管理-用户机构/部门表 持久化对象 转 系统管理-用户机构/部门表 响应数据传输对象
+     * @param sysUserOrgPO 系统管理-用户机构/部门表 持久化对象
+     * @return 系统管理-用户机构/部门表 响应数据传输对象
+     */
+    SysUserOrgVO toVO(SysUserOrgPO sysUserOrgPO);
+
+    /**
+     * 系统管理-用户机构/部门表 持久化对象列表 转 系统管理-用户机构/部门表 响应数据传输对象列表
+     * @param sysUserOrgPOList 系统管理-用户机构/部门表 持久化对象列表
+     * @return 系统管理-用户机构/部门表 响应数据传输对象列表
+     */
+    List<SysUserOrgVO> toVO(List<SysUserOrgPO> sysUserOrgPOList);
 
 }

@@ -73,7 +73,7 @@ public class SysMenuPageQueryDTO extends PageRequest {
     @Schema(description = "创建人")
     private Integer createBy;
 
-    @Schema(description = "")
+    @Schema(description = "更新人")
     private String updateBy;
 
     @Schema(description = "创建时间")

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamVO;
 import io.github.panxiaochao.project.system.application.repository.ISysParamReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysparam.SysParamBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysParamService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
      * @return 系统管理-系统参数 查询响应对象
      */
     @Override
-    public SysParamQueryVO getOne(SysParamPageQueryDTO queryDto) {
+    public SysParamVO getOne(SysParamPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysParamPO> lqw = lambdaQuery(queryDto);
             SysParamPO sysParamPO = sysParamMapper.selectOne(lqw);
-            return ISysParamPOConvert.INSTANCE.toQueryVO(sysParamPO);
+            return ISysParamPOConvert.INSTANCE.toVO(sysParamPO);
         }
         catch (Exception e) {
             return null;

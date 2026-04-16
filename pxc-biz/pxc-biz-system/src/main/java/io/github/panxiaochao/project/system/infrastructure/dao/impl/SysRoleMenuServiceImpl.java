@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysrolemenu.SysRoleMenuPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuVO;
 import io.github.panxiaochao.project.system.application.repository.ISysRoleMenuReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysrolemenu.SysRoleMenuBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysRoleMenuService;
@@ -24,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysRoleMenuServiceImpl implements ISysRoleMenuService, ISysRoleMenu
      * @return 系统管理-角色菜单表 查询响应对象
      */
     @Override
-    public SysRoleMenuQueryVO getOne(SysRoleMenuPageQueryDTO queryDto) {
+    public SysRoleMenuVO getOne(SysRoleMenuPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysRoleMenuPO> lqw = lambdaQuery(queryDto);
             SysRoleMenuPO sysRoleMenuPO = sysRoleMenuMapper.selectOne(lqw);
-            return ISysRoleMenuPOConvert.INSTANCE.toQueryVO(sysRoleMenuPO);
+            return ISysRoleMenuPOConvert.INSTANCE.toVO(sysRoleMenuPO);
         }
         catch (Exception e) {
             return null;

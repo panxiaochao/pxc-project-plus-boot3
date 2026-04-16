@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateVO;
 import io.github.panxiaochao.project.system.domain.entity.syslogoperate.SysLogOperateBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysLogOperatePO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysLogOperatePOConvert {
@@ -65,5 +66,19 @@ public interface ISysLogOperatePOConvert {
      * @return 系统管理-系统日志操作表 查询响应数据传输对象列表
      */
     List<SysLogOperateQueryVO> toQueryVO(List<SysLogOperatePO> sysLogOperatePOList);
+
+    /**
+     * 系统管理-系统日志操作表 持久化对象 转 系统管理-系统日志操作表 响应数据传输对象
+     * @param sysLogOperatePO 系统管理-系统日志操作表 持久化对象
+     * @return 系统管理-系统日志操作表 响应数据传输对象
+     */
+    SysLogOperateVO toVO(SysLogOperatePO sysLogOperatePO);
+
+    /**
+     * 系统管理-系统日志操作表 持久化对象列表 转 系统管理-系统日志操作表 响应数据传输对象列表
+     * @param sysLogOperatePOList 系统管理-系统日志操作表 持久化对象列表
+     * @return 系统管理-系统日志操作表 响应数据传输对象列表
+     */
+    List<SysLogOperateVO> toVO(List<SysLogOperatePO> sysLogOperatePOList);
 
 }

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackagePageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantPackageReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.systenantpackage.SysTenantPackageBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysTenantPackageService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -71,12 +72,12 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
      * @return 系统管理-租户套餐表 查询响应对象
      */
     @Override
-    public SysTenantPackageQueryVO getOne(SysTenantPackagePageQueryDTO queryDto) {
+    public SysTenantPackageVO getOne(SysTenantPackagePageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysTenantPackagePO> lqw = lambdaQuery(queryDto);
             SysTenantPackagePO sysTenantPackagePO = sysTenantPackageMapper.selectOne(lqw);
-            return ISysTenantPackagePOConvert.INSTANCE.toQueryVO(sysTenantPackagePO);
+            return ISysTenantPackagePOConvert.INSTANCE.toVO(sysTenantPackagePO);
         }
         catch (Exception e) {
             return null;

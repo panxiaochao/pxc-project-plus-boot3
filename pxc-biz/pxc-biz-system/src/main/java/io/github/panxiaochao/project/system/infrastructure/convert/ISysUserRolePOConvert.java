@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleVO;
 import io.github.panxiaochao.project.system.domain.entity.sysuserrole.SysUserRoleBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserRolePO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysUserRolePOConvert {
@@ -65,5 +66,19 @@ public interface ISysUserRolePOConvert {
      * @return 系统管理-用户角色表 查询响应数据传输对象列表
      */
     List<SysUserRoleQueryVO> toQueryVO(List<SysUserRolePO> sysUserRolePOList);
+
+    /**
+     * 系统管理-用户角色表 持久化对象 转 系统管理-用户角色表 响应数据传输对象
+     * @param sysUserRolePO 系统管理-用户角色表 持久化对象
+     * @return 系统管理-用户角色表 响应数据传输对象
+     */
+    SysUserRoleVO toVO(SysUserRolePO sysUserRolePO);
+
+    /**
+     * 系统管理-用户角色表 持久化对象列表 转 系统管理-用户角色表 响应数据传输对象列表
+     * @param sysUserRolePOList 系统管理-用户角色表 持久化对象列表
+     * @return 系统管理-用户角色表 响应数据传输对象列表
+     */
+    List<SysUserRoleVO> toVO(List<SysUserRolePO> sysUserRolePOList);
 
 }

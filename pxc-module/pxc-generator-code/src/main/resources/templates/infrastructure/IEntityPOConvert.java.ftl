@@ -1,6 +1,7 @@
 package ${infrastructure}.convert;
 
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;
+import ${application}.api.vo.${entity?lower_case}.${entity}VO;
 import ${domain}.entity.${entity?lower_case}.${entity}BO;
 import ${infrastructure}.dao.po.${entity}PO;
 import org.mapstruct.Mapper;
@@ -63,4 +64,18 @@ public interface I${entity}POConvert {
      * @return ${table.comment!} 查询响应数据传输对象列表
      */
     List<${entity}QueryVO> toQueryVO(List<${entity}PO> ${entity?uncap_first}POList);
+
+    /**
+     * ${table.comment!} 持久化对象 转 ${table.comment!} 响应数据传输对象
+     * @param ${entity?uncap_first}PO ${table.comment!} 持久化对象
+     * @return ${table.comment!} 响应数据传输对象
+     */
+    ${entity}VO toVO(${entity}PO ${entity?uncap_first}PO);
+
+    /**
+     * ${table.comment!} 持久化对象列表 转 ${table.comment!} 响应数据传输对象列表
+     * @param ${entity?uncap_first}POList ${table.comment!} 持久化对象列表
+     * @return ${table.comment!} 响应数据传输对象列表
+     */
+    List<${entity}VO> toVO(List<${entity}PO> ${entity?uncap_first}POList);
 }

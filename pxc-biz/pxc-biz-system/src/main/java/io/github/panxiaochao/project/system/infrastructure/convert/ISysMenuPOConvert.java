@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuVO;
 import io.github.panxiaochao.project.system.domain.entity.sysmenu.SysMenuBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysMenuPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysMenuPOConvert {
@@ -65,5 +66,19 @@ public interface ISysMenuPOConvert {
      * @return 系统管理-菜单配置 查询响应数据传输对象列表
      */
     List<SysMenuQueryVO> toQueryVO(List<SysMenuPO> sysMenuPOList);
+
+    /**
+     * 系统管理-菜单配置 持久化对象 转 系统管理-菜单配置 响应数据传输对象
+     * @param sysMenuPO 系统管理-菜单配置 持久化对象
+     * @return 系统管理-菜单配置 响应数据传输对象
+     */
+    SysMenuVO toVO(SysMenuPO sysMenuPO);
+
+    /**
+     * 系统管理-菜单配置 持久化对象列表 转 系统管理-菜单配置 响应数据传输对象列表
+     * @param sysMenuPOList 系统管理-菜单配置 持久化对象列表
+     * @return 系统管理-菜单配置 响应数据传输对象列表
+     */
+    List<SysMenuVO> toVO(List<SysMenuPO> sysMenuPOList);
 
 }

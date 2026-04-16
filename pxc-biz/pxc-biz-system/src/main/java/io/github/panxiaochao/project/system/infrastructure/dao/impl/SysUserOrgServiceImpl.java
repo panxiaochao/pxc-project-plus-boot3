@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserorg.SysUserOrgPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysuserorg.SysUserOrgVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserOrgReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysuserorg.SysUserOrgBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserOrgService;
@@ -24,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
      * @return 系统管理-用户机构/部门表 查询响应对象
      */
     @Override
-    public SysUserOrgQueryVO getOne(SysUserOrgPageQueryDTO queryDto) {
+    public SysUserOrgVO getOne(SysUserOrgPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysUserOrgPO> lqw = lambdaQuery(queryDto);
             SysUserOrgPO sysUserOrgPO = sysUserOrgMapper.selectOne(lqw);
-            return ISysUserOrgPOConvert.INSTANCE.toQueryVO(sysUserOrgPO);
+            return ISysUserOrgPOConvert.INSTANCE.toVO(sysUserOrgPO);
         }
         catch (Exception e) {
             return null;
@@ -197,7 +198,7 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
     public void updateByUserIdAndOrgId(Integer userId, Integer orgId) {
         // 先根据用户ID查询是否存在数据
         SysUserOrgPO sysUserOrgPO = sysUserOrgMapper
-                .selectOne(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getUserId, userId));
+            .selectOne(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getUserId, userId));
         if (sysUserOrgPO == null) {
             // 没有数据，直接插入
             SysUserOrgBO sysUserOrg = new SysUserOrgBO();

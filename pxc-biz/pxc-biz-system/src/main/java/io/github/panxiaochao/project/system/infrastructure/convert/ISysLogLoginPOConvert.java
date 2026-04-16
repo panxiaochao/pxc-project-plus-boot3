@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginVO;
 import io.github.panxiaochao.project.system.domain.entity.sysloglogin.SysLogLoginBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysLogLoginPO;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Mapper
 public interface ISysLogLoginPOConvert {
@@ -65,5 +66,19 @@ public interface ISysLogLoginPOConvert {
      * @return 系统管理-系统日志登录/登出表 查询响应数据传输对象列表
      */
     List<SysLogLoginQueryVO> toQueryVO(List<SysLogLoginPO> sysLogLoginPOList);
+
+    /**
+     * 系统管理-系统日志登录/登出表 持久化对象 转 系统管理-系统日志登录/登出表 响应数据传输对象
+     * @param sysLogLoginPO 系统管理-系统日志登录/登出表 持久化对象
+     * @return 系统管理-系统日志登录/登出表 响应数据传输对象
+     */
+    SysLogLoginVO toVO(SysLogLoginPO sysLogLoginPO);
+
+    /**
+     * 系统管理-系统日志登录/登出表 持久化对象列表 转 系统管理-系统日志登录/登出表 响应数据传输对象列表
+     * @param sysLogLoginPOList 系统管理-系统日志登录/登出表 持久化对象列表
+     * @return 系统管理-系统日志登录/登出表 响应数据传输对象列表
+     */
+    List<SysLogLoginVO> toVO(List<SysLogLoginPO> sysLogLoginPOList);
 
 }

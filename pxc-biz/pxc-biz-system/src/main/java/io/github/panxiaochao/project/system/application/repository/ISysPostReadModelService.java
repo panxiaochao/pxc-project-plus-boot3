@@ -13,7 +13,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 public interface ISysPostReadModelService {
 
@@ -34,8 +34,8 @@ public interface ISysPostReadModelService {
 
     /**
      * 查询单条记录
-     * @param queryDto 系统管理-岗位表 查询请求对象
-     * @return 系统管理-岗位表 查询响应对象
+     * @param queryDto 系统管理-岗位表 请求对象
+     * @return 系统管理-岗位表 对象
      */
     SysPostVO getOne(SysPostPageQueryDTO queryDto);
 

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaVO;
 import io.github.panxiaochao.project.system.application.repository.ISysAreaReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysarea.SysAreaBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysAreaService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -66,17 +67,17 @@ public class SysAreaServiceImpl implements ISysAreaService, ISysAreaReadModelSer
 
     /**
      * 定制查询列表
-     * @param queryRequest 全国5级行政区划查询请求对象
+     * @param queryDto 全国5级行政区划查询请求对象
      * @return 查询列表
      */
     @Override
-    public List<SysAreaQueryVO> listTree(SysAreaPageQueryDTO queryRequest) {
+    public List<SysAreaQueryVO> listTree(SysAreaPageQueryDTO queryDto) {
         LambdaQueryWrapper<SysAreaPO> lqw = Wrappers.lambdaQuery();
-        if (StringUtils.isNotBlank(queryRequest.getParentCode())) {
-            lqw.eq(SysAreaPO::getParentCode, queryRequest.getParentCode());
+        if (StringUtils.isNotBlank(queryDto.getParentCode())) {
+            lqw.eq(SysAreaPO::getParentCode, queryDto.getParentCode());
         }
         else {
-            lqw.le(SysAreaPO::getAreaLevel, queryRequest.getAreaLevel());
+            lqw.le(SysAreaPO::getAreaLevel, queryDto.getAreaLevel());
         }
         lqw.orderByAsc(SysAreaPO::getSort);
         List<SysAreaPO> list = sysAreaMapper.selectList(lqw);
@@ -89,12 +90,12 @@ public class SysAreaServiceImpl implements ISysAreaService, ISysAreaReadModelSer
      * @return 系统管理-全国5级行政区划 查询响应对象
      */
     @Override
-    public SysAreaQueryVO getOne(SysAreaPageQueryDTO queryDto) {
+    public SysAreaVO getOne(SysAreaPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysAreaPO> lqw = lambdaQuery(queryDto);
             SysAreaPO sysAreaPO = sysAreaMapper.selectOne(lqw);
-            return ISysAreaPOConvert.INSTANCE.toQueryVO(sysAreaPO);
+            return ISysAreaPOConvert.INSTANCE.toVO(sysAreaPO);
         }
         catch (Exception e) {
             return null;

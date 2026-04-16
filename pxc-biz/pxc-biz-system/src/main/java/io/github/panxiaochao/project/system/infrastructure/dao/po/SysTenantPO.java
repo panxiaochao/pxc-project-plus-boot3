@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Lypxc
- * @since 2025-12-24
+ * @since 2026-04-16
  */
 @Getter
 @Setter
@@ -95,30 +95,32 @@ public class SysTenantPO {
     private String status;
 
     /**
+     * 过期时间
+     */
+    private LocalDateTime expireAt;
+
+    /**
      * 创建人
      */
     @TableField(fill = FieldFill.INSERT)
-    private Integer createAt;
+    private Integer createBy;
 
     /**
      * 更新人
      */
-    @TableField(fill = FieldFill.INSERT)
-    private Integer updateAt;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Integer updateBy;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createAt;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
-
-    /**
-     * 过期时间
-     */
-    private LocalDateTime expireAt;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateAt;
 
 }

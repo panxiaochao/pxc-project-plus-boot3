@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleVO;
 import io.github.panxiaochao.project.system.application.repository.ISysRoleReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysrole.SysRoleBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysRoleService;
@@ -25,7 +26,7 @@ import java.util.List;
  * </p>
  *
  * @author Lypxc
- * @since 2026-02-11
+ * @since 2026-04-16
  */
 @Service
 @RequiredArgsConstructor
@@ -70,12 +71,12 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
      * @return 系统管理-角色表 查询响应对象
      */
     @Override
-    public SysRoleQueryVO getOne(SysRolePageQueryDTO queryDto) {
+    public SysRoleVO getOne(SysRolePageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysRolePO> lqw = lambdaQuery(queryDto);
             SysRolePO sysRolePO = sysRoleMapper.selectOne(lqw);
-            return ISysRolePOConvert.INSTANCE.toQueryVO(sysRolePO);
+            return ISysRolePOConvert.INSTANCE.toVO(sysRolePO);
         }
         catch (Exception e) {
             return null;
