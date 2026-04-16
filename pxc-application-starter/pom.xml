@@ -15,7 +15,7 @@
     <description>pxc-application-starter 应用启动器</description>
 
     <properties>
-        <revision>3.0.0-SNAPSHOT</revision>
+        <revision>3.0.1-SNAPSHOT</revision>
         <lombok.version>1.18.42</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
     </properties>

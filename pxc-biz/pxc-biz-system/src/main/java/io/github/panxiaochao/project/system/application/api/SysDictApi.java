@@ -2,12 +2,14 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.repeatsubmit.annotation.RepeatSubmitLimiter;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictVO;
 import io.github.panxiaochao.project.system.application.service.SysDictAppService;
+import io.github.panxiaochao.project.system.application.service.SysDictItemAppService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -40,6 +42,11 @@ public class SysDictApi {
      * 系统管理-数据字典表 服务
      */
     private final SysDictAppService sysDictAppService;
+
+    /**
+     * 系统管理-数据字典配置表 服务
+     */
+    private final SysDictItemAppService sysDictItemAppService;
 
     @Operation(summary = "查询分页", description = "查询分页")
     @PostMapping(value = "/page")
@@ -78,6 +85,14 @@ public class SysDictApi {
     @PostMapping(value = "/deleteBatch")
     public R<Void> deleteByIds(List<Integer> idList) {
         return sysDictAppService.deleteByIds(idList);
+    }
+
+    @RepeatSubmitLimiter(interval = 3000, message = "正在发布中，请勿重复提交")
+    @Operation(summary = "发布数据字典", description = "发布数据字典", method = "GET")
+    @GetMapping(value = "/publishedData")
+    public R<Void> publishedData() {
+        sysDictItemAppService.publishedData();
+        return R.ok();
     }
 
 }

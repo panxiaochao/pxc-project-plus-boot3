@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.convert;
 
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 import io.github.panxiaochao.project.system.domain.entity.syspost.SysPostBO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysPostPO;
 import org.mapstruct.Mapper;
@@ -65,5 +66,19 @@ public interface ISysPostPOConvert {
      * @return 系统管理-岗位表 查询响应数据传输对象列表
      */
     List<SysPostQueryVO> toQueryVO(List<SysPostPO> sysPostPOList);
+
+    /**
+     * 系统管理-岗位表 持久化对象 转 系统管理-岗位表 响应数据传输对象
+     * @param sysPostPO 系统管理-岗位表 持久化对象
+     * @return 系统管理-岗位表 响应数据传输对象
+     */
+    SysPostVO toVO(SysPostPO sysPostPO);
+
+    /**
+     * 系统管理-岗位表 持久化对象列表 转 系统管理-岗位表 响应数据传输对象列表
+     * @param sysPostPOList 系统管理-岗位表 持久化对象列表
+     * @return 系统管理-岗位表 响应数据传输对象列表
+     */
+    List<SysPostVO> toVO(List<SysPostPO> sysPostPOList);
 
 }

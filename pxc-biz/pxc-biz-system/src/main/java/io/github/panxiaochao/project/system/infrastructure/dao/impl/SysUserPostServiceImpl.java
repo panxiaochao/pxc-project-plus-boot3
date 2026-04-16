@@ -170,4 +170,9 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
         sysUserPostMapper.deleteByIds(idList);
     }
 
+    @Override
+    public void deleteByUserId(Integer userId) {
+        sysUserPostMapper.delete(Wrappers.<SysUserPostPO>lambdaQuery().eq(SysUserPostPO::getUserId, userId));
+    }
+
 }

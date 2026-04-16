@@ -2,6 +2,8 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.component.tree.Tree;
 import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaUpdateDTO;
@@ -78,6 +80,19 @@ public class SysAreaApi {
     @PostMapping(value = "/deleteBatch")
     public R<Void> deleteByIds(List<String> idList) {
         return sysAreaAppService.deleteByIds(idList);
+    }
+
+    @Operation(summary = "前2级的区域数据", description = "前2级的区域数据", method = "GET")
+    @Parameter(name = "areaCode", description = "区域code")
+    @GetMapping(value = "/listTree")
+    public R<List<Tree<String>>> listTree(String areaCode) {
+        return R.ok(sysAreaAppService.listTree(areaCode));
+    }
+
+    @Operation(summary = "获取区域层级下拉菜单", description = "获取区域层级下拉菜单", method = "GET")
+    @GetMapping(value = "/selectAreaLevels")
+    public R<List<Select<Integer>>> selectAreaLevels() {
+        return R.ok(sysAreaAppService.selectAreaLevels());
     }
 
 }

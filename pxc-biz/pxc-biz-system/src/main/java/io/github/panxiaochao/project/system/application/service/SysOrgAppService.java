@@ -1,8 +1,17 @@
 package io.github.panxiaochao.project.system.application.service;
 
+import io.github.panxiaochao.boot3.common.constants.CommonConstant;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.component.select.SelectBuilder;
+import io.github.panxiaochao.boot3.component.select.SelectOption;
+import io.github.panxiaochao.boot3.component.tree.Tree;
+import io.github.panxiaochao.boot3.component.tree.TreeBuilder;
+import io.github.panxiaochao.boot3.component.tree.TreeNode;
+import io.github.panxiaochao.boot3.component.tree.TreeNodeProperties;
+import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgUpdateDTO;
@@ -14,8 +23,12 @@ import io.github.panxiaochao.project.system.domain.entity.sysorg.SysOrgBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysOrgService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -38,6 +51,11 @@ public class SysOrgAppService {
      * 系统管理-机构部门表 读模型服务类
      */
     private final ISysOrgReadModelService sysOrgReadModelService;
+
+    /**
+     * 机构类别 常量名
+     */
+    private static final String ORG_CATEGORY = "ORG_CATEGORY";
 
     /**
      * 查询分页
@@ -102,6 +120,116 @@ public class SysOrgAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysOrgService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 组织树列表
+     * @param rootId 根节点
+     * @return 树列表
+     */
+    public List<Tree<Integer>> listTree(Integer rootId) {
+        SysOrgPageQueryDTO queryRequest = new SysOrgPageQueryDTO();
+        if (rootId != null) {
+            queryRequest.setParentId(rootId);
+        }
+        else {
+            rootId = CommonConstant.TREE_ROOT_ID.intValue();
+        }
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        List<TreeNode<Integer>> treeNodeList = sysOrgReadModelService.selectList(queryRequest)
+            .stream()
+            .map(s -> TreeNode.of(s.getId(), s.getParentId(), s.getOrgName(), s.getSort(),
+                    (extraMap) -> extraMap.put("value", s.getId())))
+            .collect(Collectors.toList());
+        // 修改节点属性
+        TreeNodeProperties treeNodeProperties = TreeNodeProperties.builder();
+        treeNodeProperties.labelKey("title");
+        treeNodeProperties.idKey("key");
+        // 构建树
+        List<Tree<Integer>> treeList = TreeBuilder.of(rootId, true, treeNodeProperties)
+            .append(treeNodeList)
+            .fastBuild()
+            .toTreeList();
+        return CollectionUtils.isEmpty(treeList) ? new ArrayList<>() : treeList;
+    }
+
+    /**
+     * 获取机构表格树列表
+     * @param orgId 菜单ID
+     * @return 树列表
+     */
+    public List<Tree<Integer>> tableTree(Integer orgId) {
+        SysOrgPageQueryDTO queryRequest = new SysOrgPageQueryDTO();
+        Integer rootId = CommonConstant.TREE_ROOT_ID.intValue();
+        // 有数据就说明需要查下级
+        if (orgId != null) {
+            // 设置父节点为菜单ID
+            queryRequest.setParentId(orgId);
+            queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+            rootId = orgId;
+        }
+        List<SysOrgQueryVO> list = sysOrgReadModelService.selectList(queryRequest);
+        List<TreeNode<Integer>> treeNodeList = list.stream()
+            .map(s -> TreeNode.of(s.getId(), s.getParentId(), s.getOrgName(), s.getSort(), (extraMap) -> {
+                extraMap.put("areaId", s.getAreaId());
+                extraMap.put("areaCode", s.getAreaCode());
+                extraMap.put("orgNameEn", s.getOrgNameEn());
+                extraMap.put("orgNameAbbr", s.getOrgNameAbbr());
+                extraMap.put("orgCode", s.getOrgCode());
+                extraMap.put("sort", s.getSort());
+                extraMap.put("orgCategory", s.getOrgCategory());
+                extraMap.put("orgCategoryStr",
+                        s.getOrgCategory() != null ? DictUtil.getDictValue(ORG_CATEGORY, s.getOrgCategory()) : "");
+                extraMap.put("mobile", s.getMobile());
+                extraMap.put("fax", s.getFax());
+                extraMap.put("address", s.getAddress());
+                extraMap.put("status", s.getStatus());
+                extraMap.put("remark", s.getRemark());
+            }))
+            .collect(Collectors.toList());
+        // 修改节点属性
+        TreeNodeProperties treeNodeProperties = TreeNodeProperties.builder();
+        treeNodeProperties.labelKey("orgName");
+        // 构建树
+        List<Tree<Integer>> treeList = TreeBuilder.of(rootId, false, treeNodeProperties)
+            .append(treeNodeList)
+            .fastBuild()
+            .toTreeList();
+        return CollectionUtils.isEmpty(treeList) ? new ArrayList<>() : treeList;
+    }
+
+    /**
+     * 获取机构类别下拉
+     */
+    public List<Select<Integer>> selectOrgCategoryList() {
+        Map<String, String> dictMap = DictUtil.getAllDictByDictCode(ORG_CATEGORY);
+        List<SelectOption<Integer>> selectOptionList = dictMap.entrySet()
+            .stream()
+            .map(m -> SelectOption.of(Integer.valueOf(m.getKey()), m.getValue(), m.getValue(),
+                    (extraMap) -> extraMap.put("label", m.getValue())))
+            .collect(Collectors.toList());
+        List<Select<Integer>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
+    }
+
+    /**
+     * 获取机构列表
+     * @param orgId 菜单ID
+     * @return 列表
+     */
+    public List<SysOrgQueryVO> list(Integer orgId) {
+        SysOrgPageQueryDTO queryRequest = new SysOrgPageQueryDTO();
+        // 有数据就说明需要查下级
+        if (orgId != null) {
+            queryRequest.setParentId(orgId);
+        }
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        List<SysOrgQueryVO> list = sysOrgReadModelService.selectList(queryRequest);
+        list.forEach(s -> {
+            s.setOrgCategoryStr(
+                    s.getOrgCategory() != null ? DictUtil.getDictValue(ORG_CATEGORY, s.getOrgCategory()) : "");
+        });
+        return list;
     }
 
 }

@@ -12,7 +12,7 @@
     <description>pxc-common-bom 公共依赖管理</description>
 
     <properties>
-        <revision>3.0.0-SNAPSHOT</revision>
+        <revision>3.0.1-SNAPSHOT</revision>
     </properties>
 
     <dependencyManagement>

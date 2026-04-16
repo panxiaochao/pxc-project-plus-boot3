@@ -87,7 +87,7 @@ public class SysOrgBO {
     /**
      * 删除标志：0正常，1删除
      */
-    private Boolean delete;
+    private Boolean isDelete;
 
     /**
      * 备注

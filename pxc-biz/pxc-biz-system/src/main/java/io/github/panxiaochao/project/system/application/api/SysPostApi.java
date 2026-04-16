@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.component.select.Select;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostUpdateDTO;
@@ -78,6 +79,12 @@ public class SysPostApi {
     @PostMapping(value = "/deleteBatch")
     public R<Void> deleteByIds(List<Integer> idList) {
         return sysPostAppService.deleteByIds(idList);
+    }
+
+    @Operation(summary = "获取岗位下拉菜单", description = "获取岗位下拉菜单", method = "GET")
+    @GetMapping(value = "/selectPosts")
+    public R<List<Select<String>>> selectPosts() {
+        return R.ok(sysPostAppService.selectPosts());
     }
 
 }

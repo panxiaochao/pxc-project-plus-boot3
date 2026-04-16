@@ -58,4 +58,23 @@ public interface ISysUserOrgService {
      */
     void deleteByIds(List<Integer> idList);
 
+    /**
+     * 根据用户ID删除组织关系
+     * @param userId 用户主键
+     */
+    void deleteByUserId(Integer userId);
+
+    /**
+     * 根据组织ID删除组织关系
+     * @param orgId 组织主键
+     */
+    void deleteByOrgId(Integer orgId);
+
+    /**
+     * 根据用户ID和组织ID更新用户组织关联关系
+     * @param userId 用户主键
+     * @param orgId 组织主键
+     */
+    void updateByUserIdAndOrgId(Integer userId, Integer orgId);
+
 }

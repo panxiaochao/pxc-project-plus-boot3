@@ -3,6 +3,9 @@ package io.github.panxiaochao.project.system.application.service;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.component.select.SelectBuilder;
+import io.github.panxiaochao.boot3.component.select.SelectOption;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostUpdateDTO;
@@ -14,8 +17,11 @@ import io.github.panxiaochao.project.system.domain.entity.syspost.SysPostBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -102,6 +108,20 @@ public class SysPostAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysPostService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 获取岗位下拉菜单
+     * @return 返回通用下拉菜单
+     */
+    public List<Select<String>> selectPosts() {
+        List<SysPostQueryVO> list = sysPostReadModelService.selectList(new SysPostPageQueryDTO());
+        List<SelectOption<String>> selectOptionList = list.stream()
+            .map(m -> SelectOption.of(m.getPostCode(), m.getPostName(), m.getSort(),
+                    (extraMap) -> extraMap.put("label", m.getPostName())))
+            .collect(Collectors.toList());
+        List<Select<String>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
     }
 
 }

@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 /**
  * <p>
  * 系统管理-用户表 创建请求对象.
@@ -26,6 +24,12 @@ public class SysUserCreateDTO {
 
     @Schema(description = "用户昵称（花名）")
     private String nickName;
+
+    @Schema(description = "登录账号")
+    private String loginName;
+
+    @Schema(description = "登录密码，不填的话，默认系统密码")
+    private String password;
 
     @Schema(description = "身份证")
     private String idCard;
@@ -60,34 +64,16 @@ public class SysUserCreateDTO {
     @Schema(description = "所在区域或者部门编码code，多数据请用逗号隔开")
     private String orgCode;
 
+    @Schema(description = "岗位Code")
+    private String postCode;
+
     @Schema(description = "排序")
     private Integer sort;
 
     @Schema(description = "状态：1正常，0不正常")
     private String status;
 
-    @Schema(description = "登陆次数")
-    private Integer loginNums;
-
-    @Schema(description = "登录失败次数")
-    private Integer loginErrorNums;
-
-    @Schema(description = "登录时间")
-    private LocalDateTime loginAt;
-
     @Schema(description = "备注")
     private String remark;
-
-    @Schema(description = "创建人")
-    private Integer createBy;
-
-    @Schema(description = "更新人")
-    private Integer updateBy;
-
-    @Schema(description = "创建时间")
-    private LocalDateTime createAt;
-
-    @Schema(description = "更新时间")
-    private LocalDateTime updateAt;
 
 }

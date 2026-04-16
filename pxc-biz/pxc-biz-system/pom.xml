@@ -30,6 +30,16 @@
             <groupId>io.github.panxiaochao</groupId>
             <artifactId>pxc-framework-boot3-redis</artifactId>
         </dependency>
+        <!-- pxc-framework-boot3-component -->
+        <dependency>
+            <groupId>io.github.panxiaochao</groupId>
+            <artifactId>pxc-framework-boot3-component</artifactId>
+        </dependency>
+        <!-- pxc-framework-boot3-repeatsubmit -->
+        <dependency>
+            <groupId>io.github.panxiaochao</groupId>
+            <artifactId>pxc-framework-boot3-repeatsubmit</artifactId>
+        </dependency>
         <!-- 公共核心模块 -->
         <dependency>
             <groupId>io.github.panxiaochao</groupId>

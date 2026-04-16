@@ -142,8 +142,8 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
                 lqw.eq(SysOrgPO::getStatus, pageQueryDto.getStatus());
             }
             // 如果 删除标志：0正常，1删除 不为空
-            if (Objects.nonNull(pageQueryDto.getDelete())) {
-                lqw.eq(SysOrgPO::getDelete, pageQueryDto.getDelete());
+            if (Objects.nonNull(pageQueryDto.getIsDelete())) {
+                lqw.eq(SysOrgPO::getIsDelete, pageQueryDto.getIsDelete());
             }
             // 如果 备注 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {

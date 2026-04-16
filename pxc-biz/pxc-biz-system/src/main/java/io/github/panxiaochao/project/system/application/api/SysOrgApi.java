@@ -2,6 +2,8 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.component.tree.Tree;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgUpdateDTO;
@@ -78,6 +80,33 @@ public class SysOrgApi {
     @PostMapping(value = "/deleteBatch")
     public R<Void> deleteByIds(List<Integer> idList) {
         return sysOrgAppService.deleteByIds(idList);
+    }
+
+    @Operation(summary = "组织树形结构树", description = "组织树形结构树", method = "GET")
+    @Parameter(name = "rootId", description = "根节点")
+    @GetMapping(value = "/listTree")
+    public R<List<Tree<Integer>>> listTree(Integer rootId) {
+        return R.ok(sysOrgAppService.listTree(rootId));
+    }
+
+    @Operation(summary = "获取机构表格树列表", description = "获取机构表格树列表", method = "GET")
+    @Parameter(name = "orgId", description = "机构ID")
+    @GetMapping(value = "/tableTree")
+    public R<List<Tree<Integer>>> tableTree(Integer orgId) {
+        return R.ok(sysOrgAppService.tableTree(orgId));
+    }
+
+    @Operation(summary = "获取机构列表", description = "获取机构列表", method = "GET")
+    @Parameter(name = "orgId", description = "机构ID")
+    @GetMapping(value = "/list")
+    public R<List<SysOrgQueryVO>> list(Integer orgId) {
+        return R.ok(sysOrgAppService.list(orgId));
+    }
+
+    @Operation(summary = "获取机构类别下拉", description = "获取机构类别下拉", method = "GET")
+    @GetMapping(value = "/selectOrgCategoryList")
+    public R<List<Select<Integer>>> selectOrgCategoryList() {
+        return R.ok(sysOrgAppService.selectOrgCategoryList());
     }
 
 }

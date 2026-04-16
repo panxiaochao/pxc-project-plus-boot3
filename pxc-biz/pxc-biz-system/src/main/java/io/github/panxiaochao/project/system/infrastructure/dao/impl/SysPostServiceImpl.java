@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 import io.github.panxiaochao.project.system.application.repository.ISysPostReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.syspost.SysPostBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysPostService;
@@ -70,12 +72,31 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
      * @return 系统管理-岗位表 查询响应对象
      */
     @Override
-    public SysPostQueryVO getOne(SysPostPageQueryDTO queryDto) {
+    public SysPostVO getOne(SysPostPageQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysPostPO> lqw = lambdaQuery(queryDto);
             SysPostPO sysPostPO = sysPostMapper.selectOne(lqw);
-            return ISysPostPOConvert.INSTANCE.toQueryVO(sysPostPO);
+            return ISysPostPOConvert.INSTANCE.toVO(sysPostPO);
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * 根据岗位编码查询单条记录
+     * @param postCode 岗位编码
+     * @return 系统管理-岗位表 查询响应对象
+     */
+    @Override
+    public SysPostVO getOneByPostCode(String postCode) {
+        try {
+            LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
+            lqw.eq(SysPostPO::getPostCode, postCode);
+            lqw.eq(SysPostPO::getStatus, GlobalConstant.STATUS_NORMAL);
+            SysPostPO sysPostPO = sysPostMapper.selectOne(lqw);
+            return ISysPostPOConvert.INSTANCE.toVO(sysPostPO);
         }
         catch (Exception e) {
             return null;

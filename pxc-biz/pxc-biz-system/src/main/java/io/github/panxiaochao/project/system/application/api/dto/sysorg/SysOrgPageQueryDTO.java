@@ -62,7 +62,7 @@ public class SysOrgPageQueryDTO extends PageRequest {
     private String status;
 
     @Schema(description = "删除标志：0正常，1删除")
-    private Boolean delete;
+    private Boolean isDelete;
 
     @Schema(description = "备注")
     private String remark;

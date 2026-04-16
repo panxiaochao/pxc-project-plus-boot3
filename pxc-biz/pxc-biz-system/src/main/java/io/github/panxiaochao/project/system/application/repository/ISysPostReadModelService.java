@@ -3,6 +3,7 @@ package io.github.panxiaochao.project.system.application.repository;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
+import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 
 import java.util.List;
 
@@ -36,6 +37,13 @@ public interface ISysPostReadModelService {
      * @param queryDto 系统管理-岗位表 查询请求对象
      * @return 系统管理-岗位表 查询响应对象
      */
-    SysPostQueryVO getOne(SysPostPageQueryDTO queryDto);
+    SysPostVO getOne(SysPostPageQueryDTO queryDto);
+
+    /**
+     * 根据岗位编码查询单条记录
+     * @param postCode 岗位编码
+     * @return 系统管理-岗位表 查询响应对象
+     */
+    SysPostVO getOneByPostCode(String postCode);
 
 }

@@ -94,7 +94,7 @@ public class SysOrgPO {
      * 删除标志：0正常，1删除
      */
     @TableLogic
-    private Boolean delete;
+    private Boolean isDelete;
 
     /**
      * 备注
@@ -115,7 +115,7 @@ public class SysOrgPO {
     /**
      * 更新人
      */
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Integer updateBy;
 
     /**
@@ -127,7 +127,7 @@ public class SysOrgPO {
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateAt;
 
 }

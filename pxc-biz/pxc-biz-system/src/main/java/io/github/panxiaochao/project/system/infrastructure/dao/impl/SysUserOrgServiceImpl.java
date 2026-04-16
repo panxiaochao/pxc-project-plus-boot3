@@ -170,4 +170,45 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
         sysUserOrgMapper.deleteByIds(idList);
     }
 
+    /**
+     * 根据用户ID删除组织关系
+     * @param userId 用户主键
+     */
+    @Override
+    public void deleteByUserId(Integer userId) {
+        sysUserOrgMapper.delete(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getUserId, userId));
+    }
+
+    /**
+     * 根据组织ID删除组织关系
+     * @param orgId 组织主键
+     */
+    @Override
+    public void deleteByOrgId(Integer orgId) {
+        sysUserOrgMapper.delete(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getOrgId, orgId));
+    }
+
+    /**
+     * 根据用户ID和组织ID更新用户组织关联关系
+     * @param userId 用户主键
+     * @param orgId 组织主键
+     */
+    @Override
+    public void updateByUserIdAndOrgId(Integer userId, Integer orgId) {
+        // 先根据用户ID查询是否存在数据
+        SysUserOrgPO sysUserOrgPO = sysUserOrgMapper
+                .selectOne(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getUserId, userId));
+        if (sysUserOrgPO == null) {
+            // 没有数据，直接插入
+            SysUserOrgBO sysUserOrg = new SysUserOrgBO();
+            sysUserOrg.setUserId(userId);
+            sysUserOrg.setOrgId(orgId);
+            save(sysUserOrg);
+        }
+        else {
+            sysUserOrgPO.setOrgId(orgId);
+            sysUserOrgMapper.updateById(sysUserOrgPO);
+        }
+    }
+
 }

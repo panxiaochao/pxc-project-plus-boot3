@@ -48,6 +48,9 @@ public class SysOrgQueryVO {
     @Schema(description = "机构类别：1-公司，2-机构，3-部门")
     private String orgCategory;
 
+    @Schema(description = "机构类别名")
+    private String orgCategoryStr;
+
     @Schema(description = "手机号码")
     private String mobile;
 
@@ -61,7 +64,7 @@ public class SysOrgQueryVO {
     private String status;
 
     @Schema(description = "删除标志：0正常，1删除")
-    private Boolean delete;
+    private Boolean isDelete;
 
     @Schema(description = "备注")
     private String remark;
