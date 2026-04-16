@@ -29,6 +29,7 @@ import io.github.panxiaochao.project.system.domain.repository.ISysOrgService;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserAuthsService;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserOrgService;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserPostService;
+import io.github.panxiaochao.project.system.domain.repository.ISysUserRoleService;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -86,6 +87,16 @@ public class SysUserAppService {
     private final ISysUserPostService sysUserPostService;
 
     /**
+     * 系统管理-用户角色关联表 Domain接口服务类
+     */
+    private final ISysUserRoleService sysUserRoleService;
+
+    /**
+     * 用户授权信息表 Domain服务类
+     */
+    private final ISysUserAuthsService sysUserAuthsService;
+
+    /**
      * 系统管理-岗位表 读模型服务
      */
     private final ISysPostReadModelService sysPostReadModelService;
@@ -117,10 +128,7 @@ public class SysUserAppService {
      * @return 响应对象
      */
     public R<SysUserVO> getById(Integer id) {
-        SysUserBO sysUser = sysUserService.getById(id);
-        SysUserVO sysUserVO = ISysUserDTOConvert.INSTANCE.toVO(sysUser);
-        // 查询用户岗位关联
-        return R.ok(sysUserVO);
+        return R.ok(sysUserReadModelService.getUserRelPostById(id));
     }
 
     /**
@@ -229,11 +237,13 @@ public class SysUserAppService {
         // 1.删除用户信息
         sysUserService.deleteById(id);
         // 2.删除组织关联信息
-        // sysUserOrgService.deleteByUserId(id);
-        // // 3.删除角色关联信息
-        // sysUserRoleService.deleteByUserId(id);
-        // // 4.删除密码管理信息
-        // sysUserAuthsService.deleteByUserId(id);
+        sysUserOrgService.deleteByUserId(id);
+        // 3.删除角色关联信息
+        sysUserRoleService.deleteByUserId(id);
+        // 4.删除用户岗位关联关系
+        sysUserPostService.deleteByUserId(id);
+        // // 5.删除密码管理信息
+        sysUserAuthsService.deleteByUserId(id);
         return R.ok();
     }
 

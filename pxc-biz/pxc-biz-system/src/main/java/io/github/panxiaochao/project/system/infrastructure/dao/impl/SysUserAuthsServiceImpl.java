@@ -210,4 +210,13 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
         sysUserAuthsMapper.deleteByIds(idList);
     }
 
+    /**
+     * 根据用户ID删除
+     * @param userId 用户ID
+     */
+    @Override
+    public void deleteByUserId(Integer userId) {
+        sysUserAuthsMapper.delete(Wrappers.lambdaQuery(SysUserAuthsPO.class).eq(SysUserAuthsPO::getUserId, userId));
+    }
+
 }

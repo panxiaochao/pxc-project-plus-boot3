@@ -22,13 +22,12 @@ public class SysTenantUserPO {
     /**
      * 租户ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.INPUT)
     private Integer tenantId;
 
     /**
      * 用户ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer userId;
 
 }

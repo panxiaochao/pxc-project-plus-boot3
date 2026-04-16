@@ -63,6 +63,9 @@ public class SysUserQueryVO {
     @Schema(description = "所在区域或者部门编码code，多数据请用逗号隔开")
     private String orgCode;
 
+    @Schema(description = "岗位Code")
+    private String postCode;
+
     @Schema(description = "排序")
     private Integer sort;
 

@@ -17,7 +17,7 @@
         <result column="fax" property="fax"/>
         <result column="address" property="address"/>
         <result column="status" property="status"/>
-        <result column="is_delete" property="delete"/>
+        <result column="is_delete" property="isDelete"/>
         <result column="remark" property="remark"/>
         <result column="sort" property="sort"/>
         <result column="create_by" property="createBy"/>

@@ -22,13 +22,12 @@ public class SysUserPostPO {
     /**
      * 用户表ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.INPUT)
     private Integer userId;
 
     /**
      * 岗位表ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer postId;
 
 }

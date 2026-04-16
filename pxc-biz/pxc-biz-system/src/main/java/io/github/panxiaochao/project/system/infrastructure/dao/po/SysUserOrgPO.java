@@ -22,13 +22,12 @@ public class SysUserOrgPO {
     /**
      * 用户ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.INPUT)
     private Integer userId;
 
     /**
      * 机构ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer orgId;
 
 }

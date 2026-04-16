@@ -131,7 +131,7 @@ public class PxcMybatisPlusGeneratorTools {
             .enableFileOverride()
             .enableLombok()
             .enableChainModel()
-            .enableRemoveIsPrefix()
+            // .enableRemoveIsPrefix()
             .enableTableFieldAnnotation()
             .naming(NamingStrategy.underline_to_camel)
             .columnNaming(NamingStrategy.underline_to_camel)

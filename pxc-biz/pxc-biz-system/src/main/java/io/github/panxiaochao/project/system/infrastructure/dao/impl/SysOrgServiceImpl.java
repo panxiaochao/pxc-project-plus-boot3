@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * <p>
@@ -141,10 +140,6 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
             // 如果 状态：1正常，0不正常 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {
                 lqw.eq(SysOrgPO::getStatus, pageQueryDto.getStatus());
-            }
-            // 如果 删除标志：0正常，1删除 不为空
-            if (Objects.nonNull(pageQueryDto.getIsDelete())) {
-                lqw.eq(SysOrgPO::getDelete, pageQueryDto.getIsDelete());
             }
             // 如果 备注 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {

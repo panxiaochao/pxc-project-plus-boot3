@@ -58,4 +58,10 @@ public interface ISysUserAuthsService {
      */
     void deleteByIds(List<Integer> idList);
 
+    /**
+     * 根据用户ID删除
+     * @param userId 用户ID
+     */
+    void deleteByUserId(Integer userId);
+
 }

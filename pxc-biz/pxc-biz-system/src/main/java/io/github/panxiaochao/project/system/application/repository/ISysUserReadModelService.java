@@ -39,4 +39,11 @@ public interface ISysUserReadModelService {
      */
     SysUserVO getOne(SysUserPageQueryDTO queryDto);
 
+    /**
+     * 根据用户ID查询用户信息和岗位关联
+     * @param id 用户ID
+     * @return 系统管理-用户表 对象
+     */
+    SysUserVO getUserRelPostById(Integer id);
+
 }

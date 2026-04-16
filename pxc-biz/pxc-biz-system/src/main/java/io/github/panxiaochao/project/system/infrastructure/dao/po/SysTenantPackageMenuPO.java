@@ -22,13 +22,12 @@ public class SysTenantPackageMenuPO {
     /**
      * 租户套餐id
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.INPUT)
     private Integer packageId;
 
     /**
      * 菜单ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer menuId;
 
 }

@@ -171,4 +171,13 @@ public class SysUserRoleServiceImpl implements ISysUserRoleService, ISysUserRole
         sysUserRoleMapper.deleteByIds(idList);
     }
 
+    /**
+     * 根据用户ID删除
+     * @param userId 用户ID
+     */
+    @Override
+    public void deleteByUserId(Integer userId) {
+        sysUserRoleMapper.delete(Wrappers.lambdaQuery(SysUserRolePO.class).eq(SysUserRolePO::getUserId, userId));
+    }
+
 }

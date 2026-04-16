@@ -1,9 +1,12 @@
 package io.github.panxiaochao.project.system.infrastructure.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
+import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
@@ -13,7 +16,9 @@ import io.github.panxiaochao.project.system.domain.entity.sysuser.SysUserBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysUserService;
 import io.github.panxiaochao.project.system.infrastructure.convert.ISysUserPOConvert;
 import io.github.panxiaochao.project.system.infrastructure.dao.mapper.SysUserMapper;
+import io.github.panxiaochao.project.system.infrastructure.dao.po.SysPostPO;
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserPO;
+import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserPostPO;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -45,12 +50,22 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      */
     @Override
     public List<SysUserQueryVO> page(Pagination pagination, SysUserPageQueryDTO pageQueryDTO) {
-        // 构造查询条件
-        LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(pageQueryDTO);
-        // 分页查询
-        Page<SysUserPO> page = sysUserMapper.selectPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), lqw);
+        // // 构造查询条件
+        // LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(pageQueryDTO);
+        // // 分页查询
+        // Page<SysUserPO> page = sysUserMapper.selectPage(Page.of(pagination.getPageNo(),
+        // pagination.getPageSize()), lqw);
+        // pagination.setTotal(page.getTotal());
+
+        MPJLambdaWrapper<SysUserPO> wrapper = new MPJLambdaWrapper<>();
+        wrapper.selectAll(SysUserPO.class)
+            .selectAs(SysPostPO::getPostCode, SysUserQueryVO::getPostCode)
+            .leftJoin(SysUserPostPO.class, SysUserPostPO::getUserId, SysUserPO::getId)
+            .leftJoin(SysPostPO.class, SysPostPO::getId, SysUserPostPO::getPostId);
+        IPage<SysUserQueryVO> page = sysUserMapper
+            .selectJoinPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), SysUserQueryVO.class, wrapper);
         pagination.setTotal(page.getTotal());
-        return ISysUserPOConvert.INSTANCE.toQueryVO(page.getRecords());
+        return page.getRecords();
     }
 
     /**
@@ -169,22 +184,6 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {
                 lqw.eq(SysUserPO::getRemark, pageQueryDto.getRemark());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysUserPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysUserPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysUserPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysUserPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }
@@ -230,7 +229,11 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
     @Override
     public void update(SysUserBO sysUser) {
         SysUserPO sysUserPO = ISysUserPOConvert.INSTANCE.fromEntity(sysUser);
-        sysUserMapper.updateById(sysUserPO);
+        // fix(update)[2026-04-16 17:06:43]: 解决置空null失效的写法
+        sysUserMapper.update(sysUserPO,
+                new LambdaUpdateWrapper<SysUserPO>().eq(SysUserPO::getId, sysUserPO.getId())
+                    .set(SysUserPO::getOrgId, sysUserPO.getOrgId())
+                    .set(SysUserPO::getOrgCode, sysUserPO.getOrgCode()));
     }
 
     /**
@@ -259,6 +262,22 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
     @Override
     public void deleteByIds(List<Integer> idList) {
         sysUserMapper.deleteByIds(idList);
+    }
+
+    /**
+     * 根据用户ID查询用户信息和岗位关联
+     * @param id 用户ID
+     * @return 系统管理-用户表 对象
+     */
+    @Override
+    public SysUserVO getUserRelPostById(Integer id) {
+        MPJLambdaWrapper<SysUserPO> wrapper = new MPJLambdaWrapper<>();
+        wrapper.selectAll(SysUserPO.class)
+            .selectAs(SysPostPO::getPostCode, SysUserVO::getPostCode)
+            .leftJoin(SysUserPostPO.class, SysUserPostPO::getUserId, SysUserPO::getId)
+            .leftJoin(SysPostPO.class, SysPostPO::getId, SysUserPostPO::getPostId)
+            .eq(SysUserPostPO::getUserId, id);
+        return sysUserMapper.selectJoinOne(SysUserVO.class, wrapper);
     }
 
 }

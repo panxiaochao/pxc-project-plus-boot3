@@ -22,13 +22,12 @@ public class SysUserRolePO {
     /**
      * 用户ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.INPUT)
     private Integer userId;
 
     /**
      * 角色ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Integer roleId;
 
 }
