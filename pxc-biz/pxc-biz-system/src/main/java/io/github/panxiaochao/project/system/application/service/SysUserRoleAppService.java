@@ -3,6 +3,7 @@ package io.github.panxiaochao.project.system.application.service;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.utils.StringPools;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRolePageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleUpdateDTO;
@@ -14,8 +15,14 @@ import io.github.panxiaochao.project.system.domain.entity.sysuserrole.SysUserRol
 import io.github.panxiaochao.project.system.domain.repository.ISysUserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -64,13 +71,23 @@ public class SysUserRoleAppService {
     /**
      * 保存
      * @param sysUserRoleCreateDTO 创建请求对象
-     * @return 返回保存对象
      */
-    public R<SysUserRoleVO> save(SysUserRoleCreateDTO sysUserRoleCreateDTO) {
-        SysUserRoleBO sysUserRole = ISysUserRoleDTOConvert.INSTANCE.fromCreateDTO(sysUserRoleCreateDTO);
-        sysUserRole = sysUserRoleService.save(sysUserRole);
-        SysUserRoleVO sysUserRoleVO = ISysUserRoleDTOConvert.INSTANCE.toVO(sysUserRole);
-        return R.ok(sysUserRoleVO);
+    public void save(SysUserRoleCreateDTO sysUserRoleCreateDTO) {
+        if (StringUtils.hasText(sysUserRoleCreateDTO.getRoleId())) {
+            // 以,分割roleId为字符串数组
+            String[] roleIds = StringUtils.tokenizeToStringArray(sysUserRoleCreateDTO.getRoleId(), StringPools.COMMA);
+            List<SysUserRoleBO> list = Arrays.stream(roleIds)
+                .map(roleId -> new SysUserRoleBO(sysUserRoleCreateDTO.getUserId(), Integer.parseInt(roleId)))
+                .collect(Collectors.toList());
+            // 先删除当前用户的所有关联数据
+            sysUserRoleService.deleteByUserId(Collections.singletonList(sysUserRoleCreateDTO.getUserId()));
+            // 批量保存当前用户的最新关联数据
+            sysUserRoleService.saveBatch(list);
+        }
+        else {
+            // 角色ID为空，说明是删除全部
+            sysUserRoleService.deleteByUserId(Collections.singletonList(sysUserRoleCreateDTO.getUserId()));
+        }
     }
 
     /**
@@ -102,6 +119,21 @@ public class SysUserRoleAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysUserRoleService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 角色ID数组
+     * @param userId 用户ID
+     * @return 角色ID数组
+     */
+    public List<Integer> rolesByUserId(Integer userId) {
+        SysUserRolePageQueryDTO queryRequest = new SysUserRolePageQueryDTO();
+        queryRequest.setUserId(userId);
+        List<SysUserRoleQueryVO> list = sysUserRoleReadModelService.selectList(queryRequest);
+        if (!CollectionUtils.isEmpty(list)) {
+            return list.stream().map(SysUserRoleQueryVO::getRoleId).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 
 }

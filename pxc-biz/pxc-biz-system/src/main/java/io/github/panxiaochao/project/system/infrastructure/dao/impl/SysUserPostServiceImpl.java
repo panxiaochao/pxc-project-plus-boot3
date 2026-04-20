@@ -92,10 +92,14 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
     private LambdaQueryWrapper<SysUserPostPO> lambdaQuery(SysUserPostPageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysUserPostPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysUserPostPO::getUserId);
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysUserPostPO::getPostId);
+            // 用户表ID
+            if (pageQueryDto.getUserId() != null) {
+                lqw.eq(SysUserPostPO::getUserId, pageQueryDto.getUserId());
+            }
+            // 岗位表ID
+            if (pageQueryDto.getPostId() != null) {
+                lqw.eq(SysUserPostPO::getPostId, pageQueryDto.getPostId());
+            }
         }
         return lqw;
     }

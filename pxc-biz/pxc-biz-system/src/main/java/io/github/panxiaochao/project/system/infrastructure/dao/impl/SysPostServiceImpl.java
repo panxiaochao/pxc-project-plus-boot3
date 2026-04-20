@@ -114,10 +114,10 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
         LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
             // 默认按照主键倒序排序
-            lqw.orderByDesc(SysPostPO::getId);
+            lqw.orderByAsc(SysPostPO::getSort);
             // 如果 岗位名称 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getPostName())) {
-                lqw.eq(SysPostPO::getPostName, pageQueryDto.getPostName());
+                lqw.like(SysPostPO::getPostName, pageQueryDto.getPostName());
             }
             // 如果 岗位编码 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getPostCode())) {
@@ -125,11 +125,7 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
             }
             // 如果 备注 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {
-                lqw.eq(SysPostPO::getRemark, pageQueryDto.getRemark());
-            }
-            // 如果 排序 不为空
-            if (pageQueryDto.getSort() != null) {
-                lqw.eq(SysPostPO::getSort, pageQueryDto.getSort());
+                lqw.like(SysPostPO::getRemark, pageQueryDto.getRemark());
             }
             // 如果 状态：1正常，0不正常 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {

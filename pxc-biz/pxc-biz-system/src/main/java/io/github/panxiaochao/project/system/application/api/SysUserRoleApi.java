@@ -56,8 +56,9 @@ public class SysUserRoleApi {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    public R<SysUserRoleVO> save(@RequestBody SysUserRoleCreateDTO sysUserRoleCreateDTO) {
-        return sysUserRoleAppService.save(sysUserRoleCreateDTO);
+    public R<Void> save(@RequestBody SysUserRoleCreateDTO sysUserRoleCreateDTO) {
+        sysUserRoleAppService.save(sysUserRoleCreateDTO);
+        return R.ok();
     }
 
     @Operation(summary = "更新", description = "根据主键更新")
@@ -76,8 +77,14 @@ public class SysUserRoleApi {
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "系统管理-用户角色表 ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<Integer> idList) {
+    public R<Void> deleteByIds(@RequestBody List<Integer> idList) {
         return sysUserRoleAppService.deleteByIds(idList);
+    }
+
+    @Operation(summary = "角色ID数组", description = "根据用户ID查询角色ID数组")
+    @GetMapping(value = "/rolesByUserId")
+    public R<List<Integer>> rolesByUserId(Integer userId) {
+        return R.ok(sysUserRoleAppService.rolesByUserId(userId));
     }
 
 }

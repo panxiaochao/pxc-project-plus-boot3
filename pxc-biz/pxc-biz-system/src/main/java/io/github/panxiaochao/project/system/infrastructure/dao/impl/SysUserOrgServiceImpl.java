@@ -92,10 +92,14 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
     private LambdaQueryWrapper<SysUserOrgPO> lambdaQuery(SysUserOrgPageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysUserOrgPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysUserOrgPO::getUserId);
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysUserOrgPO::getOrgId);
+            // 用户表ID
+            if (pageQueryDto.getUserId() != null) {
+                lqw.eq(SysUserOrgPO::getUserId, pageQueryDto.getUserId());
+            }
+            // 机构表ID
+            if (pageQueryDto.getOrgId() != null) {
+                lqw.eq(SysUserOrgPO::getOrgId, pageQueryDto.getOrgId());
+            }
         }
         return lqw;
     }

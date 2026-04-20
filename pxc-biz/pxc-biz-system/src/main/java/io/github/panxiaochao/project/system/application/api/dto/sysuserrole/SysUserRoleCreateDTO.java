@@ -19,4 +19,10 @@ import lombok.ToString;
 @Schema(description = "系统管理-用户角色表 创建请求对象")
 public class SysUserRoleCreateDTO {
 
+    @Schema(description = "用户ID")
+    private Integer userId;
+
+    @Schema(description = "角色ID")
+    private String roleId;
+
 }

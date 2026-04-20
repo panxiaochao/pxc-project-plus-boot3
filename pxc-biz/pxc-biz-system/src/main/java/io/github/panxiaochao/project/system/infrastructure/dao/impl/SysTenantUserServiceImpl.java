@@ -91,10 +91,14 @@ public class SysTenantUserServiceImpl implements ISysTenantUserService, ISysTena
     private LambdaQueryWrapper<SysTenantUserPO> lambdaQuery(SysTenantUserPageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysTenantUserPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysTenantUserPO::getTenantId);
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysTenantUserPO::getUserId);
+            // 租户ID
+            if (pageQueryDto.getTenantId() != null) {
+                lqw.eq(SysTenantUserPO::getTenantId, pageQueryDto.getTenantId());
+            }
+            // 用户表ID
+            if (pageQueryDto.getUserId() != null) {
+                lqw.eq(SysTenantUserPO::getUserId, pageQueryDto.getUserId());
+            }
         }
         return lqw;
     }

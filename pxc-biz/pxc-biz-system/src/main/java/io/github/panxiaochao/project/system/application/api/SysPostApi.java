@@ -77,11 +77,11 @@ public class SysPostApi {
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "系统管理-岗位表 ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<Integer> idList) {
+    public R<Void> deleteByIds(@RequestBody List<Integer> idList) {
         return sysPostAppService.deleteByIds(idList);
     }
 
-    @Operation(summary = "获取岗位下拉菜单", description = "获取岗位下拉菜单", method = "GET")
+    @Operation(summary = "获取岗位下拉菜单", description = "获取岗位下拉菜单")
     @GetMapping(value = "/selectPosts")
     public R<List<Select<String>>> selectPosts() {
         return R.ok(sysPostAppService.selectPosts());

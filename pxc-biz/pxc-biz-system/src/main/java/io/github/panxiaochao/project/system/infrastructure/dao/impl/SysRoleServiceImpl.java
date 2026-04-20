@@ -91,11 +91,11 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
     private LambdaQueryWrapper<SysRolePO> lambdaQuery(SysRolePageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysRolePO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysRolePO::getId);
+            // 默认按照排序升序排序
+            lqw.orderByAsc(SysRolePO::getSort);
             // 如果 角色名称 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRoleName())) {
-                lqw.eq(SysRolePO::getRoleName, pageQueryDto.getRoleName());
+                lqw.like(SysRolePO::getRoleName, pageQueryDto.getRoleName());
             }
             // 如果 角色code 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRoleCode())) {
@@ -107,11 +107,7 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
             }
             // 如果 备注 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {
-                lqw.eq(SysRolePO::getRemark, pageQueryDto.getRemark());
-            }
-            // 如果 排序 不为空
-            if (pageQueryDto.getSort() != null) {
-                lqw.eq(SysRolePO::getSort, pageQueryDto.getSort());
+                lqw.like(SysRolePO::getRemark, pageQueryDto.getRemark());
             }
             // 如果 状态：1正常，0不正常 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {

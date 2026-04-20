@@ -77,7 +77,7 @@ public class SysTenantPackageMenuApi {
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "系统管理-租户套餐菜单表 ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<Integer> idList) {
+    public R<Void> deleteByIds(@RequestBody List<Integer> idList) {
         return sysTenantPackageMenuAppService.deleteByIds(idList);
     }
 

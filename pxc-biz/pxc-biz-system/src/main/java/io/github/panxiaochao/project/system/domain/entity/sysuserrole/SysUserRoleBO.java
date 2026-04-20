@@ -27,4 +27,9 @@ public class SysUserRoleBO {
      */
     private Integer roleId;
 
+    public SysUserRoleBO(Integer userId, Integer roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
+
 }

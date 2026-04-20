@@ -76,7 +76,7 @@ public class SysLogLoginApi {
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "系统管理-系统日志登录/登出表 ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<Integer> idList) {
+    public R<Void> deleteByIds(@RequestBody List<Integer> idList) {
         return sysLogLoginAppService.deleteByIds(idList);
     }
 

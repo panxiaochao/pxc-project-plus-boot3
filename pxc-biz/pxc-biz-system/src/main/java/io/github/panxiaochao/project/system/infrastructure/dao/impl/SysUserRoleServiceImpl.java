@@ -92,10 +92,14 @@ public class SysUserRoleServiceImpl implements ISysUserRoleService, ISysUserRole
     private LambdaQueryWrapper<SysUserRolePO> lambdaQuery(SysUserRolePageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysUserRolePO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysUserRolePO::getUserId);
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysUserRolePO::getRoleId);
+            // 用户ID
+            if (pageQueryDto.getUserId() != null) {
+                lqw.eq(SysUserRolePO::getUserId, pageQueryDto.getUserId());
+            }
+            // 角色ID
+            if (pageQueryDto.getRoleId() != null) {
+                lqw.eq(SysUserRolePO::getRoleId, pageQueryDto.getRoleId());
+            }
         }
         return lqw;
     }
