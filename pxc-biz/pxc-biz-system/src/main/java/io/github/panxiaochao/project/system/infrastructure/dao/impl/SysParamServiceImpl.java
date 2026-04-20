@@ -114,22 +114,6 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {
                 lqw.eq(SysParamPO::getStatus, pageQueryDto.getStatus());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysParamPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysParamPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysParamPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysParamPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

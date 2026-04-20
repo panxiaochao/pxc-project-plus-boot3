@@ -16,6 +16,7 @@ import io.github.panxiaochao.project.system.infrastructure.dao.mapper.SysUserPos
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserPostPO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -171,9 +172,15 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
         sysUserPostMapper.deleteByIds(idList);
     }
 
+    /**
+     * 根据用户ID删除
+     * @param userIdList 用户ID数组
+     */
     @Override
-    public void deleteByUserId(Integer userId) {
-        sysUserPostMapper.delete(Wrappers.<SysUserPostPO>lambdaQuery().eq(SysUserPostPO::getUserId, userId));
+    public void deleteByUserId(List<Integer> userIdList) {
+        if (!CollectionUtils.isEmpty(userIdList)) {
+            sysUserPostMapper.delete(Wrappers.<SysUserPostPO>lambdaQuery().in(SysUserPostPO::getUserId, userIdList));
+        }
     }
 
 }

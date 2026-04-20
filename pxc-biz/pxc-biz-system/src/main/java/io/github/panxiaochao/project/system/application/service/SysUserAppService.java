@@ -202,7 +202,7 @@ public class SysUserAppService {
             sysUser.setOrgId(null);
             sysUser.setOrgCode(null);
             // 当为null的时候，去删除sysUserOrg关联表
-            sysUserOrgService.deleteByOrgId(sysUserTemp.getOrgId());
+            sysUserOrgService.deleteByOrgId(List.of(sysUserTemp.getOrgId()));
         }
         else {
             // 根据用户ID和组织ID更新用户组织关联关系
@@ -210,12 +210,12 @@ public class SysUserAppService {
             if (!sysUser.getOrgId().equals(sysUserTemp.getOrgId())) {
                 sysUserOrgService.updateByUserIdAndOrgId(sysUser.getId(), sysUser.getOrgId());
             }
-            // 更新组织CODE
+            // 更新组织CODE,虽然组织ID没有改变,但是组织CODE可能改变
             SysOrgBO sysOrg = sysOrgService.getById(sysUser.getOrgId());
             sysUser.setOrgCode(sysOrg.getOrgCode());
         }
         // 先删除用户岗位关联关系
-        sysUserPostService.deleteByUserId(sysUser.getId());
+        sysUserPostService.deleteByUserId(List.of(sysUser.getId()));
         if (StringUtils.hasText(sysUserUpdateDTO.getPostCode())) {
             SysPostVO sysPostVO = sysPostReadModelService.getOneByPostCode(sysUserUpdateDTO.getPostCode());
             // 构建
@@ -235,15 +235,15 @@ public class SysUserAppService {
      */
     public R<Void> deleteById(Integer id) {
         // 1.删除用户信息
-        sysUserService.deleteById(id);
+        sysUserService.deleteByIds(List.of(id));
         // 2.删除组织关联信息
-        sysUserOrgService.deleteByUserId(id);
+        sysUserOrgService.deleteByUserId(List.of(id));
         // 3.删除角色关联信息
-        sysUserRoleService.deleteByUserId(id);
+        sysUserRoleService.deleteByUserId(List.of(id));
         // 4.删除用户岗位关联关系
-        sysUserPostService.deleteByUserId(id);
-        // // 5.删除密码管理信息
-        sysUserAuthsService.deleteByUserId(id);
+        sysUserPostService.deleteByUserId(List.of(id));
+        // 5.删除密码管理信息
+        sysUserAuthsService.deleteByUserId(List.of(id));
         return R.ok();
     }
 
@@ -253,7 +253,16 @@ public class SysUserAppService {
      * @return 空返回
      */
     public R<Void> deleteByIds(List<Integer> idList) {
+        // 1.删除用户信息
         sysUserService.deleteByIds(idList);
+        // 2.删除组织关联信息
+        sysUserOrgService.deleteByUserId(idList);
+        // 3.删除角色关联信息
+        sysUserRoleService.deleteByUserId(idList);
+        // 4.删除用户岗位关联关系
+        sysUserPostService.deleteByUserId(idList);
+        // 5.删除密码管理信息
+        sysUserAuthsService.deleteByUserId(idList);
         return R.ok();
     }
 

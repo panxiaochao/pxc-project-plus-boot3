@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 /**
  * <p>
  * 系统管理-租户套餐表 查询份分页请求对象.
@@ -36,17 +34,5 @@ public class SysTenantPackagePageQueryDTO extends PageRequest {
 
     @Schema(description = "排序")
     private Integer sort;
-
-    @Schema(description = "创建人")
-    private Integer createBy;
-
-    @Schema(description = "更新人")
-    private Integer updateBy;
-
-    @Schema(description = "创建时间")
-    private LocalDateTime createAt;
-
-    @Schema(description = "更新时间")
-    private LocalDateTime updateAt;
 
 }

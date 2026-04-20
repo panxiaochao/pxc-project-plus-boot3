@@ -110,22 +110,6 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
             if (pageQueryDto.getSort() != null) {
                 lqw.eq(SysTenantPackagePO::getSort, pageQueryDto.getSort());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysTenantPackagePO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysTenantPackagePO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysTenantPackagePO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysTenantPackagePO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

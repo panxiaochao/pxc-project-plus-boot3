@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 /**
  * <p>
  * 系统管理-系统参数 更新请求对象.
@@ -38,17 +36,5 @@ public class SysParamUpdateDTO {
 
     @Schema(description = "状态1-正常 0-不正常")
     private String status;
-
-    @Schema(description = "创建人")
-    private Integer createBy;
-
-    @Schema(description = "更新人")
-    private Integer updateBy;
-
-    @Schema(description = "创建时间")
-    private LocalDateTime createAt;
-
-    @Schema(description = "更新时间")
-    private LocalDateTime updateAt;
 
 }

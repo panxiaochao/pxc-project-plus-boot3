@@ -153,22 +153,6 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
             if (pageQueryDto.getSort() != null) {
                 lqw.eq(SysMenuPO::getSort, pageQueryDto.getSort());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysMenuPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (StringUtils.isNotBlank(pageQueryDto.getUpdateBy())) {
-                lqw.eq(SysMenuPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysMenuPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysMenuPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

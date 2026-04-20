@@ -160,22 +160,6 @@ public class SysAreaServiceImpl implements ISysAreaService, ISysAreaReadModelSer
             if (pageQueryDto.getSort() != null) {
                 lqw.eq(SysAreaPO::getSort, pageQueryDto.getSort());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysAreaPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysAreaPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysAreaPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysAreaPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

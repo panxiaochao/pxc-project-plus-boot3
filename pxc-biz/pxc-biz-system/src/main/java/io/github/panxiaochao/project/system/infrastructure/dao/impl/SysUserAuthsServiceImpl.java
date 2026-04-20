@@ -17,6 +17,7 @@ import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserAuthsPO
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -118,22 +119,6 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
             if (pageQueryDto.getExpireAt() != null) {
                 lqw.eq(SysUserAuthsPO::getExpireAt, pageQueryDto.getExpireAt());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysUserAuthsPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysUserAuthsPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysUserAuthsPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysUserAuthsPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }
@@ -212,11 +197,14 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
 
     /**
      * 根据用户ID删除
-     * @param userId 用户ID
+     * @param userIdList 用户ID数组
      */
     @Override
-    public void deleteByUserId(Integer userId) {
-        sysUserAuthsMapper.delete(Wrappers.lambdaQuery(SysUserAuthsPO.class).eq(SysUserAuthsPO::getUserId, userId));
+    public void deleteByUserId(List<Integer> userIdList) {
+        if (!CollectionUtils.isEmpty(userIdList)) {
+            sysUserAuthsMapper
+                .delete(Wrappers.lambdaQuery(SysUserAuthsPO.class).in(SysUserAuthsPO::getUserId, userIdList));
+        }
     }
 
 }

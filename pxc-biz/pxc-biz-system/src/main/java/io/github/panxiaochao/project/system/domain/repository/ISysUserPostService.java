@@ -60,8 +60,8 @@ public interface ISysUserPostService {
 
     /**
      * 根据用户ID删除
-     * @param id 用户ID
+     * @param userIdList 用户ID数组
      */
-    void deleteByUserId(Integer id);
+    void deleteByUserId(List<Integer> userIdList);
 
 }

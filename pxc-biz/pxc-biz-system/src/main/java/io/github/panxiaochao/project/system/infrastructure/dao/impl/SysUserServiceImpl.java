@@ -50,22 +50,67 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      */
     @Override
     public List<SysUserQueryVO> page(Pagination pagination, SysUserPageQueryDTO pageQueryDTO) {
-        // // 构造查询条件
-        // LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(pageQueryDTO);
-        // // 分页查询
-        // Page<SysUserPO> page = sysUserMapper.selectPage(Page.of(pagination.getPageNo(),
-        // pagination.getPageSize()), lqw);
-        // pagination.setTotal(page.getTotal());
-
         MPJLambdaWrapper<SysUserPO> wrapper = new MPJLambdaWrapper<>();
         wrapper.selectAll(SysUserPO.class)
             .selectAs(SysPostPO::getPostCode, SysUserQueryVO::getPostCode)
             .leftJoin(SysUserPostPO.class, SysUserPostPO::getUserId, SysUserPO::getId)
             .leftJoin(SysPostPO.class, SysPostPO::getId, SysUserPostPO::getPostId);
+        // 条件查询
+        this.mbjLambdaQuery(wrapper, pageQueryDTO);
+        // 分页查询
         IPage<SysUserQueryVO> page = sysUserMapper
             .selectJoinPage(Page.of(pagination.getPageNo(), pagination.getPageSize()), SysUserQueryVO.class, wrapper);
         pagination.setTotal(page.getTotal());
         return page.getRecords();
+    }
+
+    /**
+     * MPJLambdaWrapper 查询条件
+     * @param wrapper 系统管理-用户表 分页查询请求对象
+     */
+    private void mbjLambdaQuery(MPJLambdaWrapper<SysUserPO> wrapper, SysUserPageQueryDTO pageQueryDto) {
+        // 默认按照更新时间倒序排序
+        wrapper.orderByDesc(SysUserPO::getUpdateAt);
+        // 如果 用户真实姓名 不为空
+        wrapper.eqIfExists(SysUserPO::getRealName, pageQueryDto.getRealName());
+        // 如果 用户昵称（花名） 不为空
+        wrapper.eqIfExists(SysUserPO::getNickName, pageQueryDto.getNickName());
+        // 如果 身份证 不为空
+        wrapper.eqIfExists(SysUserPO::getIdCard, pageQueryDto.getIdCard());
+        // 如果 身份证 不为空
+        wrapper.eqIfExists(SysUserPO::getIdCard, pageQueryDto.getIdCard());
+        // 如果 用户头像 不为空
+        wrapper.eqIfExists(SysUserPO::getAvatar, pageQueryDto.getAvatar());
+        // 如果 性别：详见字典 不为空
+        wrapper.eqIfExists(SysUserPO::getSex, pageQueryDto.getSex());
+        // 如果 详细地址 不为空
+        wrapper.eqIfExists(SysUserPO::getAddress, pageQueryDto.getAddress());
+        // 如果 邮箱 不为空
+        wrapper.eqIfExists(SysUserPO::getEmail, pageQueryDto.getEmail());
+        // 如果 手机号码 不为空
+        wrapper.eqIfExists(SysUserPO::getMobile, pageQueryDto.getMobile());
+        // 如果 电话号码 不为空
+        wrapper.eqIfExists(SysUserPO::getTel, pageQueryDto.getTel());
+        // 如果 传真号码 不为空
+        wrapper.eqIfExists(SysUserPO::getFax, pageQueryDto.getFax());
+        // 如果 皮肤风格 不为空
+        wrapper.eqIfExists(SysUserPO::getSkins, pageQueryDto.getSkins());
+        // 如果 所在区域或者部门ID，多数据请用逗号隔开 不为空
+        wrapper.eqIfExists(SysUserPO::getOrgId, pageQueryDto.getOrgId());
+        // 如果 所在区域或者部门编码code，多数据请用逗号隔开 不为空
+        wrapper.eqIfExists(SysUserPO::getOrgCode, pageQueryDto.getOrgCode());
+        // 如果 排序 不为空
+        wrapper.eqIfExists(SysUserPO::getSort, pageQueryDto.getSort());
+        // 如果 状态：1正常，0不正常 不为空
+        wrapper.eqIfExists(SysUserPO::getStatus, pageQueryDto.getStatus());
+        // 如果 登陆次数 不为空
+        wrapper.eqIfExists(SysUserPO::getLoginNums, pageQueryDto.getLoginNums());
+        // 如果 登录失败次数 不为空
+        wrapper.eqIfExists(SysUserPO::getLoginErrorNums, pageQueryDto.getLoginErrorNums());
+        // 如果 登录时间 不为空
+        wrapper.eqIfExists(SysUserPO::getLoginAt, pageQueryDto.getLoginAt());
+        // 如果 备注 不为空
+        wrapper.eqIfExists(SysUserPO::getRemark, pageQueryDto.getRemark());
     }
 
     /**

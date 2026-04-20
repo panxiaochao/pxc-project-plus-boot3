@@ -16,6 +16,7 @@ import io.github.panxiaochao.project.system.infrastructure.dao.mapper.SysUserRol
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserRolePO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -173,11 +174,14 @@ public class SysUserRoleServiceImpl implements ISysUserRoleService, ISysUserRole
 
     /**
      * 根据用户ID删除
-     * @param userId 用户ID
+     * @param userIdList 用户ID数组
      */
     @Override
-    public void deleteByUserId(Integer userId) {
-        sysUserRoleMapper.delete(Wrappers.lambdaQuery(SysUserRolePO.class).eq(SysUserRolePO::getUserId, userId));
+    public void deleteByUserId(List<Integer> userIdList) {
+        if (!CollectionUtils.isEmpty(userIdList)) {
+            sysUserRoleMapper
+                .delete(Wrappers.lambdaQuery(SysUserRolePO.class).in(SysUserRolePO::getUserId, userIdList));
+        }
     }
 
 }

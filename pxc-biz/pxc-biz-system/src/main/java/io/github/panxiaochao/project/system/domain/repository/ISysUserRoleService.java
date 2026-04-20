@@ -60,8 +60,8 @@ public interface ISysUserRoleService {
 
     /**
      * 根据用户ID删除
-     * @param userId 用户ID
+     * @param userIdList 用户ID数组
      */
-    void deleteByUserId(Integer userId);
+    void deleteByUserId(List<Integer> userIdList);
 
 }

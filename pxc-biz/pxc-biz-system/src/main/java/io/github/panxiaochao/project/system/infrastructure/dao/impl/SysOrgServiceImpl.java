@@ -149,22 +149,6 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
             if (pageQueryDto.getSort() != null) {
                 lqw.eq(SysOrgPO::getSort, pageQueryDto.getSort());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysOrgPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysOrgPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysOrgPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysOrgPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

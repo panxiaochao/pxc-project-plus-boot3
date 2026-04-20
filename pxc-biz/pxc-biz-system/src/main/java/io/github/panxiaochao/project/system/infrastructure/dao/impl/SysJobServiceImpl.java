@@ -133,22 +133,6 @@ public class SysJobServiceImpl implements ISysJobService, ISysJobReadModelServic
             if (StringUtils.isNotBlank(pageQueryDto.getRemark())) {
                 lqw.eq(SysJobPO::getRemark, pageQueryDto.getRemark());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysJobPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysJobPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysJobPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysJobPO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

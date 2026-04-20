@@ -92,10 +92,12 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
     @Override
     public SysPostVO getOneByPostCode(String postCode) {
         try {
-            LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
-            lqw.eq(SysPostPO::getPostCode, postCode);
-            lqw.eq(SysPostPO::getStatus, GlobalConstant.STATUS_NORMAL);
-            SysPostPO sysPostPO = sysPostMapper.selectOne(lqw);
+            //@formatter:off
+            SysPostPO sysPostPO = sysPostMapper
+                .selectOne(new LambdaQueryWrapper<SysPostPO>()
+                        .eq(SysPostPO::getPostCode, postCode)
+                        .eq(SysPostPO::getStatus, GlobalConstant.STATUS_NORMAL));
+            //@formatter:on
             return ISysPostPOConvert.INSTANCE.toVO(sysPostPO);
         }
         catch (Exception e) {
@@ -132,22 +134,6 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
             // 如果 状态：1正常，0不正常 不为空
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {
                 lqw.eq(SysPostPO::getStatus, pageQueryDto.getStatus());
-            }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysPostPO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysPostPO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysPostPO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysPostPO::getUpdateAt, pageQueryDto.getUpdateAt());
             }
         }
         return lqw;

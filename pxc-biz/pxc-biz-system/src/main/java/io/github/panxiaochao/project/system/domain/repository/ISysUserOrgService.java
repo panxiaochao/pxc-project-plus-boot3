@@ -60,15 +60,15 @@ public interface ISysUserOrgService {
 
     /**
      * 根据用户ID删除组织关系
-     * @param userId 用户主键
+     * @param userIdList 用户主键数组
      */
-    void deleteByUserId(Integer userId);
+    void deleteByUserId(List<Integer> userIdList);
 
     /**
      * 根据组织ID删除组织关系
-     * @param orgId 组织主键
+     * @param orgIdList 组织主键数组
      */
-    void deleteByOrgId(Integer orgId);
+    void deleteByOrgId(List<Integer> orgIdList);
 
     /**
      * 根据用户ID和组织ID更新用户组织关联关系

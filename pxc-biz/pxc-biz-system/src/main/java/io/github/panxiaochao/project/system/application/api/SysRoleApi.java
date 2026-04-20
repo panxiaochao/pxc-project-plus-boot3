@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.component.select.Select;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleUpdateDTO;
@@ -79,5 +80,18 @@ public class SysRoleApi {
     public R<Void> deleteByIds(List<Integer> idList) {
         return sysRoleAppService.deleteByIds(idList);
     }
+
+    @Operation(summary = "角色数组", description = "角色数组", method = "GET")
+    @GetMapping(value = "/listRole")
+    public R<List<Select<Integer>>> listRole(SysRolePageQueryDTO queryDTO) {
+        return R.ok(sysRoleAppService.listRole(queryDTO));
+    }
+
+    @Operation(summary = "获取数据权限下拉菜单", description = "获取数据权限下拉菜单", method = "GET")
+    @GetMapping(value = "/selectDataScopes")
+    public R<List<Select<String>>> selectDataScopes() {
+        return R.ok(sysRoleAppService.selectDataScopes());
+    }
+
 
 }

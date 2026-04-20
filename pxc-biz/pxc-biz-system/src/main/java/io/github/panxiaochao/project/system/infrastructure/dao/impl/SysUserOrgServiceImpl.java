@@ -16,6 +16,7 @@ import io.github.panxiaochao.project.system.infrastructure.dao.mapper.SysUserOrg
 import io.github.panxiaochao.project.system.infrastructure.dao.po.SysUserOrgPO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -173,20 +174,24 @@ public class SysUserOrgServiceImpl implements ISysUserOrgService, ISysUserOrgRea
 
     /**
      * 根据用户ID删除组织关系
-     * @param userId 用户主键
+     * @param userIdList 用户主键数组
      */
     @Override
-    public void deleteByUserId(Integer userId) {
-        sysUserOrgMapper.delete(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getUserId, userId));
+    public void deleteByUserId(List<Integer> userIdList) {
+        if (!CollectionUtils.isEmpty(userIdList)) {
+            sysUserOrgMapper.delete(Wrappers.lambdaQuery(SysUserOrgPO.class).in(SysUserOrgPO::getUserId, userIdList));
+        }
     }
 
     /**
      * 根据组织ID删除组织关系
-     * @param orgId 组织主键
+     * @param orgIdList 组织主键数组
      */
     @Override
-    public void deleteByOrgId(Integer orgId) {
-        sysUserOrgMapper.delete(Wrappers.lambdaQuery(SysUserOrgPO.class).eq(SysUserOrgPO::getOrgId, orgId));
+    public void deleteByOrgId(List<Integer> orgIdList) {
+        if (!CollectionUtils.isEmpty(orgIdList)) {
+            sysUserOrgMapper.delete(Wrappers.lambdaQuery(SysUserOrgPO.class).in(SysUserOrgPO::getOrgId, orgIdList));
+        }
     }
 
     /**

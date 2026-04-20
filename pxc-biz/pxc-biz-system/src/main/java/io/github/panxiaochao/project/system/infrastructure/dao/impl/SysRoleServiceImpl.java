@@ -117,22 +117,6 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
             if (StringUtils.isNotBlank(pageQueryDto.getStatus())) {
                 lqw.eq(SysRolePO::getStatus, pageQueryDto.getStatus());
             }
-            // 如果 创建人 不为空
-            if (pageQueryDto.getCreateBy() != null) {
-                lqw.eq(SysRolePO::getCreateBy, pageQueryDto.getCreateBy());
-            }
-            // 如果 更新人 不为空
-            if (pageQueryDto.getUpdateBy() != null) {
-                lqw.eq(SysRolePO::getUpdateBy, pageQueryDto.getUpdateBy());
-            }
-            // 如果 创建时间 不为空
-            if (pageQueryDto.getCreateAt() != null) {
-                lqw.eq(SysRolePO::getCreateAt, pageQueryDto.getCreateAt());
-            }
-            // 如果 更新时间 不为空
-            if (pageQueryDto.getUpdateAt() != null) {
-                lqw.eq(SysRolePO::getUpdateAt, pageQueryDto.getUpdateAt());
-            }
         }
         return lqw;
     }

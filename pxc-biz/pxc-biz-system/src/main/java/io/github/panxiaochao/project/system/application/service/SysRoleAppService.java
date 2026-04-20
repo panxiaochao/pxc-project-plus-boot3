@@ -1,8 +1,13 @@
 package io.github.panxiaochao.project.system.application.service;
 
+import io.github.panxiaochao.boot3.common.constants.CommonConstant;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.component.select.SelectBuilder;
+import io.github.panxiaochao.boot3.component.select.SelectOption;
+import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleUpdateDTO;
@@ -14,8 +19,13 @@ import io.github.panxiaochao.project.system.domain.entity.sysrole.SysRoleBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -38,6 +48,11 @@ public class SysRoleAppService {
      * 系统管理-角色表 读模型服务类
      */
     private final ISysRoleReadModelService sysRoleReadModelService;
+
+    /**
+     * 数据权限 常量名
+     */
+    private static final String DATA_SCOPE = "DATA_SCOPE";
 
     /**
      * 查询分页
@@ -68,6 +83,13 @@ public class SysRoleAppService {
      */
     public R<SysRoleVO> save(SysRoleCreateDTO sysRoleCreateDTO) {
         SysRoleBO sysRole = ISysRoleDTOConvert.INSTANCE.fromCreateDTO(sysRoleCreateDTO);
+        SysRolePageQueryDTO queryRequest = new SysRolePageQueryDTO();
+        queryRequest.setRoleCode(sysRole.getRoleCode());
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        SysRoleVO one = sysRoleReadModelService.getOne(queryRequest);
+        if (Objects.nonNull(one)) {
+            return R.fail("角色编码[" + sysRole.getRoleCode() + "]已存在");
+        }
         sysRole = sysRoleService.save(sysRole);
         SysRoleVO sysRoleVO = ISysRoleDTOConvert.INSTANCE.toVO(sysRole);
         return R.ok(sysRoleVO);
@@ -102,6 +124,38 @@ public class SysRoleAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysRoleService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 查询列表
+     * @param queryDTO 系统管理-角色表 查询查询请求对象
+     * @return 结果数组
+     */
+    public List<Select<Integer>> listRole(SysRolePageQueryDTO queryDTO) {
+        queryDTO.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        List<SysRoleQueryVO> list = sysRoleReadModelService.selectList(queryDTO);
+        List<SelectOption<Integer>> selectOptionList = list.stream()
+            .map(m -> SelectOption.of(m.getId(), m.getRoleName(), m.getSort(), (extraMap) -> {
+                extraMap.put("label", m.getRoleName());
+            }))
+            .collect(Collectors.toList());
+        List<Select<Integer>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
+    }
+
+    /**
+     * 获取数据权限下拉菜单
+     * @return 返回通用下拉菜单
+     */
+    public List<Select<String>> selectDataScopes() {
+        Map<String, String> dictMap = DictUtil.getAllDictByDictCode(DATA_SCOPE);
+        List<SelectOption<String>> selectOptionList = dictMap.entrySet()
+            .stream()
+            .map(m -> SelectOption.of(m.getKey(), m.getValue(), m.getValue(),
+                    (extraMap) -> extraMap.put("label", m.getValue())))
+            .collect(Collectors.toList());
+        List<Select<String>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
     }
 
 }
