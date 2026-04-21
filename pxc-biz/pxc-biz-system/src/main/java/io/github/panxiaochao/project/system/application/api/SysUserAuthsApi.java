@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.component.select.Select;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsUpdateDTO;
@@ -78,6 +79,12 @@ public class SysUserAuthsApi {
     @PostMapping(value = "/deleteBatch")
     public R<Void> deleteByIds(@RequestBody List<Integer> idList) {
         return sysUserAuthsAppService.deleteByIds(idList);
+    }
+
+    @Operation(summary = "获取登录类型下拉菜单", description = "获取登录类型下拉菜单")
+    @GetMapping(value = "/selectIdentityTypes")
+    public R<List<Select<String>>> selectIdentityTypes() {
+        return R.ok(sysUserAuthsAppService.selectIdentityTypes());
     }
 
 }

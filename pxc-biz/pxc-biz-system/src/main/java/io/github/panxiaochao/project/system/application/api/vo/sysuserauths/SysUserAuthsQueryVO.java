@@ -33,6 +33,9 @@ public class SysUserAuthsQueryVO {
     @Schema(description = "登录标识(手机号/邮箱/用户名/微信/微博/QQ）等唯一标识，等同于登录账号")
     private String identifier;
 
+    @Schema(description = "登录类型(手机号/邮箱/用户名/微信/微博/QQ）等")
+    private String identityTypeStr;
+
     @Schema(description = "密码凭证（自建密码，或者第三方access_token）")
     private String credential;
 

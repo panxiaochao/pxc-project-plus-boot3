@@ -1,6 +1,7 @@
 package io.github.panxiaochao.project.system.infrastructure.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
@@ -164,7 +165,9 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
     @Override
     public void update(SysUserAuthsBO sysUserAuths) {
         SysUserAuthsPO sysUserAuthsPO = ISysUserAuthsPOConvert.INSTANCE.fromEntity(sysUserAuths);
-        sysUserAuthsMapper.updateById(sysUserAuthsPO);
+        sysUserAuthsMapper.update(sysUserAuthsPO,
+                new LambdaUpdateWrapper<SysUserAuthsPO>().eq(SysUserAuthsPO::getId, sysUserAuthsPO.getId())
+                    .set(SysUserAuthsPO::getExpireAt, sysUserAuths.getExpireAt()));
     }
 
     /**
