@@ -81,16 +81,4 @@ public class SysUserQueryDTO {
     @Schema(description = "备注")
     private String remark;
 
-    @Schema(description = "创建人")
-    private Integer createBy;
-
-    @Schema(description = "更新人")
-    private Integer updateBy;
-
-    @Schema(description = "创建时间")
-    private LocalDateTime createAt;
-
-    @Schema(description = "更新时间")
-    private LocalDateTime updateAt;
-
 }

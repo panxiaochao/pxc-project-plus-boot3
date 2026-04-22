@@ -48,7 +48,4 @@ public class SysLogLoginQueryDTO {
     @Schema(description = "状态: 1-成功 0-失败")
     private String status;
 
-    @Schema(description = "创建时间")
-    private LocalDateTime createAt;
-
 }

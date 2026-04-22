@@ -66,7 +66,4 @@ public class SysLogOperateQueryDTO {
     @Schema(description = "操作用户")
     private String opUser;
 
-    @Schema(description = "创建时间")
-    private LocalDateTime createAt;
-
 }
