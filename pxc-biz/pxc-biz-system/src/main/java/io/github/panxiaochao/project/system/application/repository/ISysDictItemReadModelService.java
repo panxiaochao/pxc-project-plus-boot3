@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemVO;
 
@@ -30,13 +31,13 @@ public interface ISysDictItemReadModelService {
      * @param queryDto 系统管理-数据字典配置表 查询请求对象数组
      * @return 系统管理-数据字典配置表 结果数组
      */
-    List<SysDictItemQueryVO> selectList(SysDictItemPageQueryDTO queryDto);
+    List<SysDictItemQueryVO> selectList(SysDictItemQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-数据字典配置表 请求对象
      * @return 系统管理-数据字典配置表 对象
      */
-    SysDictItemVO getOne(SysDictItemPageQueryDTO queryDto);
+    SysDictItemVO getOne(SysDictItemQueryDTO queryDto);
 
 }

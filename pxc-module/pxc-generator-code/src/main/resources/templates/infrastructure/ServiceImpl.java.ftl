@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import ${application}.api.dto.${entity?lower_case}.${entity}PageQueryDTO;
+import ${application}.api.dto.${entity?lower_case}.${entity}QueryDTO;
 import ${application}.api.vo.${entity?lower_case}.${entity}QueryVO;
 import ${application}.api.vo.${entity?lower_case}.${entity}VO;
 import ${application}.repository.I${entity}ReadModelService;
@@ -58,9 +59,9 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @return 结果数组
      */
     @Override
-    public List<${entity}QueryVO> selectList(${entity}PageQueryDTO queryDto) {
+    public List<${entity}QueryVO> selectList(${entity}QueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<${entity}PO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<${entity}PO> lqw = Wrappers.lambdaQuery();
         return I${entity}POConvert.INSTANCE.toQueryVO(${entity?uncap_first}Mapper.selectList(lqw));
     }
 
@@ -70,10 +71,10 @@ public class ${table.serviceImplName} implements I${entity}Service, I${entity}Re
      * @return ${table.comment!} 查询响应对象
      */
     @Override
-    public ${entity}VO getOne(${entity}PageQueryDTO queryDto) {
+    public ${entity}VO getOne(${entity}QueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<${entity}PO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<${entity}PO> lqw = Wrappers.lambdaQuery();
             ${entity}PO ${entity?uncap_first}PO = ${entity?uncap_first}Mapper.selectOne(lqw);
             return I${entity}POConvert.INSTANCE.toVO(${entity?uncap_first}PO);
         }

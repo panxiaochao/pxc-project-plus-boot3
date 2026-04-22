@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemVO;
 import io.github.panxiaochao.project.system.application.repository.ISysDictItemReadModelService;
@@ -60,9 +61,10 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
      * @return 结果数组
      */
     @Override
-    public List<SysDictItemQueryVO> selectList(SysDictItemPageQueryDTO queryDto) {
+    public List<SysDictItemQueryVO> selectList(SysDictItemQueryDTO queryDto) {
+        LambdaQueryWrapper<SysDictItemPO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
-        LambdaQueryWrapper<SysDictItemPO> lqw = lambdaQuery(queryDto);
+        lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysDictItemPO::getStatus, queryDto.getStatus());
         return ISysDictItemPOConvert.INSTANCE.toQueryVO(sysDictItemMapper.selectList(lqw));
     }
 
@@ -72,10 +74,10 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
      * @return 系统管理-数据字典配置表 查询响应对象
      */
     @Override
-    public SysDictItemVO getOne(SysDictItemPageQueryDTO queryDto) {
+    public SysDictItemVO getOne(SysDictItemQueryDTO queryDto) {
         try {
+            LambdaQueryWrapper<SysDictItemPO> lqw = Wrappers.lambdaQuery();
             // 构造查询条件
-            LambdaQueryWrapper<SysDictItemPO> lqw = lambdaQuery(queryDto);
             SysDictItemPO sysDictItemPO = sysDictItemMapper.selectOne(lqw);
             return ISysDictItemPOConvert.INSTANCE.toVO(sysDictItemPO);
         }

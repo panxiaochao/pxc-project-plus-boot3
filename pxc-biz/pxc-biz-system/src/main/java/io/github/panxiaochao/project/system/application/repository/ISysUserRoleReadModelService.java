@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRolePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleVO;
 
@@ -30,13 +31,13 @@ public interface ISysUserRoleReadModelService {
      * @param queryDto 系统管理-用户角色表 查询请求对象数组
      * @return 系统管理-用户角色表 结果数组
      */
-    List<SysUserRoleQueryVO> selectList(SysUserRolePageQueryDTO queryDto);
+    List<SysUserRoleQueryVO> selectList(SysUserRoleQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-用户角色表 请求对象
      * @return 系统管理-用户角色表 对象
      */
-    SysUserRoleVO getOne(SysUserRolePageQueryDTO queryDto);
+    SysUserRoleVO getOne(SysUserRoleQueryDTO queryDto);
 
 }

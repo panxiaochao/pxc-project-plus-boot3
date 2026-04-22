@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleVO;
 import io.github.panxiaochao.project.system.application.repository.ISysRoleReadModelService;
@@ -59,9 +60,10 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysRoleQueryVO> selectList(SysRolePageQueryDTO queryDto) {
+    public List<SysRoleQueryVO> selectList(SysRoleQueryDTO queryDto) {
+        LambdaQueryWrapper<SysRolePO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
-        LambdaQueryWrapper<SysRolePO> lqw = lambdaQuery(queryDto);
+        lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysRolePO::getStatus, queryDto.getStatus());
         return ISysRolePOConvert.INSTANCE.toQueryVO(sysRoleMapper.selectList(lqw));
     }
 
@@ -71,10 +73,12 @@ public class SysRoleServiceImpl implements ISysRoleService, ISysRoleReadModelSer
      * @return 系统管理-角色表 查询响应对象
      */
     @Override
-    public SysRoleVO getOne(SysRolePageQueryDTO queryDto) {
+    public SysRoleVO getOne(SysRoleQueryDTO queryDto) {
         try {
+            LambdaQueryWrapper<SysRolePO> lqw = Wrappers.lambdaQuery();
             // 构造查询条件
-            LambdaQueryWrapper<SysRolePO> lqw = lambdaQuery(queryDto);
+            lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysRolePO::getStatus, queryDto.getStatus());
+            lqw.eq(StringUtils.isNotBlank(queryDto.getRoleCode()), SysRolePO::getRoleCode, queryDto.getRoleCode());
             SysRolePO sysRolePO = sysRoleMapper.selectOne(lqw);
             return ISysRolePOConvert.INSTANCE.toVO(sysRolePO);
         }

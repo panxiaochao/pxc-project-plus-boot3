@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginVO;
 import io.github.panxiaochao.project.system.application.repository.ISysLogLoginReadModelService;
@@ -60,9 +61,9 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
      * @return 结果数组
      */
     @Override
-    public List<SysLogLoginQueryVO> selectList(SysLogLoginPageQueryDTO queryDto) {
+    public List<SysLogLoginQueryVO> selectList(SysLogLoginQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysLogLoginPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysLogLoginPO> lqw = Wrappers.lambdaQuery();
         return ISysLogLoginPOConvert.INSTANCE.toQueryVO(sysLogLoginMapper.selectList(lqw));
     }
 
@@ -72,10 +73,10 @@ public class SysLogLoginServiceImpl implements ISysLogLoginService, ISysLogLogin
      * @return 系统管理-系统日志登录/登出表 查询响应对象
      */
     @Override
-    public SysLogLoginVO getOne(SysLogLoginPageQueryDTO queryDto) {
+    public SysLogLoginVO getOne(SysLogLoginQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysLogLoginPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysLogLoginPO> lqw = Wrappers.lambdaQuery();
             SysLogLoginPO sysLogLoginPO = sysLogLoginMapper.selectOne(lqw);
             return ISysLogLoginPOConvert.INSTANCE.toVO(sysLogLoginPO);
         }

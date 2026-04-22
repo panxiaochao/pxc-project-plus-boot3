@@ -9,7 +9,7 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * <p>${table.comment!} 查询份分页请求对象.</p>
+ * <p>${table.comment!} 查询分页请求对象.</p>
  *
  * @author ${author}
  * @since ${date}

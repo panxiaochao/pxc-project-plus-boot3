@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackagePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantPackageReadModelService;
@@ -60,9 +61,9 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
      * @return 结果数组
      */
     @Override
-    public List<SysTenantPackageQueryVO> selectList(SysTenantPackagePageQueryDTO queryDto) {
+    public List<SysTenantPackageQueryVO> selectList(SysTenantPackageQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantPackagePO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysTenantPackagePO> lqw = Wrappers.lambdaQuery();
         return ISysTenantPackagePOConvert.INSTANCE.toQueryVO(sysTenantPackageMapper.selectList(lqw));
     }
 
@@ -72,10 +73,10 @@ public class SysTenantPackageServiceImpl implements ISysTenantPackageService, IS
      * @return 系统管理-租户套餐表 查询响应对象
      */
     @Override
-    public SysTenantPackageVO getOne(SysTenantPackagePageQueryDTO queryDto) {
+    public SysTenantPackageVO getOne(SysTenantPackageQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantPackagePO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysTenantPackagePO> lqw = Wrappers.lambdaQuery();
             SysTenantPackagePO sysTenantPackagePO = sysTenantPackageMapper.selectOne(lqw);
             return ISysTenantPackagePOConvert.INSTANCE.toVO(sysTenantPackagePO);
         }

@@ -9,6 +9,7 @@ import io.github.panxiaochao.boot3.component.select.SelectBuilder;
 import io.github.panxiaochao.boot3.component.select.SelectOption;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
@@ -78,7 +79,7 @@ public class SysPostAppService {
     public R<SysPostVO> save(SysPostCreateDTO sysPostCreateDTO) {
         SysPostBO sysPost = ISysPostDTOConvert.INSTANCE.fromCreateDTO(sysPostCreateDTO);
         // 验证是否重复
-        SysPostPageQueryDTO queryRequest = new SysPostPageQueryDTO();
+        SysPostQueryDTO queryRequest = new SysPostQueryDTO();
         queryRequest.setPostCode(sysPost.getPostCode());
         queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
         SysPostVO one = sysPostReadModelService.getOne(queryRequest);
@@ -98,7 +99,7 @@ public class SysPostAppService {
     public R<Void> update(SysPostUpdateDTO sysPostUpdateDTO) {
         SysPostBO sysPost = ISysPostDTOConvert.INSTANCE.fromUpdateDTO(sysPostUpdateDTO);
         // 验证是否重复
-        SysPostPageQueryDTO queryRequest = new SysPostPageQueryDTO();
+        SysPostQueryDTO queryRequest = new SysPostQueryDTO();
         queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
         List<SysPostQueryVO> list = sysPostReadModelService.selectList(queryRequest);
         Optional<SysPostQueryVO> optionalSysPostQueryVO = list.stream()
@@ -143,7 +144,9 @@ public class SysPostAppService {
      * @return 返回通用下拉菜单
      */
     public List<Select<String>> selectPosts() {
-        List<SysPostQueryVO> list = sysPostReadModelService.selectList(new SysPostPageQueryDTO());
+        SysPostQueryDTO queryRequest = new SysPostQueryDTO();
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        List<SysPostQueryVO> list = sysPostReadModelService.selectList(queryRequest);
         List<SelectOption<String>> selectOptionList = list.stream()
             .map(m -> SelectOption.of(m.getPostCode(), m.getPostName(), m.getSort(),
                     (extraMap) -> extraMap.put("label", m.getPostName())))

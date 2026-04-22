@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.systenantpackagemenu.SysTenantPackageMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackagemenu.SysTenantPackageMenuVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantPackageMenuReadModelService;
@@ -61,9 +62,9 @@ public class SysTenantPackageMenuServiceImpl
      * @return 结果数组
      */
     @Override
-    public List<SysTenantPackageMenuQueryVO> selectList(SysTenantPackageMenuPageQueryDTO queryDto) {
+    public List<SysTenantPackageMenuQueryVO> selectList(SysTenantPackageMenuQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = Wrappers.lambdaQuery();
         return ISysTenantPackageMenuPOConvert.INSTANCE.toQueryVO(sysTenantPackageMenuMapper.selectList(lqw));
     }
 
@@ -73,10 +74,10 @@ public class SysTenantPackageMenuServiceImpl
      * @return 系统管理-租户套餐菜单表 查询响应对象
      */
     @Override
-    public SysTenantPackageMenuVO getOne(SysTenantPackageMenuPageQueryDTO queryDto) {
+    public SysTenantPackageMenuVO getOne(SysTenantPackageMenuQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysTenantPackageMenuPO> lqw = Wrappers.lambdaQuery();
             SysTenantPackageMenuPO sysTenantPackageMenuPO = sysTenantPackageMenuMapper.selectOne(lqw);
             return ISysTenantPackageMenuPOConvert.INSTANCE.toVO(sysTenantPackageMenuPO);
         }

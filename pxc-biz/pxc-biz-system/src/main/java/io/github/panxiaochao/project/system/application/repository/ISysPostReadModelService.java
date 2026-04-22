@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 
@@ -30,14 +31,14 @@ public interface ISysPostReadModelService {
      * @param queryDto 系统管理-岗位表 查询请求对象数组
      * @return 系统管理-岗位表 结果数组
      */
-    List<SysPostQueryVO> selectList(SysPostPageQueryDTO queryDto);
+    List<SysPostQueryVO> selectList(SysPostQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-岗位表 请求对象
      * @return 系统管理-岗位表 对象
      */
-    SysPostVO getOne(SysPostPageQueryDTO queryDto);
+    SysPostVO getOne(SysPostQueryDTO queryDto);
 
     /**
      * 根据岗位编码查询单条记录

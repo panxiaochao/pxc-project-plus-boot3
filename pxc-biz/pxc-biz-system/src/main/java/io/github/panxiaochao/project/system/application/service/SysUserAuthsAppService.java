@@ -11,6 +11,7 @@ import io.github.panxiaochao.boot3.utils.StrUtil;
 import io.github.panxiaochao.boot3.utils.StringPools;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsVO;
@@ -93,7 +94,7 @@ public class SysUserAuthsAppService {
      */
     public R<SysUserAuthsVO> save(SysUserAuthsCreateDTO sysUserAuthsCreateDTO) {
         SysUserAuthsBO sysUserAuths = ISysUserAuthsDTOConvert.INSTANCE.fromCreateDTO(sysUserAuthsCreateDTO);
-        SysUserAuthsPageQueryDTO queryRequest = new SysUserAuthsPageQueryDTO();
+        SysUserAuthsQueryDTO queryRequest = new SysUserAuthsQueryDTO();
         List<SysUserAuthsQueryVO> list = sysUserAuthsReadModelService.selectList(queryRequest);
         if (!CollectionUtils.isEmpty(list)) {
             // 1.先判断登录类型有没有创建过
@@ -127,7 +128,7 @@ public class SysUserAuthsAppService {
     public R<Void> update(SysUserAuthsUpdateDTO sysUserAuthsUpdateDTO) {
         SysUserAuthsBO sysUserAuths = ISysUserAuthsDTOConvert.INSTANCE.fromUpdateDTO(sysUserAuthsUpdateDTO);
         // 既然要更新，用户下查询必定有数据，至少一条
-        SysUserAuthsPageQueryDTO queryRequest = new SysUserAuthsPageQueryDTO();
+        SysUserAuthsQueryDTO queryRequest = new SysUserAuthsQueryDTO();
         queryRequest.setUserId(sysUserAuths.getUserId());
         List<SysUserAuthsQueryVO> list = sysUserAuthsReadModelService.selectList(queryRequest);
         Optional<SysUserAuthsQueryVO> optionalSysUserAuths = list.stream()

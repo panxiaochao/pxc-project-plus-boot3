@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserReadModelService;
@@ -119,7 +120,7 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysUserQueryVO> selectList(SysUserPageQueryDTO queryDto) {
+    public List<SysUserQueryVO> selectList(SysUserQueryDTO queryDto) {
         // 构造查询条件
         LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(queryDto);
         return ISysUserPOConvert.INSTANCE.toQueryVO(sysUserMapper.selectList(lqw));
@@ -131,7 +132,7 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      * @return 系统管理-用户表 查询响应对象
      */
     @Override
-    public SysUserVO getOne(SysUserPageQueryDTO queryDto) {
+    public SysUserVO getOne(SysUserQueryDTO queryDto) {
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysUserPO> lqw = lambdaQuery(queryDto);
@@ -148,7 +149,7 @@ public class SysUserServiceImpl implements ISysUserService, ISysUserReadModelSer
      * @param pageQueryDto 系统管理-用户表 分页查询请求对象
      * @return 系统管理-用户表 Lambda表达式查询条件
      */
-    private LambdaQueryWrapper<SysUserPO> lambdaQuery(SysUserPageQueryDTO pageQueryDto) {
+    private LambdaQueryWrapper<SysUserPO> lambdaQuery(SysUserQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysUserPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
             // 默认按照主键倒序排序

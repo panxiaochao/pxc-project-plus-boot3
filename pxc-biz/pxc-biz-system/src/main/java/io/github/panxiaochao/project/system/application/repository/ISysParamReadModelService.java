@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamVO;
 
@@ -30,13 +31,13 @@ public interface ISysParamReadModelService {
      * @param queryDto 系统管理-系统参数 查询请求对象数组
      * @return 系统管理-系统参数 结果数组
      */
-    List<SysParamQueryVO> selectList(SysParamPageQueryDTO queryDto);
+    List<SysParamQueryVO> selectList(SysParamQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-系统参数 请求对象
      * @return 系统管理-系统参数 对象
      */
-    SysParamVO getOne(SysParamPageQueryDTO queryDto);
+    SysParamVO getOne(SysParamQueryDTO queryDto);
 
 }

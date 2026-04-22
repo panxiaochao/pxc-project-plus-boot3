@@ -6,6 +6,7 @@ import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.boot3.utils.StringPools;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRolePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserrole.SysUserRoleUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserrole.SysUserRoleVO;
@@ -127,7 +128,7 @@ public class SysUserRoleAppService {
      * @return 角色ID数组
      */
     public List<Integer> rolesByUserId(Integer userId) {
-        SysUserRolePageQueryDTO queryRequest = new SysUserRolePageQueryDTO();
+        SysUserRoleQueryDTO queryRequest = new SysUserRoleQueryDTO();
         queryRequest.setUserId(userId);
         List<SysUserRoleQueryVO> list = sysUserRoleReadModelService.selectList(queryRequest);
         if (!CollectionUtils.isEmpty(list)) {

@@ -8,6 +8,7 @@ import io.github.panxiaochao.boot3.redis.utils.RedissonUtil;
 import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamVO;
@@ -126,9 +127,9 @@ public class SysParamAppService {
         RedissonClient redissonClient = RedissonUtil.ofRedissonClient();
         RBatch batch = redissonClient.createBatch();
         long startTime = System.currentTimeMillis();
-        SysParamPageQueryDTO sysParamPageQueryDTO = new SysParamPageQueryDTO();
-        sysParamPageQueryDTO.setStatus(CommonConstant.STATUS_NORMAL.toString());
-        List<SysParamQueryVO> list = sysParamReadModelService.selectList(sysParamPageQueryDTO);
+        SysParamQueryDTO sysParamQueryDTO = new SysParamQueryDTO();
+        sysParamQueryDTO.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        List<SysParamQueryVO> list = sysParamReadModelService.selectList(sysParamQueryDTO);
         RedissonUtil.deleteKeyByPattern(GlobalRedisConstant.KEY_ALL_SYS_PARAM);
         list.forEach(s -> {
             RMapAsync<String, Object> sysParamMap = batch.getMap(GlobalRedisConstant.KEY_SYS_PARAM + s.getParamKey());

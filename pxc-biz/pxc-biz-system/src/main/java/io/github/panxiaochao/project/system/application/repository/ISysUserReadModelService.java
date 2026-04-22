@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserVO;
 
@@ -30,14 +31,14 @@ public interface ISysUserReadModelService {
      * @param queryDto 系统管理-用户表 查询请求对象数组
      * @return 系统管理-用户表 结果数组
      */
-    List<SysUserQueryVO> selectList(SysUserPageQueryDTO queryDto);
+    List<SysUserQueryVO> selectList(SysUserQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-用户表 请求对象
      * @return 系统管理-用户表 对象
      */
-    SysUserVO getOne(SysUserPageQueryDTO queryDto);
+    SysUserVO getOne(SysUserQueryDTO queryDto);
 
     /**
      * 根据用户ID查询用户信息和岗位关联

@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysjob.SysJobPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysjob.SysJobQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysjob.SysJobQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysjob.SysJobVO;
 
@@ -30,13 +31,13 @@ public interface ISysJobReadModelService {
      * @param queryDto 系统管理-定时任务调度表 查询请求对象数组
      * @return 系统管理-定时任务调度表 结果数组
      */
-    List<SysJobQueryVO> selectList(SysJobPageQueryDTO queryDto);
+    List<SysJobQueryVO> selectList(SysJobQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-定时任务调度表 请求对象
      * @return 系统管理-定时任务调度表 对象
      */
-    SysJobVO getOne(SysJobPageQueryDTO queryDto);
+    SysJobVO getOne(SysJobQueryDTO queryDto);
 
 }

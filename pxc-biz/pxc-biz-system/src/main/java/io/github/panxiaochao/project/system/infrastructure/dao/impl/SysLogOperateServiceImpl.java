@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.syslogoperate.SysLogOperatePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.syslogoperate.SysLogOperateQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.syslogoperate.SysLogOperateVO;
 import io.github.panxiaochao.project.system.application.repository.ISysLogOperateReadModelService;
@@ -60,9 +61,9 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
      * @return 结果数组
      */
     @Override
-    public List<SysLogOperateQueryVO> selectList(SysLogOperatePageQueryDTO queryDto) {
+    public List<SysLogOperateQueryVO> selectList(SysLogOperateQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysLogOperatePO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysLogOperatePO> lqw = Wrappers.lambdaQuery();
         return ISysLogOperatePOConvert.INSTANCE.toQueryVO(sysLogOperateMapper.selectList(lqw));
     }
 
@@ -72,10 +73,10 @@ public class SysLogOperateServiceImpl implements ISysLogOperateService, ISysLogO
      * @return 系统管理-系统日志操作表 查询响应对象
      */
     @Override
-    public SysLogOperateVO getOne(SysLogOperatePageQueryDTO queryDto) {
+    public SysLogOperateVO getOne(SysLogOperateQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysLogOperatePO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysLogOperatePO> lqw = Wrappers.lambdaQuery();
             SysLogOperatePO sysLogOperatePO = sysLogOperateMapper.selectOne(lqw);
             return ISysLogOperatePOConvert.INSTANCE.toVO(sysLogOperatePO);
         }

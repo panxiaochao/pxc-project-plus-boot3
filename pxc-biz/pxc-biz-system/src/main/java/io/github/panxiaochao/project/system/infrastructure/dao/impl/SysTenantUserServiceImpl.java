@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantuser.SysTenantUserPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.systenantuser.SysTenantUserQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantuser.SysTenantUserQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantuser.SysTenantUserVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantUserReadModelService;
@@ -59,9 +60,9 @@ public class SysTenantUserServiceImpl implements ISysTenantUserService, ISysTena
      * @return 结果数组
      */
     @Override
-    public List<SysTenantUserQueryVO> selectList(SysTenantUserPageQueryDTO queryDto) {
+    public List<SysTenantUserQueryVO> selectList(SysTenantUserQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantUserPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysTenantUserPO> lqw = Wrappers.lambdaQuery();
         return ISysTenantUserPOConvert.INSTANCE.toQueryVO(sysTenantUserMapper.selectList(lqw));
     }
 
@@ -71,10 +72,10 @@ public class SysTenantUserServiceImpl implements ISysTenantUserService, ISysTena
      * @return 系统管理-租户用户表 查询响应对象
      */
     @Override
-    public SysTenantUserVO getOne(SysTenantUserPageQueryDTO queryDto) {
+    public SysTenantUserVO getOne(SysTenantUserQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantUserPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysTenantUserPO> lqw = Wrappers.lambdaQuery();
             SysTenantUserPO sysTenantUserPO = sysTenantUserMapper.selectOne(lqw);
             return ISysTenantUserPOConvert.INSTANCE.toVO(sysTenantUserPO);
         }

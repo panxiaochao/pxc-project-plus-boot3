@@ -1,0 +1,28 @@
+package io.github.panxiaochao.project.system.application.api.dto.systenantuser;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+/**
+ * <p>
+ * 系统管理-租户用户表 查询请求对象.
+ * </p>
+ *
+ * @author Lypxc
+ * @since 2026-04-22
+ */
+@Getter
+@Setter
+@ToString
+@Schema(description = "系统管理-租户用户表 查询请求对象")
+public class SysTenantUserQueryDTO {
+
+    @Schema(description = "租户ID")
+    private Integer tenantId;
+
+    @Schema(description = "用户ID")
+    private Integer userId;
+
+}

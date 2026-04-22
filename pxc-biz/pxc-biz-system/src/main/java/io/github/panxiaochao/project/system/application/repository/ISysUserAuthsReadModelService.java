@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsVO;
 
@@ -30,13 +31,13 @@ public interface ISysUserAuthsReadModelService {
      * @param queryDto 系统管理-用户授权信息表 查询请求对象数组
      * @return 系统管理-用户授权信息表 结果数组
      */
-    List<SysUserAuthsQueryVO> selectList(SysUserAuthsPageQueryDTO queryDto);
+    List<SysUserAuthsQueryVO> selectList(SysUserAuthsQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-用户授权信息表 请求对象
      * @return 系统管理-用户授权信息表 对象
      */
-    SysUserAuthsVO getOne(SysUserAuthsPageQueryDTO queryDto);
+    SysUserAuthsVO getOne(SysUserAuthsQueryDTO queryDto);
 
 }

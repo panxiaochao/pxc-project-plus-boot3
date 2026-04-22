@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserauths.SysUserAuthsVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserAuthsReadModelService;
@@ -62,9 +63,10 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
      * @return 结果数组
      */
     @Override
-    public List<SysUserAuthsQueryVO> selectList(SysUserAuthsPageQueryDTO queryDto) {
+    public List<SysUserAuthsQueryVO> selectList(SysUserAuthsQueryDTO queryDto) {
+        LambdaQueryWrapper<SysUserAuthsPO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
-        LambdaQueryWrapper<SysUserAuthsPO> lqw = lambdaQuery(queryDto);
+        lqw.eq(queryDto.getUserId() != null, SysUserAuthsPO::getUserId, queryDto.getUserId());
         return ISysUserAuthsPOConvert.INSTANCE.toQueryVO(sysUserAuthsMapper.selectList(lqw));
     }
 
@@ -74,10 +76,15 @@ public class SysUserAuthsServiceImpl implements ISysUserAuthsService, ISysUserAu
      * @return 系统管理-用户授权信息表 查询响应对象
      */
     @Override
-    public SysUserAuthsVO getOne(SysUserAuthsPageQueryDTO queryDto) {
+    public SysUserAuthsVO getOne(SysUserAuthsQueryDTO queryDto) {
         try {
+            LambdaQueryWrapper<SysUserAuthsPO> lqw = Wrappers.lambdaQuery();
             // 构造查询条件
-            LambdaQueryWrapper<SysUserAuthsPO> lqw = lambdaQuery(queryDto);
+            lqw.eq(queryDto.getUserId() != null, SysUserAuthsPO::getUserId, queryDto.getUserId());
+            lqw.eq(StringUtils.isNotBlank(queryDto.getIdentityType()), SysUserAuthsPO::getIdentityType,
+                    queryDto.getIdentityType());
+            lqw.eq(StringUtils.isNotBlank(queryDto.getIdentifier()), SysUserAuthsPO::getIdentifier,
+                    queryDto.getIdentifier());
             SysUserAuthsPO sysUserAuthsPO = sysUserAuthsMapper.selectOne(lqw);
             return ISysUserAuthsPOConvert.INSTANCE.toVO(sysUserAuthsPO);
         }

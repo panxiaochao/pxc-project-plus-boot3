@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysloglogin.SysLogLoginQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysloglogin.SysLogLoginVO;
 
@@ -30,13 +31,13 @@ public interface ISysLogLoginReadModelService {
      * @param queryDto 系统管理-系统日志登录/登出表 查询请求对象数组
      * @return 系统管理-系统日志登录/登出表 结果数组
      */
-    List<SysLogLoginQueryVO> selectList(SysLogLoginPageQueryDTO queryDto);
+    List<SysLogLoginQueryVO> selectList(SysLogLoginQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-系统日志登录/登出表 请求对象
      * @return 系统管理-系统日志登录/登出表 对象
      */
-    SysLogLoginVO getOne(SysLogLoginPageQueryDTO queryDto);
+    SysLogLoginVO getOne(SysLogLoginQueryDTO queryDto);
 
 }

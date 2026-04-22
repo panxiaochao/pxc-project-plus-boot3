@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysuserpost.SysUserPostPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserpost.SysUserPostQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuserpost.SysUserPostVO;
 import io.github.panxiaochao.project.system.application.repository.ISysUserPostReadModelService;
@@ -60,9 +61,9 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
      * @return 结果数组
      */
     @Override
-    public List<SysUserPostQueryVO> selectList(SysUserPostPageQueryDTO queryDto) {
+    public List<SysUserPostQueryVO> selectList(SysUserPostQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysUserPostPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysUserPostPO> lqw = Wrappers.lambdaQuery();
         return ISysUserPostPOConvert.INSTANCE.toQueryVO(sysUserPostMapper.selectList(lqw));
     }
 
@@ -72,10 +73,10 @@ public class SysUserPostServiceImpl implements ISysUserPostService, ISysUserPost
      * @return 系统管理-用户岗位关联表 查询响应对象
      */
     @Override
-    public SysUserPostVO getOne(SysUserPostPageQueryDTO queryDto) {
+    public SysUserPostVO getOne(SysUserPostQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysUserPostPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysUserPostPO> lqw = Wrappers.lambdaQuery();
             SysUserPostPO sysUserPostPO = sysUserPostMapper.selectOne(lqw);
             return ISysUserPostPOConvert.INSTANCE.toVO(sysUserPostPO);
         }

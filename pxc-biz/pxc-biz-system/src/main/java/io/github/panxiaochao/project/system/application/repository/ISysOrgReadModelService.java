@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgVO;
 
@@ -30,13 +31,13 @@ public interface ISysOrgReadModelService {
      * @param queryDto 系统管理-机构部门表 查询请求对象数组
      * @return 系统管理-机构部门表 结果数组
      */
-    List<SysOrgQueryVO> selectList(SysOrgPageQueryDTO queryDto);
+    List<SysOrgQueryVO> selectList(SysOrgQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-机构部门表 请求对象
      * @return 系统管理-机构部门表 对象
      */
-    SysOrgVO getOne(SysOrgPageQueryDTO queryDto);
+    SysOrgVO getOne(SysOrgQueryDTO queryDto);
 
 }

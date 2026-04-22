@@ -10,6 +10,7 @@ import io.github.panxiaochao.boot3.component.select.SelectOption;
 import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRolePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysrole.SysRoleUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrole.SysRoleVO;
@@ -83,7 +84,7 @@ public class SysRoleAppService {
      */
     public R<SysRoleVO> save(SysRoleCreateDTO sysRoleCreateDTO) {
         SysRoleBO sysRole = ISysRoleDTOConvert.INSTANCE.fromCreateDTO(sysRoleCreateDTO);
-        SysRolePageQueryDTO queryRequest = new SysRolePageQueryDTO();
+        SysRoleQueryDTO queryRequest = new SysRoleQueryDTO();
         queryRequest.setRoleCode(sysRole.getRoleCode());
         queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
         SysRoleVO one = sysRoleReadModelService.getOne(queryRequest);
@@ -131,7 +132,7 @@ public class SysRoleAppService {
      * @param queryDTO 系统管理-角色表 查询查询请求对象
      * @return 结果数组
      */
-    public List<Select<Integer>> listRole(SysRolePageQueryDTO queryDTO) {
+    public List<Select<Integer>> listRole(SysRoleQueryDTO queryDTO) {
         queryDTO.setStatus(CommonConstant.STATUS_NORMAL.toString());
         List<SysRoleQueryVO> list = sysRoleReadModelService.selectList(queryDTO);
         List<SelectOption<Integer>> selectOptionList = list.stream()

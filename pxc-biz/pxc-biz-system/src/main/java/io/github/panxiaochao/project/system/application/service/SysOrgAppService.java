@@ -14,6 +14,7 @@ import io.github.panxiaochao.boot3.component.tree.TreeNodeProperties;
 import io.github.panxiaochao.boot3.utils.DictUtil;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysorg.SysOrgUpdateDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysorg.SysOrgVO;
@@ -128,7 +129,7 @@ public class SysOrgAppService {
      * @return 树列表
      */
     public List<Tree<Integer>> listTree(Integer rootId) {
-        SysOrgPageQueryDTO queryRequest = new SysOrgPageQueryDTO();
+        SysOrgQueryDTO queryRequest = new SysOrgQueryDTO();
         if (rootId != null) {
             queryRequest.setParentId(rootId);
         }
@@ -159,7 +160,7 @@ public class SysOrgAppService {
      * @return 树列表
      */
     public List<Tree<Integer>> tableTree(Integer orgId) {
-        SysOrgPageQueryDTO queryRequest = new SysOrgPageQueryDTO();
+        SysOrgQueryDTO queryRequest = new SysOrgQueryDTO();
         Integer rootId = CommonConstant.TREE_ROOT_ID.intValue();
         // 有数据就说明需要查下级
         if (orgId != null) {
@@ -218,7 +219,7 @@ public class SysOrgAppService {
      * @return 列表
      */
     public List<SysOrgQueryVO> list(Integer orgId) {
-        SysOrgPageQueryDTO queryRequest = new SysOrgPageQueryDTO();
+        SysOrgQueryDTO queryRequest = new SysOrgQueryDTO();
         // 有数据就说明需要查下级
         if (orgId != null) {
             queryRequest.setParentId(orgId);

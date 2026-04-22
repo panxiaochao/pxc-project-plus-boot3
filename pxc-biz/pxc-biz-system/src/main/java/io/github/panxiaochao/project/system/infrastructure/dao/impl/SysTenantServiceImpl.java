@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenant.SysTenantPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.systenant.SysTenantQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenant.SysTenantVO;
 import io.github.panxiaochao.project.system.application.repository.ISysTenantReadModelService;
@@ -60,9 +61,9 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
      * @return 结果数组
      */
     @Override
-    public List<SysTenantQueryVO> selectList(SysTenantPageQueryDTO queryDto) {
+    public List<SysTenantQueryVO> selectList(SysTenantQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysTenantPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysTenantPO> lqw = Wrappers.lambdaQuery();
         return ISysTenantPOConvert.INSTANCE.toQueryVO(sysTenantMapper.selectList(lqw));
     }
 
@@ -72,10 +73,10 @@ public class SysTenantServiceImpl implements ISysTenantService, ISysTenantReadMo
      * @return 系统管理-租户表 查询响应对象
      */
     @Override
-    public SysTenantVO getOne(SysTenantPageQueryDTO queryDto) {
+    public SysTenantVO getOne(SysTenantQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysTenantPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysTenantPO> lqw = Wrappers.lambdaQuery();
             SysTenantPO sysTenantPO = sysTenantMapper.selectOne(lqw);
             return ISysTenantPOConvert.INSTANCE.toVO(sysTenantPO);
         }

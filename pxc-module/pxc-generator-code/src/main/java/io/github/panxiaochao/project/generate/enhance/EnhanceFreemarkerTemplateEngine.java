@@ -135,7 +135,7 @@ public class EnhanceFreemarkerTemplateEngine extends FreemarkerTemplateEngine {
         // dto
         String filePath = "";
         String templatePath = "";
-        String[] requests = new String[] { "Create", "Update", "PageQuery" };
+        String[] requests = new String[] { "Create", "Update", "PageQuery", "Query" };
         String entity = objectMap.get("entity").toString();
         for (String request : requests) {
             filePath = parentPath + "/application/api/dto/" + entity.toLowerCase() + "/" + entity + request

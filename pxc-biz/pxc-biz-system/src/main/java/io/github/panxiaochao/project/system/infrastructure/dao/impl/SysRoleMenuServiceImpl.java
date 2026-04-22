@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysrolemenu.SysRoleMenuPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysrolemenu.SysRoleMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysrolemenu.SysRoleMenuVO;
 import io.github.panxiaochao.project.system.application.repository.ISysRoleMenuReadModelService;
@@ -59,9 +60,9 @@ public class SysRoleMenuServiceImpl implements ISysRoleMenuService, ISysRoleMenu
      * @return 结果数组
      */
     @Override
-    public List<SysRoleMenuQueryVO> selectList(SysRoleMenuPageQueryDTO queryDto) {
+    public List<SysRoleMenuQueryVO> selectList(SysRoleMenuQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysRoleMenuPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysRoleMenuPO> lqw = Wrappers.lambdaQuery();
         return ISysRoleMenuPOConvert.INSTANCE.toQueryVO(sysRoleMenuMapper.selectList(lqw));
     }
 
@@ -71,10 +72,10 @@ public class SysRoleMenuServiceImpl implements ISysRoleMenuService, ISysRoleMenu
      * @return 系统管理-角色菜单表 查询响应对象
      */
     @Override
-    public SysRoleMenuVO getOne(SysRoleMenuPageQueryDTO queryDto) {
+    public SysRoleMenuVO getOne(SysRoleMenuQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysRoleMenuPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysRoleMenuPO> lqw = Wrappers.lambdaQuery();
             SysRoleMenuPO sysRoleMenuPO = sysRoleMenuMapper.selectOne(lqw);
             return ISysRoleMenuPOConvert.INSTANCE.toVO(sysRoleMenuPO);
         }

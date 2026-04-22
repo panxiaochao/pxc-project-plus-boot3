@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysmenu.SysMenuQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysmenu.SysMenuVO;
 
@@ -30,13 +31,13 @@ public interface ISysMenuReadModelService {
      * @param queryDto 系统管理-菜单配置 查询请求对象数组
      * @return 系统管理-菜单配置 结果数组
      */
-    List<SysMenuQueryVO> selectList(SysMenuPageQueryDTO queryDto);
+    List<SysMenuQueryVO> selectList(SysMenuQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-菜单配置 请求对象
      * @return 系统管理-菜单配置 对象
      */
-    SysMenuVO getOne(SysMenuPageQueryDTO queryDto);
+    SysMenuVO getOne(SysMenuQueryDTO queryDto);
 
 }

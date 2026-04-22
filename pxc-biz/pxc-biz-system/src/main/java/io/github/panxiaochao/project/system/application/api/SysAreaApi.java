@@ -78,7 +78,7 @@ public class SysAreaApi {
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "系统管理-全国5级行政区划 ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<String> idList) {
+    public R<Void> deleteByIds(@RequestBody List<String> idList) {
         return sysAreaAppService.deleteByIds(idList);
     }
 

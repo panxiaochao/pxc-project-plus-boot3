@@ -74,7 +74,7 @@ public class ${table.controllerName} {
     @Operation(summary = "批量删除", description = "根据主键数组删除")
     @Parameter(name = "idList", description = "${table.comment!} ID数组")
     @PostMapping(value = "/deleteBatch")
-    public R<Void> deleteByIds(List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
+    public R<Void> deleteByIds(@RequestBody List<<#if keyPropertyType="Long">String<#else>${keyPropertyType}</#if>> idList) {
         return ${entity?uncap_first}AppService.deleteByIds(idList);
     }
 

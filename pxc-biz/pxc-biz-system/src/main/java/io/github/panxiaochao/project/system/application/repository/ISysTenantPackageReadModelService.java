@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackagePageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.systenantpackage.SysTenantPackageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.systenantpackage.SysTenantPackageVO;
 
@@ -30,13 +31,13 @@ public interface ISysTenantPackageReadModelService {
      * @param queryDto 系统管理-租户套餐表 查询请求对象数组
      * @return 系统管理-租户套餐表 结果数组
      */
-    List<SysTenantPackageQueryVO> selectList(SysTenantPackagePageQueryDTO queryDto);
+    List<SysTenantPackageQueryVO> selectList(SysTenantPackageQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-租户套餐表 请求对象
      * @return 系统管理-租户套餐表 对象
      */
-    SysTenantPackageVO getOne(SysTenantPackagePageQueryDTO queryDto);
+    SysTenantPackageVO getOne(SysTenantPackageQueryDTO queryDto);
 
 }

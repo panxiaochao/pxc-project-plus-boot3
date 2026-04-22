@@ -2,6 +2,7 @@ package io.github.panxiaochao.project.system.application.repository;
 
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysarea.SysAreaQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysarea.SysAreaVO;
 
@@ -30,14 +31,14 @@ public interface ISysAreaReadModelService {
      * @param queryDto 系统管理-全国5级行政区划 查询请求对象数组
      * @return 系统管理-全国5级行政区划 结果数组
      */
-    List<SysAreaQueryVO> selectList(SysAreaPageQueryDTO queryDto);
+    List<SysAreaQueryVO> selectList(SysAreaQueryDTO queryDto);
 
     /**
      * 查询单条记录
      * @param queryDto 系统管理-全国5级行政区划 请求对象
      * @return 系统管理-全国5级行政区划 对象
      */
-    SysAreaVO getOne(SysAreaPageQueryDTO queryDto);
+    SysAreaVO getOne(SysAreaQueryDTO queryDto);
 
     /**
      * 定制查询列表

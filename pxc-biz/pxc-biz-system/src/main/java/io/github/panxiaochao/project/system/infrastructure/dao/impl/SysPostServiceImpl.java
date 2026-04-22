@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.common.core.constants.GlobalConstant;
 import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.syspost.SysPostQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 import io.github.panxiaochao.project.system.application.repository.ISysPostReadModelService;
@@ -60,9 +61,10 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
      * @return 结果数组
      */
     @Override
-    public List<SysPostQueryVO> selectList(SysPostPageQueryDTO queryDto) {
+    public List<SysPostQueryVO> selectList(SysPostQueryDTO queryDto) {
+        LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
-        LambdaQueryWrapper<SysPostPO> lqw = lambdaQuery(queryDto);
+        lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysPostPO::getStatus, queryDto.getStatus());
         return ISysPostPOConvert.INSTANCE.toQueryVO(sysPostMapper.selectList(lqw));
     }
 
@@ -72,10 +74,12 @@ public class SysPostServiceImpl implements ISysPostService, ISysPostReadModelSer
      * @return 系统管理-岗位表 查询响应对象
      */
     @Override
-    public SysPostVO getOne(SysPostPageQueryDTO queryDto) {
+    public SysPostVO getOne(SysPostQueryDTO queryDto) {
         try {
+            LambdaQueryWrapper<SysPostPO> lqw = Wrappers.lambdaQuery();
             // 构造查询条件
-            LambdaQueryWrapper<SysPostPO> lqw = lambdaQuery(queryDto);
+            lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysPostPO::getStatus, queryDto.getStatus());
+            lqw.eq(StringUtils.isNotBlank(queryDto.getPostCode()), SysPostPO::getPostCode, queryDto.getPostCode());
             SysPostPO sysPostPO = sysPostMapper.selectOne(lqw);
             return ISysPostPOConvert.INSTANCE.toVO(sysPostPO);
         }

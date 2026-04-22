@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysparam.SysParamVO;
 import io.github.panxiaochao.project.system.application.repository.ISysParamReadModelService;
@@ -60,9 +61,10 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
      * @return 结果数组
      */
     @Override
-    public List<SysParamQueryVO> selectList(SysParamPageQueryDTO queryDto) {
+    public List<SysParamQueryVO> selectList(SysParamQueryDTO queryDto) {
+        LambdaQueryWrapper<SysParamPO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
-        LambdaQueryWrapper<SysParamPO> lqw = lambdaQuery(queryDto);
+        lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysParamPO::getStatus, queryDto.getStatus());
         return ISysParamPOConvert.INSTANCE.toQueryVO(sysParamMapper.selectList(lqw));
     }
 
@@ -72,10 +74,10 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
      * @return 系统管理-系统参数 查询响应对象
      */
     @Override
-    public SysParamVO getOne(SysParamPageQueryDTO queryDto) {
+    public SysParamVO getOne(SysParamQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysParamPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysParamPO> lqw = Wrappers.lambdaQuery();
             SysParamPO sysParamPO = sysParamMapper.selectOne(lqw);
             return ISysParamPOConvert.INSTANCE.toVO(sysParamPO);
         }

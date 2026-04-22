@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysjob.SysJobPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysjob.SysJobQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysjob.SysJobQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysjob.SysJobVO;
 import io.github.panxiaochao.project.system.application.repository.ISysJobReadModelService;
@@ -59,9 +60,9 @@ public class SysJobServiceImpl implements ISysJobService, ISysJobReadModelServic
      * @return 结果数组
      */
     @Override
-    public List<SysJobQueryVO> selectList(SysJobPageQueryDTO queryDto) {
+    public List<SysJobQueryVO> selectList(SysJobQueryDTO queryDto) {
         // 构造查询条件
-        LambdaQueryWrapper<SysJobPO> lqw = lambdaQuery(queryDto);
+        LambdaQueryWrapper<SysJobPO> lqw = Wrappers.lambdaQuery();
         return ISysJobPOConvert.INSTANCE.toQueryVO(sysJobMapper.selectList(lqw));
     }
 
@@ -71,10 +72,10 @@ public class SysJobServiceImpl implements ISysJobService, ISysJobReadModelServic
      * @return 系统管理-定时任务调度表 查询响应对象
      */
     @Override
-    public SysJobVO getOne(SysJobPageQueryDTO queryDto) {
+    public SysJobVO getOne(SysJobQueryDTO queryDto) {
         try {
             // 构造查询条件
-            LambdaQueryWrapper<SysJobPO> lqw = lambdaQuery(queryDto);
+            LambdaQueryWrapper<SysJobPO> lqw = Wrappers.lambdaQuery();
             SysJobPO sysJobPO = sysJobMapper.selectOne(lqw);
             return ISysJobPOConvert.INSTANCE.toVO(sysJobPO);
         }

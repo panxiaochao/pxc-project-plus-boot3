@@ -11,7 +11,7 @@ import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysuser.SysUserUpdateDTO;
-import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysuserauths.SysUserAuthsQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.syspost.SysPostVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysuser.SysUserVO;
@@ -139,7 +139,7 @@ public class SysUserAppService {
     public R<SysUserVO> save(SysUserCreateDTO sysUserCreateDTO) {
         SysUserBO sysUser = ISysUserDTOConvert.INSTANCE.fromCreateDTO(sysUserCreateDTO);
         // 判断登录账号是否唯一. 判断条件：登录类型+登录账号
-        SysUserAuthsPageQueryDTO queryRequest = new SysUserAuthsPageQueryDTO();
+        SysUserAuthsQueryDTO queryRequest = new SysUserAuthsQueryDTO();
         queryRequest.setIdentifier(sysUserCreateDTO.getLoginName());
         queryRequest.setIdentityType(IDENTITY_TYPE_USERNAME);
         SysUserAuthsVO one = sysUserAuthsReadModelService.getOne(queryRequest);
