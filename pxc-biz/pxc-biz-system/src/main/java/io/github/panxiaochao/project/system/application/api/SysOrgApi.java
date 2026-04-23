@@ -105,7 +105,7 @@ public class SysOrgApi {
 
     @Operation(summary = "获取机构类别下拉", description = "获取机构类别下拉", method = "GET")
     @GetMapping(value = "/selectOrgCategoryList")
-    public R<List<Select<Integer>>> selectOrgCategoryList() {
+    public R<List<Select<String>>> selectOrgCategoryList() {
         return R.ok(sysOrgAppService.selectOrgCategoryList());
     }
 

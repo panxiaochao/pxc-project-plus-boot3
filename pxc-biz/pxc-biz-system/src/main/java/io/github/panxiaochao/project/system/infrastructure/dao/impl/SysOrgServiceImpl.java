@@ -65,6 +65,7 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
         // 构造查询条件
         lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysOrgPO::getStatus, queryDto.getStatus());
         lqw.eq(queryDto.getParentId() != null, SysOrgPO::getParentId, queryDto.getParentId());
+        lqw.eq(StringUtils.isNotBlank(queryDto.getOrgCode()), SysOrgPO::getOrgCode, queryDto.getOrgCode());
         return ISysOrgPOConvert.INSTANCE.toQueryVO(sysOrgMapper.selectList(lqw));
     }
 
@@ -76,8 +77,11 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
     @Override
     public SysOrgVO getOne(SysOrgQueryDTO queryDto) {
         try {
-            // 构造查询条件
             LambdaQueryWrapper<SysOrgPO> lqw = Wrappers.lambdaQuery();
+            // 构造查询条件
+            lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysOrgPO::getStatus, queryDto.getStatus());
+            lqw.eq(queryDto.getParentId() != null, SysOrgPO::getParentId, queryDto.getParentId());
+            lqw.eq(StringUtils.isNotBlank(queryDto.getOrgCode()), SysOrgPO::getOrgCode, queryDto.getOrgCode());
             SysOrgPO sysOrgPO = sysOrgMapper.selectOne(lqw);
             return ISysOrgPOConvert.INSTANCE.toVO(sysOrgPO);
         }
@@ -94,8 +98,8 @@ public class SysOrgServiceImpl implements ISysOrgService, ISysOrgReadModelServic
     private LambdaQueryWrapper<SysOrgPO> lambdaQuery(SysOrgPageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysOrgPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysOrgPO::getId);
+            // 默认按照排序字段升序排序
+            lqw.orderByAsc(SysOrgPO::getSort);
             // 如果 父ID 不为空
             if (pageQueryDto.getParentId() != null) {
                 lqw.eq(SysOrgPO::getParentId, pageQueryDto.getParentId());

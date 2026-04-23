@@ -29,6 +29,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -87,6 +88,13 @@ public class SysOrgAppService {
      */
     public R<SysOrgVO> save(SysOrgCreateDTO sysOrgCreateDTO) {
         SysOrgBO sysOrg = ISysOrgDTOConvert.INSTANCE.fromCreateDTO(sysOrgCreateDTO);
+        SysOrgQueryDTO queryRequest = new SysOrgQueryDTO();
+        queryRequest.setOrgCode(sysOrg.getOrgCode());
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        SysOrgVO one = sysOrgReadModelService.getOne(queryRequest);
+        if (Objects.nonNull(one)) {
+            return R.fail("机构编码[" + sysOrg.getOrgCode() + "]已存在");
+        }
         sysOrg = sysOrgService.save(sysOrg);
         SysOrgVO sysOrgVO = ISysOrgDTOConvert.INSTANCE.toVO(sysOrg);
         return R.ok(sysOrgVO);
@@ -109,7 +117,15 @@ public class SysOrgAppService {
      * @return 空返回
      */
     public R<Void> deleteById(Integer id) {
-        sysOrgService.deleteById(id);
+        SysOrgQueryDTO queryRequest = new SysOrgQueryDTO();
+        queryRequest.setParentId(id);
+        List<SysOrgQueryVO> list = sysOrgReadModelService.selectList(queryRequest);
+        if (CollectionUtils.isEmpty(list)) {
+            sysOrgService.deleteById(id);
+        }
+        else {
+            return R.fail("存在下级级联数据，请删除！");
+        }
         return R.ok();
     }
 
@@ -202,14 +218,14 @@ public class SysOrgAppService {
     /**
      * 获取机构类别下拉
      */
-    public List<Select<Integer>> selectOrgCategoryList() {
+    public List<Select<String>> selectOrgCategoryList() {
         Map<String, String> dictMap = DictUtil.getAllDictByDictCode(ORG_CATEGORY);
-        List<SelectOption<Integer>> selectOptionList = dictMap.entrySet()
+        List<SelectOption<String>> selectOptionList = dictMap.entrySet()
             .stream()
-            .map(m -> SelectOption.of(Integer.valueOf(m.getKey()), m.getValue(), m.getValue(),
+            .map(m -> SelectOption.of(m.getKey(), m.getValue(), m.getValue(),
                     (extraMap) -> extraMap.put("label", m.getValue())))
             .collect(Collectors.toList());
-        List<Select<Integer>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        List<Select<String>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
         return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
     }
 

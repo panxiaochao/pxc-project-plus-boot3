@@ -91,7 +91,7 @@ public class SysAreaApi {
 
     @Operation(summary = "获取区域层级下拉菜单", description = "获取区域层级下拉菜单", method = "GET")
     @GetMapping(value = "/selectAreaLevels")
-    public R<List<Select<Integer>>> selectAreaLevels() {
+    public R<List<Select<String>>> selectAreaLevels() {
         return R.ok(sysAreaAppService.selectAreaLevels());
     }
 

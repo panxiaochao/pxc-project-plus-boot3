@@ -170,15 +170,15 @@ public class SysAreaAppService {
      * 获取区域层级下拉菜单
      * @return 返回通用下拉菜单
      */
-    public List<Select<Integer>> selectAreaLevels() {
+    public List<Select<String>> selectAreaLevels() {
         Map<String, String> dictMap = DictUtil.getAllDictByDictCode(AREA_LEVEL);
-        List<SelectOption<Integer>> selectOptionList = dictMap.entrySet()
+        List<SelectOption<String>> selectOptionList = dictMap.entrySet()
             .stream()
-            .map(m -> SelectOption.of(Integer.valueOf(m.getKey()), m.getValue(), (extraMap) -> {
+            .map(m -> SelectOption.of(m.getKey(), m.getValue(), (extraMap) -> {
                 extraMap.put("label", m.getValue());
             }))
             .collect(Collectors.toList());
-        List<Select<Integer>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        List<Select<String>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
         return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
     }
 
