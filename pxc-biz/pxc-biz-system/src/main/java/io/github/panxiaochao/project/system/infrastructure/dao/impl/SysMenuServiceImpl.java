@@ -63,6 +63,8 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
     public List<SysMenuQueryVO> selectList(SysMenuQueryDTO queryDto) {
         // 构造查询条件
         LambdaQueryWrapper<SysMenuPO> lqw = Wrappers.lambdaQuery();
+        lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysMenuPO::getStatus, queryDto.getStatus());
+        lqw.eq(queryDto.getParentId() != null, SysMenuPO::getParentId, queryDto.getParentId());
         return ISysMenuPOConvert.INSTANCE.toQueryVO(sysMenuMapper.selectList(lqw));
     }
 
@@ -76,6 +78,8 @@ public class SysMenuServiceImpl implements ISysMenuService, ISysMenuReadModelSer
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysMenuPO> lqw = Wrappers.lambdaQuery();
+            lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysMenuPO::getStatus, queryDto.getStatus());
+            lqw.eq(queryDto.getParentId() != null, SysMenuPO::getParentId, queryDto.getParentId());
             SysMenuPO sysMenuPO = sysMenuMapper.selectOne(lqw);
             return ISysMenuPOConvert.INSTANCE.toVO(sysMenuPO);
         }

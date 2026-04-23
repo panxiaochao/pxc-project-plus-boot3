@@ -105,9 +105,9 @@ public class SysMenuBO {
     private Integer createBy;
 
     /**
-     *
+     * 更新人
      */
-    private String updateBy;
+    private Integer updateBy;
 
     /**
      * 创建时间

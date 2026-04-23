@@ -110,8 +110,11 @@ public class SysMenuPO {
     @TableField(fill = FieldFill.INSERT)
     private Integer createBy;
 
+    /**
+     * 更新人
+     */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String updateBy;
+    private Integer updateBy;
 
     /**
      * 创建时间

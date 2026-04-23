@@ -73,7 +73,7 @@ public class SysMenuVO {
     private Integer createBy;
 
     @Schema(description = "更新人")
-    private String updateBy;
+    private Integer updateBy;
 
     @Schema(description = "创建时间")
     private LocalDateTime createAt;
