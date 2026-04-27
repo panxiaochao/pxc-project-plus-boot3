@@ -1,21 +1,28 @@
 package io.github.panxiaochao.project.system.application.service;
 
+import io.github.panxiaochao.boot3.common.constants.CommonConstant;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictPageQueryDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysdict.SysDictUpdateDTO;
+import io.github.panxiaochao.project.system.application.api.dto.sysdictitem.SysDictItemQueryDTO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictQueryVO;
 import io.github.panxiaochao.project.system.application.api.vo.sysdict.SysDictVO;
+import io.github.panxiaochao.project.system.application.api.vo.sysdictitem.SysDictItemQueryVO;
 import io.github.panxiaochao.project.system.application.convert.ISysDictDTOConvert;
+import io.github.panxiaochao.project.system.application.repository.ISysDictItemReadModelService;
 import io.github.panxiaochao.project.system.application.repository.ISysDictReadModelService;
 import io.github.panxiaochao.project.system.domain.entity.sysdict.SysDictBO;
 import io.github.panxiaochao.project.system.domain.repository.ISysDictService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -33,6 +40,11 @@ public class SysDictAppService {
      * 系统管理-数据字典表 Domain接口服务类
      */
     private final ISysDictService sysDictService;
+
+    /**
+     * 系统管理-数据字典配置表 读模型服务.
+     */
+    private final ISysDictItemReadModelService sysDictItemReadModelService;
 
     /**
      * 系统管理-数据字典表 读模型服务类
@@ -68,6 +80,13 @@ public class SysDictAppService {
      */
     public R<SysDictVO> save(SysDictCreateDTO sysDictCreateDTO) {
         SysDictBO sysDict = ISysDictDTOConvert.INSTANCE.fromCreateDTO(sysDictCreateDTO);
+        SysDictQueryDTO queryRequest = new SysDictQueryDTO();
+        queryRequest.setDictCode(sysDict.getDictCode());
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        SysDictVO one = sysDictReadModelService.getOne(queryRequest);
+        if (Objects.nonNull(one)) {
+            return R.fail("数据字典[" + sysDict.getDictCode() + "]已存在");
+        }
         sysDict = sysDictService.save(sysDict);
         SysDictVO sysDictVO = ISysDictDTOConvert.INSTANCE.toVO(sysDict);
         return R.ok(sysDictVO);
@@ -90,7 +109,15 @@ public class SysDictAppService {
      * @return 空返回
      */
     public R<Void> deleteById(Integer id) {
-        sysDictService.deleteById(id);
+        SysDictItemQueryDTO queryRequest = new SysDictItemQueryDTO();
+        queryRequest.setDictId(id);
+        List<SysDictItemQueryVO> list = sysDictItemReadModelService.selectList(queryRequest);
+        if (CollectionUtils.isEmpty(list)) {
+            sysDictService.deleteById(id);
+        }
+        else {
+            return R.fail("存在关联数据，请删除完全！");
+        }
         return R.ok();
     }
 

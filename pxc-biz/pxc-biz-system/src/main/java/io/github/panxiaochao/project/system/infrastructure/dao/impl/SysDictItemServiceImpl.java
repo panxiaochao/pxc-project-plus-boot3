@@ -64,6 +64,8 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
     public List<SysDictItemQueryVO> selectList(SysDictItemQueryDTO queryDto) {
         LambdaQueryWrapper<SysDictItemPO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
+        lqw.eq(queryDto.getDictId() != null, SysDictItemPO::getDictId, queryDto.getDictId());
+        lqw.eq(StringUtils.isNotBlank(queryDto.getDictCode()), SysDictItemPO::getDictCode, queryDto.getDictCode());
         lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysDictItemPO::getStatus, queryDto.getStatus());
         return ISysDictItemPOConvert.INSTANCE.toQueryVO(sysDictItemMapper.selectList(lqw));
     }
@@ -94,8 +96,8 @@ public class SysDictItemServiceImpl implements ISysDictItemService, ISysDictItem
     private LambdaQueryWrapper<SysDictItemPO> lambdaQuery(SysDictItemPageQueryDTO pageQueryDto) {
         LambdaQueryWrapper<SysDictItemPO> lqw = Wrappers.lambdaQuery();
         if (pageQueryDto != null) {
-            // 默认按照主键倒序排序
-            lqw.orderByDesc(SysDictItemPO::getId);
+            // 默认按照排序升序排序
+            lqw.orderByAsc(SysDictItemPO::getSort);
             // 如果 字典关联ID 不为空
             if (pageQueryDto.getDictId() != null) {
                 lqw.eq(SysDictItemPO::getDictId, pageQueryDto.getDictId());
