@@ -82,14 +82,14 @@ public class SysAreaApi {
         return sysAreaAppService.deleteByIds(idList);
     }
 
-    @Operation(summary = "前2级的区域数据", description = "前2级的区域数据", method = "GET")
+    @Operation(summary = "前2级的区域数据", description = "前2级的区域数据")
     @Parameter(name = "areaCode", description = "区域code")
     @GetMapping(value = "/listTree")
     public R<List<Tree<String>>> listTree(String areaCode) {
         return R.ok(sysAreaAppService.listTree(areaCode));
     }
 
-    @Operation(summary = "获取区域层级下拉菜单", description = "获取区域层级下拉菜单", method = "GET")
+    @Operation(summary = "获取区域层级下拉菜单", description = "获取区域层级下拉菜单")
     @GetMapping(value = "/selectAreaLevels")
     public R<List<Select<String>>> selectAreaLevels() {
         return R.ok(sysAreaAppService.selectAreaLevels());
