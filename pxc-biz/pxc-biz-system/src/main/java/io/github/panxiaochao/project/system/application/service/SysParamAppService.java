@@ -4,7 +4,12 @@ import io.github.panxiaochao.boot3.common.constants.CommonConstant;
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
 import io.github.panxiaochao.boot3.common.response.page.Pagination;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.component.select.SelectBuilder;
+import io.github.panxiaochao.boot3.component.select.SelectOption;
 import io.github.panxiaochao.boot3.redis.utils.RedissonUtil;
+import io.github.panxiaochao.boot3.utils.DictUtil;
+import io.github.panxiaochao.boot3.utils.StringPools;
 import io.github.panxiaochao.project.common.core.constants.GlobalRedisConstant;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
@@ -24,8 +29,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -55,6 +66,11 @@ public class SysParamAppService {
     private final ISysParamReadModelService sysParamReadModelService;
 
     /**
+     * 系统参数 常量名
+     */
+    private static final String PARAM_TYPE = "PARAM_TYPE";
+
+    /**
      * 查询分页
      * @param pageQueryDTO 系统管理-系统参数 分页查询请求对象
      * @return 分页数组响应实体
@@ -62,6 +78,15 @@ public class SysParamAppService {
     public PageResponse<SysParamQueryVO> page(SysParamPageQueryDTO pageQueryDTO) {
         Pagination pagination = pageQueryDTO.toPagination();
         List<SysParamQueryVO> list = sysParamReadModelService.page(pagination, pageQueryDTO);
+        list.forEach(s -> {
+            String paramTypeStr = DictUtil.getDictText(PARAM_TYPE, s.getParamType());
+            if (StringUtils.hasText(paramTypeStr)) {
+                s.setParamTypeStr(paramTypeStr);
+            }
+            else {
+                s.setParamTypeStr(StringPools.EMPTY);
+            }
+        });
         return new PageResponse<>(pagination, list);
     }
 
@@ -83,6 +108,13 @@ public class SysParamAppService {
      */
     public R<SysParamVO> save(SysParamCreateDTO sysParamCreateDTO) {
         SysParamBO sysParam = ISysParamDTOConvert.INSTANCE.fromCreateDTO(sysParamCreateDTO);
+        SysParamQueryDTO queryRequest = new SysParamQueryDTO();
+        queryRequest.setParamKey(sysParam.getParamKey());
+        queryRequest.setStatus(CommonConstant.STATUS_NORMAL.toString());
+        SysParamVO one = sysParamReadModelService.getOne(queryRequest);
+        if (Objects.nonNull(one)) {
+            return R.fail("系统参数[" + sysParam.getParamKey() + "]已存在");
+        }
         sysParam = sysParamService.save(sysParam);
         SysParamVO sysParamVO = ISysParamDTOConvert.INSTANCE.toVO(sysParam);
         return R.ok(sysParamVO);
@@ -117,6 +149,21 @@ public class SysParamAppService {
     public R<Void> deleteByIds(List<Integer> idList) {
         sysParamService.deleteByIds(idList);
         return R.ok();
+    }
+
+    /**
+     * 获取参数类型选项
+     * @return 返回通用结果
+     */
+    public List<Select<String>> selectParamTypes() {
+        Map<String, String> dictMap = DictUtil.getAllDictByDictCode(PARAM_TYPE);
+        List<SelectOption<String>> selectOptionList = dictMap.entrySet()
+            .stream()
+            .map(m -> SelectOption.of(m.getKey(), m.getValue(), m.getValue(),
+                    (extraMap) -> extraMap.put("label", m.getValue())))
+            .collect(Collectors.toList());
+        List<Select<String>> selectList = SelectBuilder.of(selectOptionList).fastBuild().toSelectList();
+        return CollectionUtils.isEmpty(selectList) ? new ArrayList<>() : selectList;
     }
 
     /**

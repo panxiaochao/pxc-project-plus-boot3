@@ -2,6 +2,8 @@ package io.github.panxiaochao.project.system.application.api;
 
 import io.github.panxiaochao.boot3.common.response.R;
 import io.github.panxiaochao.boot3.common.response.page.PageResponse;
+import io.github.panxiaochao.boot3.component.select.Select;
+import io.github.panxiaochao.boot3.repeatsubmit.annotation.RepeatSubmitLimiter;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamCreateDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamPageQueryDTO;
 import io.github.panxiaochao.project.system.application.api.dto.sysparam.SysParamUpdateDTO;
@@ -78,6 +80,20 @@ public class SysParamApi {
     @PostMapping(value = "/deleteBatch")
     public R<Void> deleteByIds(@RequestBody List<Integer> idList) {
         return sysParamAppService.deleteByIds(idList);
+    }
+
+    @Operation(summary = "获取参数类型选项", description = "获取参数类型选项")
+    @GetMapping(value = "/selectParamTypes")
+    public R<List<Select<String>>> selectParamTypes() {
+        return R.ok(sysParamAppService.selectParamTypes());
+    }
+
+    @RepeatSubmitLimiter(interval = 3000, message = "正在发布中，请勿重复提交")
+    @Operation(summary = "发布系统参数", description = "发布系统参数")
+    @GetMapping(value = "/publishedData")
+    public R<Void> publishedData() {
+        sysParamAppService.publishedData();
+        return R.ok();
     }
 
 }

@@ -65,6 +65,7 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
         LambdaQueryWrapper<SysParamPO> lqw = Wrappers.lambdaQuery();
         // 构造查询条件
         lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysParamPO::getStatus, queryDto.getStatus());
+        lqw.eq(StringUtils.isNotBlank(queryDto.getParamKey()), SysParamPO::getParamKey, queryDto.getParamKey());
         return ISysParamPOConvert.INSTANCE.toQueryVO(sysParamMapper.selectList(lqw));
     }
 
@@ -78,6 +79,8 @@ public class SysParamServiceImpl implements ISysParamService, ISysParamReadModel
         try {
             // 构造查询条件
             LambdaQueryWrapper<SysParamPO> lqw = Wrappers.lambdaQuery();
+            lqw.eq(StringUtils.isNotBlank(queryDto.getStatus()), SysParamPO::getStatus, queryDto.getStatus());
+            lqw.eq(StringUtils.isNotBlank(queryDto.getParamKey()), SysParamPO::getParamKey, queryDto.getParamKey());
             SysParamPO sysParamPO = sysParamMapper.selectOne(lqw);
             return ISysParamPOConvert.INSTANCE.toVO(sysParamPO);
         }

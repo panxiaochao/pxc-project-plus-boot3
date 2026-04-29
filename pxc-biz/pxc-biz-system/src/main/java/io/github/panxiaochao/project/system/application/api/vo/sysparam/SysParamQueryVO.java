@@ -36,6 +36,9 @@ public class SysParamQueryVO {
     @Schema(description = "参数类型1-系统类 2-业务类")
     private String paramType;
 
+    @Schema(description = "参数类型 系统类、业务类")
+    private String paramTypeStr;
+
     @Schema(description = "状态1-正常 0-不正常")
     private String status;
 
